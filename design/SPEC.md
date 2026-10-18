@@ -108,3 +108,62 @@ Copy the block per item.
 | Thing | Current | New |
 |---|---|---|
 | `cabin_trapdoor` display name | `§ccabinmod.cabin_trapdoor` (placeholder) | Jehoash Veil |
+
+---
+
+## Translated values (Claude) — check these
+
+| Spec text | Value | Why |
+|---|---|---|
+| Jehoash hitbox `1.5 * 3.5` | `sized(1.5f, 3.5f)` | |
+| Jehoash HP / damage | `MAX_HEALTH 250`, `ATTACK_DAMAGE 50` | taken literally (50 = 25 hearts, one-shots a player with no armor) |
+| "as fast as a creeper running from a cat" | `MOVEMENT_SPEED 0.30` | creeper 0.25 × 1.2 cat-flee sprint |
+| Disco: "as rare as a jungle temple, no biome restriction" | spacing 144, separation 48 (chunks) | temples are spacing 32 in jungles only (~5% of the world): 32/√0.05 ≈ 144 |
+| Life of the Party | custom effect: −99% block break speed, −50% attack speed, 5 min, disco-ball icon (you texture), full-screen jumpscare overlay + `elder_guardian.curse` placeholder sound | modeled on the elder guardian's curse (5 min) |
+| Jehoash disc drop | one roll from all 6 cabinmod discs, 10% base + 10% per Looting level | |
+| Warden's Spare Key | 100% drop | |
+| Cabin hitbox `2.5 * 5.5` | `sized(2.5f, 5.5f)` | |
+| Cabin HP / damage | `MAX_HEALTH 600`, `ATTACK_DAMAGE 100` | taken literally (one-shots a player even in full netherite) |
+| "moderately strong armor" phase 1 | `ARMOR 15`, `ARMOR_TOUGHNESS 4` → both 0 at phase 2 | between a full iron and a full diamond set |
+| Phase 2 threshold 75% | at 450 HP | |
+| "heart of the warden (already exists)" | `cabin_core` (Soul of the Warden) | the only existing warden heart/soul item |
+| Depleted Excalibur | wood tier, unbreakable; Transient Diviner recipe `dead_excalibur` → `excalibur` | |
+| bbc_lockdown "1 every 500 chunks" | spacing 22, separation 8 | one per ~500 chunks of *area* (√500 ≈ 22) |
+
+---
+
+## 8. The Disco (Jehoash's structure) — NEW, please fill
+| Field | Value |
+|---|---|
+| Registry id + name | ____ *(suggestion: `the_disco`)* |
+| Surface / underground | ____ |
+| Rough size | ____ |
+| Rooms (besides the boss arena) | ____ |
+| Arena size | ____ |
+| What triggers the "welcoming" (entering a marked area / a door / stepping on the dance floor) | ____ |
+
+## 9. Prisoners (4 cells in bbc_lockdown) — NEW, please fill
+| # | Registry id | Display name | HP / damage | Look / weapon | Unique identifier it drops (id + name) |
+|---|---|---|---|---|---|
+| 1 | ____ | ____ | ____ | ____ | ____ |
+| 2 | ____ | ____ | ____ | ____ | ____ |
+| 3 | ____ | ____ | ____ | ____ | ____ |
+| 4 | ____ | ____ | ____ | ____ | ____ |
+
+## 10. Lockdown code — NEW, please fill
+| Field | Value |
+|---|---|
+| Where the code is shown in the structure (sign / book / painting / other) | ____ |
+| Input block (registry id + name) | ____ *(e.g. a keypad)* |
+| How input works (place the 4 identifiers in order / type digits / other) | ____ |
+| Same code every time, or random per structure | ____ |
+
+## 11. Cabin's attacks — name them (2 in phase 1, 4 in phase 2)
+| Phase | Name | What it does |
+|---|---|---|
+| 1 | ____ | ____ |
+| 1 | ____ | ____ |
+| 2 | ____ | ____ |
+| 2 | ____ | ____ |
+| 2 | ____ | ____ |
+| 2 | ____ | ____ |
