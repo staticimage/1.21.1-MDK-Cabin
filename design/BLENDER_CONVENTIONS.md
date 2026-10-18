@@ -1,0 +1,79 @@
+# Blender → Minecraft rig & animation conventions
+
+Applies to every Cabin Mod mob (Jehoash, Cabin, prisoners). Blue Guy is untouched and does not use this.
+Target: vanilla NeoForge `HierarchicalModel` + `AnimationDefinition` — no GeckoLib.
+
+## The one hard rule
+**Meshes are rigid boxes owned by exactly one bone.** No weight painting, no shape keys, no
+modifiers that deform. Everything else in Blender is allowed, because the exporter bakes it.
+
+## Scene
+- Blender 4.2, a dedicated Cabin instance (never the STALKER session).
+- One collection per mob: `MC_<mobid>` (e.g. `MC_joash`).
+- Units: **1 Blender unit = 1 Minecraft pixel** (1/16 block). Scene unit scale is irrelevant; the
+  exporter reads raw values.
+- Axes: Blender −Y = mob forward, +Z = up. The exporter converts to Minecraft model space
+  (+Y down, origin at the feet + 24 px).
+- Frame rate **24 fps**. Exported keyframe times are `frame / 24` seconds.
+
+## Bones
+- One **Armature** per mob, `rig_<mobid>`, origin at the feet, inside the mob's collection.
+  (An armature, not Empties: one Action then drives the whole body, and IK / constraints /
+  action markers all work.)
+- Each bone is named `b_<part>`; its **head is the pivot**, e.g. `b_head`, `b_arm_l`,
+  `b_shroud_back_2`. Bone roll/direction does not matter — parts take the armature's axes at rest.
+- The root is `b_root` at the feet. `_l` / `_r` = the mob's own left / right.
+- Helper bones that should not become model parts (IK targets, poles, mechanism bones) are
+  named `ik_*` / `ctl_*` and are skipped by the exporter (their effect is baked).
+- Locators (bones with no cubes, exported as empty parts for code to use):
+  - `loc_hand_r` — the held melee item is rendered here (swappable item, not modeled).
+  - `loc_orb` — the floating disco ball (also a held item, drawn by a custom layer).
+  - `loc_*` others for particles / laser origin as needed.
+
+## Cubes
+- Box meshes named `c_<part>[_n]`, **bone-parented** (Parent Type: Bone) to exactly one bone —
+  no Armature modifier, no vertex groups. At rest pose they must be **axis-aligned to the world
+  axes** (pose bones to angle them, never rotate the cube in rest).
+- Sizes in whole pixels; `inflate` stored as a custom property `inflate` (float, may be 0.25 / 0.5).
+- UVs: box-UV, auto-packed by the exporter into a 64×64 or 128×128 atlas; custom property
+  `uv` = `[u, v]` pins a cube's offset once you have painted it, so re-exports never move paint.
+- Optional custom property `mirror` (bool) for mirrored UVs.
+
+## Animations
+- One **Action per clip**, named `<mobid>_<clip>[_loop]`, e.g. `joash_idle_loop`, `joash_attack_melee`.
+  The `_loop` suffix sets `looping()` in game.
+- Anything may drive the bones: keyframes, IK, constraints, drivers, rigid-body / spring chains.
+  On export every bone is **sampled every frame** (24 fps) and written as LINEAR keyframes, so
+  custom easing, overshoot and simulation are preserved exactly. Static channels are dropped.
+- Allowed per bone: location, rotation, **scale** (squash & stretch; scale 0 = hidden part).
+- Root motion does not move the hitbox: lunges/teleports are done in code, triggered by markers.
+
+## Markers → gameplay events
+**Action (pose) markers** — Action Editor → Marker menu with "Show Pose Markers" on, so they
+travel with the clip — are exported as tick events:
+- `hit` — melee damage frame
+- `fire` — laser/projectile spawn frame
+- `sfx:<sound_id>` — play a sound
+- `fx:<particle>` — spawn particles at a locator (`fx:<particle>@loc_orb`)
+- `move:<name>` — code-driven motion (lunge, blink)
+- `end` — clip may be interrupted from here
+
+## Layering in game
+- Base locomotion (idle/walk) + additive loops (breathing, shroud sway) + one action clip on top.
+- Code adds reactive motion after clips: head look-at, shroud trailing from velocity.
+- Glow: a second `_emissive.png` texture drawn full-bright (eyes, runes, disco lights).
+
+## Textures
+Painted by the user. The exporter writes `<mobid>_uv_template.png` (each cube a distinct hue,
+each face a different shade: top lightest → bottom darkest) plus `<mobid>_uv_legend.txt`
+(cube name → atlas rectangle per face) for painting over.
+
+## Generated files (do not hand-edit)
+Run: `python tools/blender/bl.py tools/blender/mc_export.py --set mob=<mobid> --set cls=<Class> --set repo=<repo path>`
+- `entity/client/generated/<Class>ModelBase.java` — layer definition + a field per part. The
+  hand-written `<Class>Model` extends it and does `setupAnim` (layering, look-at, reactive motion).
+- `assets/cabinmod/animations/<mobid>.json` — baked clips + marker events. Data, not Java: dense
+  baked keys would blow Java's 64 KB method limit. Loaded by `entity/anim/BakedClips` (common:
+  lengths + events for server timing) and `entity/client/anim/BakedAnimations` (client:
+  `AnimationDefinition`). Clip key = action name minus the `<mobid>_` prefix.
+- `textures/entity/<mobid>/<mobid>_uv_template.png` + `_uv_legend.txt`
