@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "cabin",
+  "key": {
+    "#": {
+      "item": "cabinmod:cabin"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "cabinmod:cabin_door"
+  }
+}

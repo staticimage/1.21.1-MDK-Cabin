@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cabinmod:block/cabin_slab"
+    },
+    "type=double": {
+      "model": "cabinmod:block/cabin_block"
+    },
+    "type=top": {
+      "model": "cabinmod:block/cabin_slab_top"
+    }
+  }
+}

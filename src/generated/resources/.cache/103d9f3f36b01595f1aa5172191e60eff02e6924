@@ -1,0 +1,6 @@
+// 1.21.1	2026-10-18T18:39:07.646591	Registries
+ee197e311b0f705ca688821ee850777c15075393 data/cabinmod/neoforge/biome_modifier/add_cabin_ore.json
+36c0a0d43136dc202216c25af4d0d1a723eb18bf data/cabinmod/trim_material/cabin.json
+a07c0cda9f4630a505671b7d3b6e8fa6108dcbe2 data/cabinmod/trim_pattern/cabin.json
+4887e6bad36399a5d8ef6fb27df71be95d55e82e data/cabinmod/worldgen/configured_feature/cabin_ore.json
+b9baf3395a5c95cc8d5b36b926807ecd95ad5e7d data/cabinmod/worldgen/placed_feature/cabin_ore_placed.json

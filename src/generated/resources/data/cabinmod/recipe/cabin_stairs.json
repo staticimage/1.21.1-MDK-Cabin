@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cabin",
+  "key": {
+    "#": {
+      "item": "cabinmod:cabin"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cabinmod:cabin_stairs"
+  }
+}

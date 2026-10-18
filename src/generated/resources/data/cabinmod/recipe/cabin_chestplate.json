@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cabinmod:compressed_cabin"
+    },
+    "B": {
+      "item": "cabinmod:cabin_core"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cabinmod:cabin_chestplate"
+  }
+}

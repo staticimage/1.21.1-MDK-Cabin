@@ -1,0 +1,15 @@
+// 1.21.1	2026-10-18T18:39:07.644089	Tags for minecraft:item mod id cabinmod
+694b7479d595eef4f3bd77c8b9fe087e90d225e2 data/cabinmod/tags/item/transformable_items.json
+e1ab85052554a20a12228d99b898c3a847835c6c data/minecraft/tags/item/axes.json
+a2c93fe6b901f298d90c24dc27400be239343558 data/minecraft/tags/item/enchantable/bow.json
+1a51a534438107c5eaca4c32c7c3bf426e5a48ca data/minecraft/tags/item/enchantable/chest_armor.json
+a2c93fe6b901f298d90c24dc27400be239343558 data/minecraft/tags/item/enchantable/crossbow.json
+36ae1b5cb8403ce74ae7c89f208afb0d56e122c4 data/minecraft/tags/item/enchantable/foot_armor.json
+20772004fa638c274c05361dfc42d1700d208b23 data/minecraft/tags/item/enchantable/head_armor.json
+83c59ccd35295ef2dfe1351aff416a5aaeb77c90 data/minecraft/tags/item/enchantable/leg_armor.json
+8b48f28d14c291bcafc71214600a35dd380a74b9 data/minecraft/tags/item/enchantable/mace.json
+7c8270b168dd29dcde847dc70c8d880ca721b04b data/minecraft/tags/item/pickaxes.json
+c791d12bb0c1db46c07d4413abe0fff615b467ad data/minecraft/tags/item/swords.json
+1fe5dac064fb27c1a34e11e3b0363e19b8c938b0 data/minecraft/tags/item/trimmable_armor.json
+c09d15de3d87b17772cf5dabed8517643381f120 data/minecraft/tags/item/trim_materials.json
+c23e605096432b158b38dcc84c0e4e722ed859e8 data/minecraft/tags/item/trim_templates.json

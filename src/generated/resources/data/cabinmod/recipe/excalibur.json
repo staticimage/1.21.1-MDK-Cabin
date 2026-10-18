@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cabinmod:chair"
+    },
+    {
+      "item": "cabinmod:cabin_core"
+    },
+    {
+      "item": "cabinmod:dna_disc"
+    },
+    {
+      "item": "cabinmod:compressed_cabin"
+    },
+    {
+      "item": "cabinmod:wand"
+    },
+    {
+      "item": "cabinmod:mjolnir"
+    },
+    {
+      "item": "cabinmod:cabin_axe"
+    },
+    {
+      "item": "cabinmod:cabin_bow"
+    },
+    {
+      "item": "cabinmod:matty_mike"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cabinmod:excalibur"
+  }
+}

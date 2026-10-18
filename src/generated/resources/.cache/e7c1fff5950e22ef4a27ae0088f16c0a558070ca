@@ -1,0 +1,9 @@
+// 1.21.1	2026-10-18T18:39:07.6450865	Tags for minecraft:block mod id cabinmod
+76b7e921de377a6c57e714d77c38f9aa573a73f1 data/cabinmod/tags/block/incorrect_for_cabin_tool.json
+a249c46329a41538f49a564e1f14338aaf1be5a0 data/cabinmod/tags/block/needs_cabin_tool.json
+a949087dbef52ce368361a104bdb9363d99824fc data/minecraft/tags/block/fences.json
+6282c6d95887f370368696e6eb8b89f5453c6c8c data/minecraft/tags/block/fence_gates.json
+7b674da0de01d9917f2109cea6baeea14a0de889 data/minecraft/tags/block/mineable/pickaxe.json
+b1f6d26512a87a8298f40fae60a880d9f6207117 data/minecraft/tags/block/needs_diamond_tool.json
+22218b869456135722fac03f350a2f3de6d6093f data/minecraft/tags/block/needs_iron_tool.json
+26945e73f23616bb7f5d27175dfb202d4575692b data/minecraft/tags/block/walls.json

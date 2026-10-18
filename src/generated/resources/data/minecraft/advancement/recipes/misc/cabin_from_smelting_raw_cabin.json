@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_cabin": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cabinmod:raw_cabin"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:cabin_from_smelting_raw_cabin"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_cabin"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:cabin_from_smelting_raw_cabin"
+    ]
+  }
+}
