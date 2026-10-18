@@ -5,9 +5,11 @@ import net.austin.cabinmod.entity.ModEntities;
 import net.austin.cabinmod.item.custom.HammerItem;
 import net.austin.cabinmod.item.custom.WandItem;
 import net.austin.cabinmod.sounds.ModSounds;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Unbreakable;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -134,6 +136,21 @@ public class ModItems {
             ()-> new DeferredSpawnEggItem(ModEntities.BLUE_GUY, 0x0000ff, 0xff0000,
                     new Item.Properties()));
 
+
+
+    public static final DeferredItem<Item> WARDENS_SPARE_KEY = ITEMS.register("wardens_spare_key",
+            ()-> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final DeferredItem<SwordItem> DEAD_EXCALIBUR = ITEMS.register("dead_excalibur",
+            ()-> new SwordItem(Tiers.WOOD, new Item.Properties()
+                    .component(DataComponents.UNBREAKABLE, new Unbreakable(false))
+                    .attributes(SwordItem.createAttributes(Tiers.WOOD, 3, -2.4f))){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.cabinmod.dead_excalibur.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
 
     public static void register(IEventBus eventBus){

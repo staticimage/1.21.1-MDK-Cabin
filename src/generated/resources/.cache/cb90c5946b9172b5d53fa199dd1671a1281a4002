@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-18T18:39:07.641088	Item Models: cabinmod
+// 1.21.1	2026-10-18T18:42:21.8226537	Item Models: cabinmod
 bedb01640543be4337a4890be7132475ca3b8462 assets/cabinmod/models/item/bla_disc.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/cabinmod/models/item/blue_spawn_egg.json
 09da9844c0459627947f47b19567fa3b237b9beb assets/cabinmod/models/item/brg_disc.json
@@ -56,6 +56,7 @@ a0999a26c98a2a50fceba809f626d31b2a93495b assets/cabinmod/models/item/cabin_leggi
 1ad5263e18f0a05d0c435c90544a88ce80f378a0 assets/cabinmod/models/item/cabin_stencil.json
 e1f69c2500fbaaac97600f05b249ba0b00c62cd1 assets/cabinmod/models/item/cabin_wall.json
 06730d2bf0c1a62607bf7a1c416cec460352acfd assets/cabinmod/models/item/compressed_cabin.json
+338d8450ccc2e121b8f0146c8e60bc7ad68bfcf4 assets/cabinmod/models/item/dead_excalibur.json
 fbc7f0ff4e4d249b2d79d934f3dfdd834306a353 assets/cabinmod/models/item/dna_disc.json
 4de5476d055f1dc3e8ff01479f9770db776d2a8d assets/cabinmod/models/item/hyg_disc.json
 e298a67d582e9c0c29f8ba4918fccb422f9788c1 assets/cabinmod/models/item/matthew.json
@@ -67,3 +68,4 @@ e69a767187d29b924af91855b100eddff4af2bbb assets/cabinmod/models/item/mjolnir.jso
 089b02962d4e7ba7981999e62763c5fc3b74b370 assets/cabinmod/models/item/raw_cabin.json
 fc0d78621de49f682b2b02fbd7a67f8a584f739a assets/cabinmod/models/item/sos_disc.json
 7bcca240113ac702731ee8b1ac26e2fb9adbb2d0 assets/cabinmod/models/item/wand.json
+db158bf5bf37f5e2aff04d257826ba1db541a25b assets/cabinmod/models/item/wardens_spare_key.json

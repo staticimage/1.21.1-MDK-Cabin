@@ -32,6 +32,9 @@ public class ModSounds {
             ModSounds.CABIN_BLOCK_FALL);
 
 
+    // Stand-in: points at the vanilla elder guardian curse in sounds.json until a real sound exists.
+    public static final Supplier<SoundEvent> LIFE_OF_THE_PARTY_JUMPSCARE = registerSoundEvent("life_of_the_party_jumpscare");
+
     public static final Supplier<SoundEvent> MO2_DISC = registerSoundEvent("mo2_disc");
     public static final ResourceKey<JukeboxSong> MO2_DISC_KEY = createSong("mo2_disc");
 

@@ -52,6 +52,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.MATTWICH.get());
         basicItem(ModItems.COMPRESSED_CABIN.get());
         basicItem(ModItems.CABIN_CORE.get());
+        // Textures the user hasn't painted yet: declare them so the models still generate.
+        // In game they show the missing-texture pattern until the PNG lands at that path.
+        expectTexture("item/wardens_spare_key");
+        expectTexture("item/dead_excalibur");
+        basicItem(ModItems.WARDENS_SPARE_KEY.get());
+        handheldItem(ModItems.DEAD_EXCALIBUR.get());
 
         basicItem(ModItems.CABIN_SMITHING_TEMPLATE.get());
         basicItem(ModItems.CABIN_STENCIL.get());
@@ -148,4 +154,11 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "item/" + item.getId().getPath()));
     }
 
+
+    private void expectTexture(String path) {
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, path);
+        if (!existingFileHelper.exists(texture, PackType.CLIENT_RESOURCES, ".png", "textures")) {
+            existingFileHelper.trackGenerated(texture, PackType.CLIENT_RESOURCES, ".png", "textures");
+        }
+    }
 }

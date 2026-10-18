@@ -13,6 +13,12 @@
   "tooltip.cabinmod.mattwich.tooltip": "§oBetter in a meal.",
   "item.cabinmod.cabin_core": "§dSoul of the Warden",
   "item.cabinmod.compressed_cabin": "§bCalvin",
+  "item.cabinmod.wardens_spare_key": "§dThe Warden's Spare Key",
+  "item.cabinmod.dead_excalibur": "Depleted Excalibur",
+  "tooltip.cabinmod.dead_excalibur.tooltip": "§oA once powerful weapon, now reduced to a shell.",
+
+  "effect.cabinmod.life_of_the_party": "Life of the Party",
+  "sounds.cabinmod.life_of_the_party_jumpscare": "The party finds you",
 
   "item.cabinmod.cabin_helmet": "§dHELM OF THE SAGE",
   "item.cabinmod.cabin_chestplate": "§dBODY OF STEEL",
@@ -37,7 +43,7 @@
   "block.cabinmod.cabin_fence_gate": "Cabin Gate",
   "block.cabinmod.cabin_wall": "Cabin Wall",
   "block.cabinmod.cabin_door": "§bMystical Door",
-  "block.cabinmod.cabin_trapdoor": "§ccabinmod.cabin_trapdoor",
+  "block.cabinmod.cabin_trapdoor": "Jehoash Veil",
 
   "block.cabinmod.chair": "Cuck Chair",
   "block.cabinmod.crafting_block": "§bTransient Diviner",
@@ -97,7 +103,7 @@
   "painting.cabinmod.dungeon.title": "Dungeon",
   "painting.cabinmod.dungeon.author": "orbiez_",
 
-  "entity.mccourse.blue": "Blue Guy",
+  "entity.cabinmod.blue_guy": "Blue Guy",
   "item.cabinmod.blue_spawn_egg": "Blue Guy Spawn Egg",
 
   "entity.minecraft.villager.cabinmod.cabinger": "SCARY GUY"
