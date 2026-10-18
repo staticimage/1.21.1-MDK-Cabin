@@ -11,39 +11,33 @@ Existing crafting stations: vanilla crafting table, furnace/smoker/blast furnace
 
 ---
 
-## 1. Jehoash the Mystic / Haruspex (hostile, mid-tier)
+anything in quotes should be read and translated to numerical values
+
+## 1. Jehoash the Disco Destroyer (hostile, mid-tier boss)
 
 | Field | Value |
 |---|---|
-| Registry id | ____ *(suggestion: `jehoash`)* |
-| Display name | ____ |
-| Size (blocks, w × h) | ____ |
-| HP / damage / speed | ____ |
-| Where it spawns (biomes, light, time) | ____ |
-| How rare | ____ |
-| Abilities (no summons) | ____ *(suggestions: omen debuff "reading" the player · short blink/teleport · ranged hex)* |
-| Sounds (vanilla stand-ins ok) | ____ |
+| Registry id | joash |
+| Display name | Jehoash the Disco Destroyer |
+| Size (blocks, w × h) | 1.5 * 3.5 |
+| HP / damage / speed | 250 / 50 / "as fast as a creeper running from a cat" |
+| Where it spawns (biomes, light, time) | "he should spawn as a boss in his defined structure titled 'the disco'" |
+| How rare | "as rare as a finding a jungle temple across the entire overworld (no biome restriction)" |
+| Abilities (no summons) | "he should have a disco themed laser weapon that shoots at the player. when close he should have a melee attack as well. occasionally he should teleport around the boss arena and summon illusions of himself. he should have a debuff called 'life of the party' with a discoball icon that when active should immediately induce a jumpscare similar to the mining fatigue elder guardian effect, and the effect should give the player something similar to a super strong version of mining fatigue"|
+| Sounds (vanilla stand-ins ok) | "put stand in sounds in for us to change later" |
 
 **Silhouette / look** — describe or sketch (robe? hood? masks? extra limbs? floating bits?):
-____
+"he should look like a shrouded raver with a ranged laser weapon that looks like a disco ball and a melee weapon that will be textured later."
 
 **Animations wanted** (idle / walk / attack / ritual / hurt / death / other):
-____
-
-### Jehoash's weapon (separate item, swappable later)
-| Field | Value |
-|---|---|
-| Registry id | ____ |
-| Display name / tooltip | ____ |
-| Obtainable by player? (drop / recipe / no) | ____ |
-| Stats if usable | ____ |
+idle / walk / attack melee / attack ranged / death / hurt / teleport / welcoming ("player enters the boss arena") / summon illusions
 
 ### Jehoash drops
 | # | Item (existing or new) | Count | Chance | Looting bonus? |
 |---|---|---|---|---|
-| 1 | ____ | ____ | ____ | ____ |
-| 2 | ____ | ____ | ____ | ____ |
-| 3 | ____ | ____ | ____ | ____ |
+| 1 | "every music disc by cabin mod should have a chance of dropping from the boss. only one music disc can drop at a time" | 1 | 10% | +10% |
+| 2 | "new item - the wardens spare key" | 1 | 100% | 0% |
+
 
 ---
 
@@ -51,28 +45,27 @@ ____
 
 | Field | Value |
 |---|---|
-| Registry id | ____ |
-| Display name (also shown on boss bar) | ____ |
-| Size (blocks) | ____ |
-| HP / armor / damage | ____ |
-| How it's summoned or found | ____ |
-| Phases (how many, HP thresholds) | ____ |
-| Attacks per phase | ____ |
-| Lockdown mechanic (what "lockdown" does in the fight) | ____ |
-| Music / sounds | ____ |
+| Registry id | cabin_boss |
+| Display name (also shown on boss bar) | Cabin, BBC Warden |
+| Size (blocks) | 2.5 * 5.5 |
+| HP / armor / damage | 600 / "make him have moderately strong armor for the first phase, then remove the armor for the second phase" / 100 |
+| How it's summoned or found | "cabin is found in his bbc lockdown and will be summoned after defeating the inmates and inputting the code to escape lockdown" |
+| Phases (how many, HP thresholds) | 2, 75% |
+| Attacks per phase | "2 unique attacks first phase, 4 more unique attacks in second phase" |
+| Lockdown mechanic (what "lockdown" does in the fight) | "lockdown is the build up to the fight with cabin. this requires you to flick a lever that opens 4 cells that contain strong prisoners that will attempt to kill the player. each prisoner will drop a unique identifier that will be used to input a code also found in the structure. inputting this code will then start the boss fight." |
+| Music / sounds | "put stand ins for us to change later" |
 
 **Silhouette / look**:
-____
+"cabin should look like a hunched prison warden, similar to the mutant zombie from mutant monsters (https://www.curseforge.com/minecraft/mc-mods/mutant-monsters). he should be wielding the cabin mod item excaliber which should be properly scaled to match his size"
 
 **Animations wanted**:
-____
+idle / walk / attack melee / attack 2 melee / attack melee phase 2 / attack 2 melee phase 2 / attack 3 melee phase 2 / attack 4 melee phase 2 / death / hurt / "next phase animation similar to something you would see in dark souls"
 
 ### Boss drops
 | # | Item | Count | Chance |
 |---|---|---|---|
-| 1 | ____ | ____ | ____ |
-| 2 | ____ | ____ | ____ |
-| 3 | ____ | ____ | ____ |
+| 1 | "a variant of excalibur that is inactive until processed by the transient diviner" | 1 | 70% |
+| 2 | heart of the warden (already exists in the mod)  | 1 | 100% |
 
 ---
 
@@ -83,65 +76,35 @@ Copy the block per item.
 ### Item: ____
 | Field | Value |
 |---|---|
-| Registry id | ____ |
-| Display name | ____ |
-| Tooltip | ____ |
-| Type (material / tool / weapon / armor / food / summon / key / other) | ____ |
-| Material tier / stats | ____ |
-| How obtained (drop / loot chest / recipe) | ____ |
-| Recipe (ingredients + shape) | ____ |
-| Station | ____ |
-| Creative tab (CABIN ITEMS / CABIN BLOCKS) | ____ |
+| Registry id | dead_excalibur |
+| Display name | Depleted Excalibur |
+| Tooltip | A once powerful weapon, now reduced to a shell. |
+| Type (material / tool / weapon / armor / food / summon / key / other) | weapon |
+| Material tier / stats | "it should be wood tier but without any durability" |
+| How obtained (drop / loot chest / recipe) | "dropped by cabin, bbc warden" |
+| Recipe (ingredients + shape) | none |
+| Station | none |
+| Creative tab (CABIN ITEMS / CABIN BLOCKS) | CABIN ITEMS |
 
 ---
 
-## 4. New blocks
-
-### Block: ____
-| Field | Value |
-|---|---|
-| Registry id | ____ |
-| Display name | ____ |
-| Variants (stairs / slab / wall / fence / door / trapdoor / none) | ____ |
-| Hardness / tool needed | ____ |
-| Drops (itself / other / silk touch rule) | ____ |
-| Special behaviour | ____ |
-| Recipe + station | ____ |
-
----
-
-## 5. New material / ore (optional)
-
-| Field | Value |
-|---|---|
-| Ore registry id + name | ____ |
-| Stone / deepslate variants | ____ |
-| Height range + vein size + veins per chunk | ____ |
-| Drops (raw item) | ____ |
-| Smelts into | ____ |
-| Tool/armor tier built from it | ____ |
-
----
 
 ## 6. Lockdown structure (first of several)
 
 | Field | Value |
 |---|---|
-| Registry id + name | ____ |
-| Biomes | ____ |
-| Surface / underground / both | ____ |
-| Rough size | ____ |
-| Rooms / wings | ____ |
-| Who spawns inside | ____ |
-| Loot chests (which rooms, what loot) | ____ |
-| How rare (spacing in chunks) | ____ |
+| Registry id + name | bbc_lockdown |
+| Biomes | "any in overworld" |
+| Surface / underground / both | surface |
+| Rough size | 50 * 50 |
+| Rooms / wings | "the structure should be reminiscent of a prison and any rooms that would fit with that thematically should be added, however the center of the building should be a dedicated boss arena" |
+| Who spawns inside | "prisoners and cabin, bbc warden" |
+| Loot chests (which rooms, what loot) | "none for now" |
+| How rare (spacing in chunks) | "1 every 500 chunks" |
 
-**Theme notes ("Cabin is the warden of lockdown"):**
-____
 
----
 
 ## 7. Fixes waiting on a name
 | Thing | Current | New |
 |---|---|---|
-| `cabin_trapdoor` display name | `§ccabinmod.cabin_trapdoor` (placeholder) | ____ |
+| `cabin_trapdoor` display name | `§ccabinmod.cabin_trapdoor` (placeholder) | Jehoash Veil |
