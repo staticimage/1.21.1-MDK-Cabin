@@ -63,8 +63,21 @@ travel with the clip — are exported as tick events:
 - Code adds reactive motion after clips: head look-at, shroud trailing from velocity.
 - Glow: a second `_emissive.png` texture drawn full-bright (eyes, runes, disco lights).
 
+## UV lock (paint never moves)
+Every export records each cube's texture patch in `textures/entity/<mobid>/<mobid>_uv_lock.json`
+(commit it!) and in the cube's `uv` property. Rules the exporter enforces:
+- Locked patches never move. New cubes go into free space only.
+- Deleted / renamed cubes keep their space **reserved**. Release on purpose with
+  `--set release=c_old_name,c_other`.
+- A resized cube stays put if it still fits; if it no longer fits, **only that cube** moves and
+  the export lists it under `MOVED_NEEDS_REPAINT`.
+- The atlas never shrinks or rescales. If it must grow (64→128…), it is extended right/down and
+  every painted `.png` in the folder is padded to match (original kept as `.png.bak<oldsize>`),
+  so existing pixels keep their exact coordinates.
+- Renaming a cube = a new cube (and a reservation for the old name). Don't rename after painting.
+
 ## Textures
-Painted by the user. The exporter writes `<mobid>_uv_template.png` (each cube a distinct hue,
+Painted by the user. Paint `<mobid>.png` (and optional `<mobid>_emissive.png`) — never the template. The exporter writes `<mobid>_uv_template.png` (each cube a distinct hue,
 each face a different shade: top lightest → bottom darkest) plus `<mobid>_uv_legend.txt`
 (cube name → atlas rectangle per face) for painting over.
 

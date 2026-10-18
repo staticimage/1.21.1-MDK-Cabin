@@ -132,6 +132,32 @@ for c in all_cubes:
     c["whd"] = (w, h, d)
 
 
+# UV LOCK: every cube's texture patch is recorded in <mob>_uv_lock.json (committed to git) and in
+# the cube's "uv" property. Later exports never move a locked patch, never reuse the space of a
+# deleted/renamed cube (reservation kept until released with --set release=name1,name2), and only
+# ever GROW the atlas by extending right/down, so painted pixels keep their exact coordinates.
+res_dir = os.path.join(REPO, "src/main/resources/assets/cabinmod")
+tex_dir = os.path.join(res_dir, "textures/entity", MOB)
+os.makedirs(tex_dir, exist_ok=True)
+lock_path = os.path.join(tex_dir, f"{MOB}_uv_lock.json")
+lock = {"atlas": 0, "uv": {}}
+if os.path.exists(lock_path):
+    with open(lock_path, encoding="utf-8") as f:
+        lock = json.load(f)
+released = [n for n in ARGS.get("release", "").split(",") if n]
+for n in released:
+    lock["uv"].pop(n, None)
+
+present = {c["name"] for c in all_cubes}
+reserved = {n: r for n, r in lock["uv"].items() if n not in present}   # deleted / renamed cubes
+relocated, new_cubes = [], []
+for c in all_cubes:
+    pin = lock["uv"].get(c["name"]) or (list(c["uv"]) + list(c["fp"]) if c["uv"] else None)
+    c["pin"] = (int(pin[0]), int(pin[1])) if pin else None
+    if not pin:
+        new_cubes.append(c["name"])
+
+
 def try_pack(size):
     grid = [[False] * size for _ in range(size)]
 
@@ -141,36 +167,73 @@ def try_pack(size):
         return all(not grid[yy][xx] for yy in range(y, y + fh) for xx in range(x, x + fw))
 
     def mark(x, y, fw, fh):
-        for yy in range(y, y + fh):
-            for xx in range(x, x + fw):
+        for yy in range(y, min(y + fh, size)):
+            for xx in range(x, min(x + fw, size)):
                 grid[yy][xx] = True
 
-    placed = {}
-    for c in [c for c in all_cubes if c["uv"]]:
-        u, v = int(c["uv"][0]), int(c["uv"][1])
-        fw, fh = c["fp"]
-        if u + fw > size or v + fh > size:
-            return None
-        mark(u, v, fw, fh)
-        placed[c["name"]] = (u, v)
-    for c in sorted((c for c in all_cubes if not c["uv"]), key=lambda c: (-c["fp"][1], -c["fp"][0])):
+    for r in reserved.values():
+        mark(int(r[0]), int(r[1]), int(r[2]), int(r[3]))
+    placed, moved = {}, []
+    for c in [c for c in all_cubes if c["pin"]]:
+        (u, v), (fw, fh) = c["pin"], c["fp"]
+        if free(u, v, fw, fh):
+            mark(u, v, fw, fh)
+            placed[c["name"]] = (u, v)
+        else:
+            moved.append(c)                 # resized so it no longer fits: only this cube moves
+    for c in sorted([c for c in all_cubes if not c["pin"]] + moved, key=lambda c: (-c["fp"][1], -c["fp"][0])):
         fw, fh = c["fp"]
         spot = next(((x, y) for y in range(size) for x in range(size) if free(x, y, fw, fh)), None)
         if spot is None:
-            return None
+            return None, None
         mark(*spot, fw, fh)
         placed[c["name"]] = spot
-    return placed
+    return placed, [c["name"] for c in moved]
 
 
-for atlas in (64, 128, 256, 512):
-    uv_map = try_pack(atlas)
+old_atlas = int(lock.get("atlas", 0))
+for atlas in (s for s in (64, 128, 256, 512) if s >= old_atlas):
+    uv_map, relocated = try_pack(atlas)
     if uv_map is not None:
         break
 else:
     raise RuntimeError("cubes do not fit in a 512x512 atlas")
 for c in all_cubes:
     c["uv_xy"] = uv_map[c["name"]]
+    bpy.data.objects[c["name"]]["uv"] = list(c["uv_xy"])
+
+lock = {"atlas": atlas,
+        "uv": {**reserved, **{c["name"]: [*c["uv_xy"], *c["fp"]] for c in all_cubes}}}
+with open(lock_path, "w", encoding="utf-8", newline="\n") as f:
+    json.dump(lock, f, indent=1, sort_keys=True)
+
+# Atlas grew: extend (never scale) painted textures so every existing pixel keeps its coordinates.
+padded = []
+if old_atlas and atlas > old_atlas:
+    for fname in sorted(os.listdir(tex_dir)):
+        if not fname.endswith(".png") or "_uv_template" in fname:
+            continue
+        path = os.path.join(tex_dir, fname)
+        img = bpy.data.images.load(path)
+        w, h = img.size
+        if (w, h) != (old_atlas, old_atlas):
+            bpy.data.images.remove(img)
+            continue
+        src = list(img.pixels)
+        dst = [0.0] * (atlas * atlas * 4)
+        for y in range(h):                   # Blender rows run bottom-up; keep the image top-left anchored
+            ny = atlas - h + y
+            dst[ny * atlas * 4:(ny * atlas + w) * 4] = src[y * w * 4:(y * w + w) * 4]
+        bpy.data.images.remove(img)
+        os.replace(path, path + f".bak{old_atlas}")
+        out = bpy.data.images.new(f"pad_{fname}", atlas, atlas, alpha=True)
+        out.alpha_mode = "STRAIGHT"
+        out.pixels = dst
+        out.filepath_raw = path
+        out.file_format = "PNG"
+        out.save()
+        bpy.data.images.remove(out)
+        padded.append(fname)
 
 # ---------------------------------------------------------------- model java
 lines = []
@@ -345,7 +408,6 @@ for action in sorted((a for a in bpy.data.actions if a.name.startswith(MOB + "_"
 ad.action = saved_action
 scene.frame_set(saved_frame)
 
-res_dir = os.path.join(REPO, "src/main/resources/assets/cabinmod")
 os.makedirs(os.path.join(res_dir, "animations"), exist_ok=True)
 with open(os.path.join(res_dir, "animations", f"{MOB}.json"), "w", encoding="utf-8", newline="\n") as f:
     json.dump({"mob": MOB, "format": 1, "clips": clips}, f, separators=(",", ":"))
@@ -393,8 +455,6 @@ def png_bytes(w, h, rgba):
             + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b""))
 
 
-tex_dir = os.path.join(res_dir, "textures/entity", MOB)
-os.makedirs(tex_dir, exist_ok=True)
 with open(os.path.join(tex_dir, f"{MOB}_uv_template.png"), "wb") as f:
     f.write(png_bytes(atlas, atlas, px))
 with open(os.path.join(tex_dir, f"{MOB}_uv_legend.txt"), "w", encoding="utf-8", newline="\n") as f:
@@ -407,5 +467,13 @@ result = {
     "clips": {k: {"length": v["length"], "loop": v["loop"], "animated_parts": len(v["bones"]),
                   "keys": sum(len(ch) for bo in v["bones"].values() for ch in bo.values()),
                   "events": len(v["events"])} for k, v in clips.items()},
+    "uv_lock": {
+        "atlas_was": old_atlas or None,
+        "new_cubes_placed_in_free_space": new_cubes,
+        "MOVED_NEEDS_REPAINT": relocated,
+        "reserved_for_missing_cubes": sorted(reserved),
+        "released": released,
+        "textures_extended": padded,
+    },
     "warnings": warnings,
 }
