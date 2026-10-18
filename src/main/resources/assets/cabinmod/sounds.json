@@ -1,0 +1,80 @@
+{
+  "cabin_block_break": {
+    "subtitle": "sounds.cabinmod.cabin_block_break",
+    "sounds": [
+      "cabinmod:cabin_block_break"
+    ]
+  },
+  "cabin_block_fall": {
+    "subtitle": "sounds.cabinmod.cabin_block_fall",
+    "sounds": [
+      "cabinmod:cabin_block_fall"
+    ]
+  },
+  "cabin_block_hit": {
+    "subtitle": "sounds.cabinmod.cabin_block_hit",
+    "sounds": [
+      "cabinmod:cabin_block_hit"
+    ]
+  },
+  "cabin_block_place": {
+    "subtitle": "sounds.cabinmod.cabin_block_place",
+    "sounds": [
+      "cabinmod:cabin_block_place"
+    ]
+  },
+  "cabin_block_step": {
+    "subtitle": "sounds.cabinmod.cabin_block_step",
+    "sounds": [
+      "cabinmod:cabin_block_step"
+    ]
+  },
+  "mo2_disc":{
+    "sounds": [
+      {
+        "name": "cabinmod:mo2_disc",
+        "stream": true
+      }
+    ]
+  },
+  "brg_disc":{
+    "sounds": [
+      {
+        "name": "cabinmod:brg_disc",
+        "stream": true
+      }
+    ]
+  },
+  "hyg_disc":{
+    "sounds": [
+      {
+        "name": "cabinmod:hyg_disc",
+        "stream": true
+      }
+    ]
+  },
+  "bla_disc":{
+    "sounds": [
+      {
+        "name": "cabinmod:bla_disc",
+        "stream": true
+      }
+    ]
+  },
+  "dna_disc":{
+    "sounds": [
+      {
+        "name": "cabinmod:dna_disc",
+        "stream": true
+      }
+    ]
+  },
+  "sos_disc":{
+    "sounds": [
+      {
+        "name": "cabinmod:sos_disc",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.cabinmod.dna_disc.desc"
+  },
+  "length_in_seconds": 217,
+  "sound_event": "cabinmod:dna_disc"
+}

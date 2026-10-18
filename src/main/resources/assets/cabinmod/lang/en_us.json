@@ -1,0 +1,105 @@
+{
+  "item.cabinmod.cabin": "Cabin",
+  "item.cabinmod.raw_cabin": "Raw Warden",
+  "item.cabinmod.michael": "§bMichael Fuel",
+  "item.cabinmod.excalibur": "§dEXCALIBUR",
+  "item.cabinmod.mjolnir": "§dMJOLNIR",
+  "item.cabinmod.cabin_axe": "§dGRIMNIR",
+  "item.cabinmod.cabin_bow": "§bTambow",
+  "item.cabinmod.matty_mike": "§bFusion Pickaxe",
+  "item.cabinmod.matthew": "§bMatty Patty",
+  "tooltip.cabinmod.matthew.tooltip": "§oBetter with bread.",
+  "item.cabinmod.mattwich": "§dThe Mattwich",
+  "tooltip.cabinmod.mattwich.tooltip": "§oBetter in a meal.",
+  "item.cabinmod.cabin_core": "§dSoul of the Warden",
+  "item.cabinmod.compressed_cabin": "§bCalvin",
+
+  "item.cabinmod.cabin_helmet": "§dHELM OF THE SAGE",
+  "item.cabinmod.cabin_chestplate": "§dBODY OF STEEL",
+  "item.cabinmod.cabin_leggings": "§dpants",
+  "item.cabinmod.cabin_boots": "§dMICHAEL FOOT FETISH",
+
+  "item.cabinmod.wand": "§bMichael Krayon",
+  "tooltip.cabinmod.wand.shift_down": "§oDrew a dark, fucked up version of Michael haha. Just a glimpse into my dark reality. A full stare into my twisted perspective would make most simply go insane lmao",
+  "tooltip.cabinmod.wand": "...",
+
+  "block.cabinmod.cabin_block": "Block of Shartitude",
+  "block.cabinmod.raw_cabin_block": "Young Cabin Block",
+  "block.cabinmod.cabin_ore": "Calvin ᴸOre",
+  "block.cabinmod.cabin_ore_deepslate": "Deep Calvin ᴸOre",
+  "block.cabinmod.light_block": "Mural Light Block",
+
+  "block.cabinmod.cabin_stairs": "Cabin Stairs",
+  "block.cabinmod.cabin_slab": "Cabin Slabin",
+  "block.cabinmod.cabin_pressure_plate": "Cabin Pressure",
+  "block.cabinmod.cabin_button": "Cabuttin",
+  "block.cabinmod.cabin_fence": "Cabin Fence",
+  "block.cabinmod.cabin_fence_gate": "Cabin Gate",
+  "block.cabinmod.cabin_wall": "Cabin Wall",
+  "block.cabinmod.cabin_door": "§bMystical Door",
+  "block.cabinmod.cabin_trapdoor": "§ccabinmod.cabin_trapdoor",
+
+  "block.cabinmod.chair": "Cuck Chair",
+  "block.cabinmod.crafting_block": "§bTransient Diviner",
+
+  "block.cabinmod.mike_block": "Magic Mike Block",
+  "tooltip.cabinmod.mike_block.tooltip": "§oHas some special properties...",
+
+  "creativetab.cabinmod.cabin_items": "CABIN ITEMS",
+  "creativetab.cabinmod.cabin_blocks": "CABIN BLOCKS",
+
+  "item.cabinmod.cabin_smithing_template": "Smithing Template",
+  "item.cabinmod.cabin_stencil": "Cabin Coloring Stencil",
+
+  "trim_pattern.cabinmod.cabin": "Cabin Armor Trim",
+  "trim_pattern.cabinmod.cabin_path": "Cabin Armor Trim",
+  "trim_material.cabinmod.cabin": "Cabin Material",
+
+  "item.cabinmod.mo2_disc": "§bMusic Disc",
+  "item.cabinmod.mo2_disc.desc": "User-177606669 - A Minute Or 2",
+
+  "item.cabinmod.brg_disc": "§bMusic Disc",
+  "item.cabinmod.brg_disc.desc": "BasedRetardGang - Cable Mix A1+A2+A6+B6",
+
+  "item.cabinmod.hyg_disc": "§bMusic Disc",
+  "item.cabinmod.hyg_disc.desc": "Mike Saatchi - psalms 51:10",
+
+  "item.cabinmod.bla_disc": "§bMusic Disc",
+  "item.cabinmod.bla_disc.desc": "Sematary - Bloody Angel",
+
+  "item.cabinmod.dna_disc": "§bMusic Disc",
+  "item.cabinmod.dna_disc.desc": "The Horizon - DNA",
+
+  "item.cabinmod.sos_disc": "§bMusic Disc",
+  "item.cabinmod.sos_disc.desc": "The Yung Mid Experience - Sex On Saturday",
+
+  "painting.cabinmod.cabin.title": "Cabin",
+  "painting.cabinmod.cabin.author": "orbiez_",
+
+  "painting.cabinmod.magic.title": "Magic",
+  "painting.cabinmod.magic.author": "orbiez_",
+
+  "painting.cabinmod.piss.title": "Piss",
+  "painting.cabinmod.piss.author": "staticimage",
+
+  "painting.cabinmod.michael.title": "Michael",
+  "painting.cabinmod.michael.author": "supermichaelfell",
+
+  "painting.cabinmod.brian.title": "Brian",
+  "painting.cabinmod.brian.author": "Linkdin",
+
+  "painting.cabinmod.michaeljob.title": "Studious",
+  "painting.cabinmod.michaeljob.author": "supermichaelfell",
+
+  "painting.cabinmod.zone.title": "Zone",
+  "painting.cabinmod.zone.author": "orbiez_",
+
+  "painting.cabinmod.dungeon.title": "Dungeon",
+  "painting.cabinmod.dungeon.author": "orbiez_",
+
+  "entity.mccourse.blue": "Blue Guy",
+  "item.cabinmod.blue_spawn_egg": "Blue Guy Spawn Egg",
+
+  "entity.minecraft.villager.cabinmod.cabinger": "SCARY GUY"
+
+}

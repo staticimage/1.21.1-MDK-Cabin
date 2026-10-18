@@ -1,0 +1,9 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "cabinmod:cabin_block"
+  },
+  "result": {
+    "id": "cabinmod:compressed_cabin"
+  }
+}

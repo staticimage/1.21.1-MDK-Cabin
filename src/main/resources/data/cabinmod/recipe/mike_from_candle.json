@@ -1,0 +1,9 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "minecraft:white_candle"
+  },
+  "result": {
+    "id": "cabinmod:wand"
+  }
+}

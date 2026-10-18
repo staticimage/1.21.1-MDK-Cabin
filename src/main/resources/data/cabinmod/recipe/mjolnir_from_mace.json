@@ -1,0 +1,10 @@
+
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "minecraft:mace"
+  },
+  "result": {
+    "id": "cabinmod:mjolnir"
+  }
+}

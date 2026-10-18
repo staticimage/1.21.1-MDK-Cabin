@@ -1,0 +1,9 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "cabinmod:matthew"
+  }
+}

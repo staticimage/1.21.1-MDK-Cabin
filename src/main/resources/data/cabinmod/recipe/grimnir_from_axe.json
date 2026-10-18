@@ -1,0 +1,9 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "minecraft:netherite_axe"
+  },
+  "result": {
+    "id": "cabinmod:cabin_axe"
+  }
+}

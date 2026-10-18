@@ -1,0 +1,6 @@
+{
+  "parent": "cabinmod:item/cabin_bow",
+  "textures": {
+    "layer0": "cabinmod:item/cabin_bow_pulling_2"
+  }
+}

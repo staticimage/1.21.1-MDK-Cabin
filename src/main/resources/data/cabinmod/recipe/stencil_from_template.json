@@ -1,0 +1,10 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "cabinmod:cabin_smithing_template"
+  },
+  "result": {
+    "id": "cabinmod:cabin_stencil",
+    "count": 2
+  }
+}

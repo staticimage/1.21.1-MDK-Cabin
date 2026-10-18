@@ -1,0 +1,9 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "minecraft:sea_lantern"
+  },
+  "result": {
+    "id": "cabinmod:light_block"
+  }
+}
