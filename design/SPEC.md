@@ -167,3 +167,9 @@ Copy the block per item.
 | 2 | ____ | ____ |
 | 2 | ____ | ____ |
 | 2 | ____ | ____ |
+
+## Decisions (2026-10-18)
+- **Warden's Spare Key** opens the bbc_lockdown front gate. Progression: The Disco (Jehoash) → key → bbc_lockdown (prisoners → code → Cabin).
+- **Damage scaled, not literal:** Jehoash `ATTACK_DAMAGE 12`, Cabin `ATTACK_DAMAGE 24` (supersedes 50 / 100 above).
+- **bbc_lockdown rarity:** rarer than the Disco: spacing 180, separation 60 (supersedes 22 / 8 above).
+- **Prisoners:** 2 rigs (brute + agile), 2 variants each (texture / weapon / stats differ).
