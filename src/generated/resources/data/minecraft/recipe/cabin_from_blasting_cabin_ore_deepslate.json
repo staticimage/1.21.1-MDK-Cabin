@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "group": "cabin",
+  "ingredient": {
+    "item": "cabinmod:cabin_ore_deepslate"
+  },
+  "result": {
+    "count": 1,
+    "id": "cabinmod:cabin"
+  }
+}

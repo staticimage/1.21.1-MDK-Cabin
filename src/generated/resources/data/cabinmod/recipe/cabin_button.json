@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "cabin",
+  "ingredients": [
+    {
+      "item": "cabinmod:cabin"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cabinmod:cabin_button"
+  }
+}

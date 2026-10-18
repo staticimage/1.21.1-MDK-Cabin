@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "cabinmod:block/raw_cabin_block"
+  }
+}

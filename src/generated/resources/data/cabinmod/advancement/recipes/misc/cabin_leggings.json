@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cabin_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cabinmod:cabin_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cabinmod:cabin_leggings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cabin_core"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cabinmod:cabin_leggings"
+    ]
+  }
+}

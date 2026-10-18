@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cabinmod:block/cabin_ore"
+    }
+  }
+}

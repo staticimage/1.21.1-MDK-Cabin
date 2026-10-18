@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cabinmod:item/cabin_smithing_template"
+  }
+}

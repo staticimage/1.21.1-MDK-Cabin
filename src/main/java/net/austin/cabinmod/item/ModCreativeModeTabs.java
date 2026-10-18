@@ -29,9 +29,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MATTWICH);
                         output.accept(ModItems.COMPRESSED_CABIN);
                         output.accept(ModItems.CABIN_CORE);
+                        output.accept(ModItems.WARDENS_SPARE_KEY);
 
 
                         output.accept(ModItems.EXCALIBUR);
+                        output.accept(ModItems.DEAD_EXCALIBUR);
                         output.accept(ModItems.MATTY_MIKE);
                         output.accept(ModItems.CABIN_AXE);
                         output.accept(ModItems.MJOLNIR);

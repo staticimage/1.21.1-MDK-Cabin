@@ -1,0 +1,8 @@
+{
+  "asset_id": "cabinmod:cabin",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.cabinmod.cabin"
+  },
+  "template_item": "cabinmod:cabin_smithing_template"
+}

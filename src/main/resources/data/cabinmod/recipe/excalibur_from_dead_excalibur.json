@@ -1,0 +1,9 @@
+{
+  "type": "cabinmod:crafting_block",
+  "ingredient": {
+    "item": "cabinmod:dead_excalibur"
+  },
+  "result": {
+    "id": "cabinmod:excalibur"
+  }
+}

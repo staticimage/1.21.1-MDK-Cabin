@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cabin_ore_deepslate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cabinmod:cabin_ore_deepslate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:cabin_from_blasting_cabin_ore_deepslate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cabin_ore_deepslate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:cabin_from_blasting_cabin_ore_deepslate"
+    ]
+  }
+}

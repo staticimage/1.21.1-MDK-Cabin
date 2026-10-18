@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=false": {
+      "model": "cabinmod:block/light_block_off"
+    },
+    "clicked=true": {
+      "model": "cabinmod:block/light_block_on"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:breeze_rod"
+    },
+    "B": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    " AB",
+    "A B",
+    " AB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cabinmod:cabin_bow"
+  }
+}

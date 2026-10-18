@@ -29,7 +29,7 @@
       "cabinmod:cabin_block_step"
     ]
   },
-  "mo2_disc":{
+  "mo2_disc": {
     "sounds": [
       {
         "name": "cabinmod:mo2_disc",
@@ -37,7 +37,7 @@
       }
     ]
   },
-  "brg_disc":{
+  "brg_disc": {
     "sounds": [
       {
         "name": "cabinmod:brg_disc",
@@ -45,7 +45,7 @@
       }
     ]
   },
-  "hyg_disc":{
+  "hyg_disc": {
     "sounds": [
       {
         "name": "cabinmod:hyg_disc",
@@ -53,7 +53,7 @@
       }
     ]
   },
-  "bla_disc":{
+  "bla_disc": {
     "sounds": [
       {
         "name": "cabinmod:bla_disc",
@@ -61,7 +61,7 @@
       }
     ]
   },
-  "dna_disc":{
+  "dna_disc": {
     "sounds": [
       {
         "name": "cabinmod:dna_disc",
@@ -69,12 +69,18 @@
       }
     ]
   },
-  "sos_disc":{
+  "sos_disc": {
     "sounds": [
       {
         "name": "cabinmod:sos_disc",
         "stream": true
       }
+    ]
+  },
+  "life_of_the_party_jumpscare": {
+    "subtitle": "sounds.cabinmod.life_of_the_party_jumpscare",
+    "sounds": [
+      "minecraft:mob/guardian/curse"
     ]
   }
 }

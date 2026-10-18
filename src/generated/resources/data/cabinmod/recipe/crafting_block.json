@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:furnace"
+    },
+    "B": {
+      "item": "cabinmod:cabin_core"
+    },
+    "C": {
+      "item": "minecraft:diamond"
+    },
+    "D": {
+      "item": "cabinmod:cabin_block"
+    }
+  },
+  "pattern": [
+    "DCD",
+    "CAC",
+    "DBD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cabinmod:crafting_block"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "cabinmod:block/cabin_block",
+    "side": "cabinmod:block/cabin_block",
+    "top": "cabinmod:block/cabin_block"
+  }
+}

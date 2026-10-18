@@ -3,6 +3,7 @@ package net.austin.cabinmod;
 import net.austin.cabinmod.block.ModBlocks;
 import net.austin.cabinmod.block.entity.CraftingBlockEntity;
 import net.austin.cabinmod.block.entity.ModBlockEntities;
+import net.austin.cabinmod.effect.ModEffects;
 import net.austin.cabinmod.entity.ModEntities;
 import net.austin.cabinmod.entity.client.BlueRenderer;
 import net.austin.cabinmod.entity.client.ChairRenderer;
@@ -85,6 +86,7 @@ public class CabinMod {
 
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModEffects.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 

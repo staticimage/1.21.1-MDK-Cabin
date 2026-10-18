@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "cabinmod:block/cabin_pressure_plate"
+    },
+    "powered=true": {
+      "model": "cabinmod:block/cabin_pressure_plate_down"
+    }
+  }
+}
