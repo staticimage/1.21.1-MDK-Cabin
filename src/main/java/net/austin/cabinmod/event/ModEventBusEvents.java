@@ -1,5 +1,8 @@
 package net.austin.cabinmod.event;
 
+import net.austin.cabinmod.block.entity.ModBlockEntities;
+import net.austin.cabinmod.block.entity.renderer.DjBoothRenderer;
+
 
 import net.austin.cabinmod.entity.custom.JehoashIllusionEntity;
 import net.austin.cabinmod.entity.custom.JehoashEntity;
@@ -15,6 +18,11 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
 @EventBusSubscriber(modid = CabinMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
+
+    @SubscribeEvent
+    public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event){
+        event.registerBlockEntityRenderer(ModBlockEntities.DJ_BOOTH_BE.get(), DjBoothRenderer::new);
+    }
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event){

@@ -135,7 +135,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> DJ_BOOTH = registerBlock("dj_booth",
             ()-> new DjBoothBlock(BlockBehaviour.Properties.of()
                     .strength(5f, 1200f)
-                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
                     .lightLevel(state -> 7)
             ));
 

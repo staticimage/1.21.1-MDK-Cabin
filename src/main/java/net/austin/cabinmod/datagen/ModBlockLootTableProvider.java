@@ -31,7 +31,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CABIN_BLOCK.get());
         dropSelf(ModBlocks.RAW_CABIN_BLOCK.get());
         dropSelf(ModBlocks.MIKE_BLOCK.get());
-        dropSelf(ModBlocks.DJ_BOOTH.get());
+        // Drops itself once per pair in DjBoothBlock.playerWillDestroy; the halves themselves drop nothing.
+        this.add(ModBlocks.DJ_BOOTH.get(), noDrop());
         dropSelf(ModBlocks.LIGHT_BLOCK.get());
 
         dropSelf(ModBlocks.CABIN_STAIRS.get());

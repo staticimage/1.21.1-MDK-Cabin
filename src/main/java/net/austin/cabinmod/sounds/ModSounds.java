@@ -35,7 +35,7 @@ public class ModSounds {
     // Stand-in: points at the vanilla elder guardian curse in sounds.json until a real sound exists.
     public static final Supplier<SoundEvent> LIFE_OF_THE_PARTY_JUMPSCARE = registerSoundEvent("life_of_the_party_jumpscare");
 
-    // Jehoash + DJ booth: stand-ins pointing at vanilla sounds in sounds.json until real ones exist.
+    // Jehoash + DJ booth: custom sounds mixed from CC0 Kenney packs (tools/audio/build_sounds.py).
     public static final Supplier<SoundEvent> JOASH_AMBIENT = registerSoundEvent("joash_ambient");
     public static final Supplier<SoundEvent> JOASH_HURT = registerSoundEvent("joash_hurt");
     public static final Supplier<SoundEvent> JOASH_DEATH = registerSoundEvent("joash_death");
@@ -45,6 +45,8 @@ public class ModSounds {
     public static final Supplier<SoundEvent> JOASH_ILLUSIONS = registerSoundEvent("joash_illusions");
     public static final Supplier<SoundEvent> JOASH_ILLUSION_POP = registerSoundEvent("joash_illusion_pop");
     public static final Supplier<SoundEvent> DJ_BOOTH_USE = registerSoundEvent("dj_booth_use");
+    // The Disco rave track: "Phonk Reel" by kulakovka (Pixabay), see sounds/CREDITS.txt.
+    public static final Supplier<SoundEvent> DISCO_MUSIC = registerSoundEvent("disco_music");
 
     public static final Supplier<SoundEvent> MO2_DISC = registerSoundEvent("mo2_disc");
     public static final ResourceKey<JukeboxSong> MO2_DISC_KEY = createSong("mo2_disc");

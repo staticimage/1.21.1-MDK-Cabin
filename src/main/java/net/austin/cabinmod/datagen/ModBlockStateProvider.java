@@ -29,8 +29,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.CABIN_ORE);
         blockWithItem(ModBlocks.CABIN_ORE_DEEPSLATE);
         blockWithItem(ModBlocks.MIKE_BLOCK);
-        expectTexture("block/dj_booth");
-        blockWithItem(ModBlocks.DJ_BOOTH);
+        // dj_booth: hand-made two-part model + blockstate (tools/booth/build_dj_booth.py), not generated here.
 
 
 

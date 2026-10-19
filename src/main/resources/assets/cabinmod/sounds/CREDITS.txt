@@ -1,0 +1,11 @@
+Cabin Mod sound credits
+
+Jehoash, DJ booth and Life of the Party sounds (sounds/joash, sounds/dj_booth,
+sounds/life_of_the_party_jumpscare.ogg) are mixed from Kenney sound packs, CC0 1.0
+(public domain, https://creativecommons.org/publicdomain/zero/1.0/), https://kenney.nl :
+  Sci-fi Sounds, Impact Sounds, Digital Audio, RPG Audio.
+The DJ booth record scratch is synthesized. Built by tools/audio/build_sounds.py.
+
+Disco music (sounds/music/disco.ogg): "Phonk Reel" by kulakovka (Pixabay, kulakovka-phonk-reel-614877),
+Pixabay Content License - https://pixabay.com/service/license-summary/
+Encoded to mono for positional playback by tools/audio/build_music.py.

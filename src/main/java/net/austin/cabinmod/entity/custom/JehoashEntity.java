@@ -281,6 +281,18 @@ public class JehoashEntity extends ClipMob {
         }
     }
 
+    private boolean strikeStarted;
+
+    @Override
+    public void tick() {
+        super.tick();
+        // "the party ends": the orbital strike opens the sky where he falls (client-side visual)
+        if (this.level().isClientSide() && this.isDeadOrDying() && !this.strikeStarted) {
+            this.strikeStarted = true;
+            net.austin.cabinmod.client.JehoashClientHooks.onDeathStarted(this.position());
+        }
+    }
+
     @Override
     public boolean hurt(DamageSource source, float amount) {
         if (isDormant() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return false;

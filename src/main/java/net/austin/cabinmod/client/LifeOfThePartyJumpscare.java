@@ -20,6 +20,7 @@ public class LifeOfThePartyJumpscare {
     private static final ResourceLocation LAYER_ID = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "life_of_the_party_jumpscare");
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/gui/life_of_the_party_jumpscare.png");
     private static final int LENGTH = 40;
+    private static final int IMAGE_W = 612, IMAGE_H = 796;   // textures/gui/life_of_the_party_jumpscare.png
 
     private static int lastDuration = 0;
     private static int ticksLeft = 0;
@@ -51,9 +52,16 @@ public class LifeOfThePartyJumpscare {
                 float t = (ticksLeft - deltaTracker.getGameTimeDeltaPartialTick(false)) / LENGTH;
                 float alpha = t > 0.75f ? (1f - t) * 4f : t / 0.75f;   // fast in, slow fade out
                 int w = guiGraphics.guiWidth(), h = guiGraphics.guiHeight();
+                // full screen height, true aspect, centred; punches in and shakes hardest on the first frames
+                int drawH = Math.round(h * (1f + 0.15f * t));
+                int drawW = Math.round(drawH * (float) IMAGE_W / IMAGE_H);
+                float shake = t > 0.6f ? (t - 0.6f) * 40f : 0f;
+                int x = (w - drawW) / 2 + Math.round((float) (Math.random() * 2 - 1) * shake);
+                int y = (h - drawH) / 2 + Math.round((float) (Math.random() * 2 - 1) * shake);
                 RenderSystem.enableBlend();
+                guiGraphics.fill(0, 0, w, h, (int) (alpha * 230) << 24);
                 guiGraphics.setColor(1f, 1f, 1f, alpha);
-                guiGraphics.blit(TEXTURE, 0, 0, w, h, 0f, 0f, 256, 256, 256, 256);
+                guiGraphics.blit(TEXTURE, x, y, drawW, drawH, 0f, 0f, IMAGE_W, IMAGE_H, IMAGE_W, IMAGE_H);
                 guiGraphics.setColor(1f, 1f, 1f, 1f);
                 RenderSystem.disableBlend();
             });

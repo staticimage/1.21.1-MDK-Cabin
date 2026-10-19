@@ -80,87 +80,82 @@
   "life_of_the_party_jumpscare": {
     "subtitle": "sounds.cabinmod.life_of_the_party_jumpscare",
     "sounds": [
-      "minecraft:mob/guardian/curse"
+      "cabinmod:life_of_the_party_jumpscare"
     ]
   },
   "joash_ambient": {
     "subtitle": "sounds.cabinmod.joash_ambient",
     "sounds": [
-      {
-        "name": "minecraft:entity.evoker.ambient",
-        "type": "event"
-      }
+      "cabinmod:joash/ambient_1",
+      "cabinmod:joash/ambient_2",
+      "cabinmod:joash/ambient_3"
     ]
   },
   "joash_hurt": {
     "subtitle": "sounds.cabinmod.joash_hurt",
     "sounds": [
-      {
-        "name": "minecraft:entity.evoker.hurt",
-        "type": "event"
-      }
+      "cabinmod:joash/hurt_1",
+      "cabinmod:joash/hurt_2",
+      "cabinmod:joash/hurt_3"
     ]
   },
   "joash_death": {
     "subtitle": "sounds.cabinmod.joash_death",
     "sounds": [
-      {
-        "name": "minecraft:entity.evoker.death",
-        "type": "event"
-      }
+      "cabinmod:joash/death"
     ]
   },
   "joash_laser": {
     "subtitle": "sounds.cabinmod.joash_laser",
     "sounds": [
-      {
-        "name": "minecraft:entity.guardian.attack",
-        "type": "event"
-      }
+      "cabinmod:joash/laser_1",
+      "cabinmod:joash/laser_2",
+      "cabinmod:joash/laser_3"
     ]
   },
   "joash_teleport": {
     "subtitle": "sounds.cabinmod.joash_teleport",
     "sounds": [
-      {
-        "name": "minecraft:entity.enderman.teleport",
-        "type": "event"
-      }
+      "cabinmod:joash/teleport_1",
+      "cabinmod:joash/teleport_2",
+      "cabinmod:joash/teleport_3"
     ]
   },
   "joash_welcome": {
     "subtitle": "sounds.cabinmod.joash_welcome",
     "sounds": [
-      {
-        "name": "minecraft:entity.evoker.prepare_summon",
-        "type": "event"
-      }
+      "cabinmod:joash/welcome"
     ]
   },
   "joash_illusions": {
     "subtitle": "sounds.cabinmod.joash_illusions",
     "sounds": [
-      {
-        "name": "minecraft:entity.illusioner.mirror_move",
-        "type": "event"
-      }
+      "cabinmod:joash/illusions_1",
+      "cabinmod:joash/illusions_2"
     ]
   },
   "joash_illusion_pop": {
     "subtitle": "sounds.cabinmod.joash_illusion_pop",
     "sounds": [
-      {
-        "name": "minecraft:entity.illusioner.cast_spell",
-        "type": "event"
-      }
+      "cabinmod:joash/illusion_pop_1",
+      "cabinmod:joash/illusion_pop_2",
+      "cabinmod:joash/illusion_pop_3"
     ]
   },
   "dj_booth_use": {
     "subtitle": "sounds.cabinmod.dj_booth_use",
     "sounds": [
+      "cabinmod:dj_booth/scratch_1",
+      "cabinmod:dj_booth/scratch_2"
+    ]
+  },
+  "disco_music": {
+    "subtitle": "sounds.cabinmod.disco_music",
+    "sounds": [
       {
-        "name": "minecraft:block.note_block.bass",
-        "type": "event"
+        "name": "cabinmod:music/disco",
+        "stream": true,
+        "attenuation_distance": 48
       }
     ]
   }
