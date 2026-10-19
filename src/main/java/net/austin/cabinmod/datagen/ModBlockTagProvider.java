@@ -24,7 +24,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RAW_CABIN_BLOCK.get())
                 .add(ModBlocks.CABIN_ORE.get())
                 .add(ModBlocks.CABIN_ORE_DEEPSLATE.get())
-                .add(ModBlocks.MIKE_BLOCK.get());
+                .add(ModBlocks.MIKE_BLOCK.get())
+                .add(ModBlocks.DJ_BOOTH.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.CABIN_ORE.get());

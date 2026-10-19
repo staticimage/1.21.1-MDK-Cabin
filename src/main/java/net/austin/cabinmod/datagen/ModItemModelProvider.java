@@ -57,6 +57,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         expectTexture("item/wardens_spare_key");
         expectTexture("item/dead_excalibur");
         basicItem(ModItems.WARDENS_SPARE_KEY.get());
+        withExistingParent(ModItems.JOASH_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         handheldItem(ModItems.DEAD_EXCALIBUR.get());
 
         basicItem(ModItems.CABIN_SMITHING_TEMPLATE.get());

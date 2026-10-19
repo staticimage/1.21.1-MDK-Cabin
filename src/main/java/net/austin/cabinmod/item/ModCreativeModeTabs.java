@@ -55,6 +55,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SOS_DISC);
 
                         output.accept(ModItems.BLUE_SPAWN_EGG);
+                        output.accept(ModItems.JOASH_SPAWN_EGG);
 
 
 
@@ -71,6 +72,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.CABIN_ORE_DEEPSLATE);
                         output.accept(ModBlocks.MIKE_BLOCK);
                         output.accept(ModBlocks.LIGHT_BLOCK);
+                        output.accept(ModBlocks.DJ_BOOTH);
 
                         output.accept(ModBlocks.CABIN_STAIRS);
                         output.accept(ModBlocks.CABIN_SLAB);

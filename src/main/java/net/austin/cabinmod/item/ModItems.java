@@ -138,6 +138,10 @@ public class ModItems {
 
 
 
+    public static final DeferredItem<Item> JOASH_SPAWN_EGG = ITEMS.register("joash_spawn_egg",
+            ()-> new DeferredSpawnEggItem(ModEntities.JOASH, 0x1a0f2e, 0xff3fd2,
+                    new Item.Properties()));
+
     public static final DeferredItem<Item> WARDENS_SPARE_KEY = ITEMS.register("wardens_spare_key",
             ()-> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 

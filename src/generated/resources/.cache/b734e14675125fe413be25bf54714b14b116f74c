@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-18T19:01:14.7923286	Block States: cabinmod
+// 1.21.1	2026-10-18T21:26:51.2377585	Block States: cabinmod
 a0e7429aa673807ba2b0fbaecb6dbce36989946f assets/cabinmod/blockstates/cabin_block.json
 a47fc34567c2a033cf10f93b540534c55831123f assets/cabinmod/blockstates/cabin_button.json
 be5bbf6c471fa5e13927a49646b6121a4944ffb3 assets/cabinmod/blockstates/cabin_door.json
@@ -11,6 +11,7 @@ ce3598b7a659e2ac9849988bccdf0c89e0a039a5 assets/cabinmod/blockstates/cabin_slab.
 4d67596d3317c63cdf9b23673c1c94cfb721c8d0 assets/cabinmod/blockstates/cabin_stairs.json
 84eddd9771b699c7dbc50f136b3c6a8a36b0e1a9 assets/cabinmod/blockstates/cabin_trapdoor.json
 18de9b17687cadc54b6a69cd0c4d5d422fa61b55 assets/cabinmod/blockstates/cabin_wall.json
+ff268010c17df1bcaab28cd6d36fbfdc182fd5be assets/cabinmod/blockstates/dj_booth.json
 3c2c4658cf3ea1c3bbea1d32be4c9d9ede8b9d7e assets/cabinmod/blockstates/light_block.json
 baa37252bc7e88a8ff52afa9e57d828a613e9b2c assets/cabinmod/blockstates/mike_block.json
 c09ec237c7d0651971ec1ab22db030054d8fd395 assets/cabinmod/blockstates/raw_cabin_block.json
@@ -46,6 +47,7 @@ b947275b65d2fb773f4a786ca3cd880c2ca49938 assets/cabinmod/models/block/cabin_trap
 5d22c970177e2c295ff7d829fa61c5f5e1d8f440 assets/cabinmod/models/block/cabin_wall_post.json
 263c0d0a6db51806b62b9a628c4d9bb961a23fa7 assets/cabinmod/models/block/cabin_wall_side.json
 fe9c4d1c9d25320238057fba3763159e87e4d394 assets/cabinmod/models/block/cabin_wall_side_tall.json
+f43d0b97f19cd286ec028f8e551f5c3cd285f11c assets/cabinmod/models/block/dj_booth.json
 492c9cbb3eb2c353f453898d1c8a2dc8fcae63e7 assets/cabinmod/models/block/light_block_off.json
 3806e588a463a8d26702e3bfada2b31f45201b40 assets/cabinmod/models/block/light_block_on.json
 829f4ce429a7a684e3a287ed7dca8d3e9d38c36e assets/cabinmod/models/block/mike_block.json
@@ -58,6 +60,7 @@ cde9b3fdd10c777a21f30704bded9ddfd49c7219 assets/cabinmod/models/block/raw_cabin_
 a741565f4a60ea64b77ced2b720d393ad6eac2f9 assets/cabinmod/models/item/cabin_slab.json
 c29d75278411dc3eb2c6f6e266620e82dfbeee1b assets/cabinmod/models/item/cabin_stairs.json
 40df3854da54337d20de1f312950f0f29eeefe14 assets/cabinmod/models/item/cabin_trapdoor.json
+e66c971e268079812fafa7c52ea1aec01115da34 assets/cabinmod/models/item/dj_booth.json
 f7ba658590be01813a6264a144bbec3dae15cade assets/cabinmod/models/item/light_block.json
 0041c0338ac2e33a8291323d86a0701e8d21d66a assets/cabinmod/models/item/mike_block.json
 0f2bcf667557fc4b01284e53c2b4a91f46eca884 assets/cabinmod/models/item/raw_cabin_block.json

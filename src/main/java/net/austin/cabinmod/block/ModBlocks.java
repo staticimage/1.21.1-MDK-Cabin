@@ -1,5 +1,6 @@
 package net.austin.cabinmod.block;
 
+import net.austin.cabinmod.block.custom.DjBoothBlock;
 import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.block.custom.ChairBlock;
 import net.austin.cabinmod.block.custom.CraftingBlock;
@@ -130,6 +131,13 @@ public class ModBlocks {
 
 
 
+
+    public static final DeferredBlock<Block> DJ_BOOTH = registerBlock("dj_booth",
+            ()-> new DjBoothBlock(BlockBehaviour.Properties.of()
+                    .strength(5f, 1200f)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel(state -> 7)
+            ));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

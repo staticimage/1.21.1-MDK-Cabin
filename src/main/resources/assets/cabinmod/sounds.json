@@ -82,5 +82,86 @@
     "sounds": [
       "minecraft:mob/guardian/curse"
     ]
+  },
+  "joash_ambient": {
+    "subtitle": "sounds.cabinmod.joash_ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.evoker.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_hurt": {
+    "subtitle": "sounds.cabinmod.joash_hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.evoker.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_death": {
+    "subtitle": "sounds.cabinmod.joash_death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.evoker.death",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_laser": {
+    "subtitle": "sounds.cabinmod.joash_laser",
+    "sounds": [
+      {
+        "name": "minecraft:entity.guardian.attack",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_teleport": {
+    "subtitle": "sounds.cabinmod.joash_teleport",
+    "sounds": [
+      {
+        "name": "minecraft:entity.enderman.teleport",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_welcome": {
+    "subtitle": "sounds.cabinmod.joash_welcome",
+    "sounds": [
+      {
+        "name": "minecraft:entity.evoker.prepare_summon",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_illusions": {
+    "subtitle": "sounds.cabinmod.joash_illusions",
+    "sounds": [
+      {
+        "name": "minecraft:entity.illusioner.mirror_move",
+        "type": "event"
+      }
+    ]
+  },
+  "joash_illusion_pop": {
+    "subtitle": "sounds.cabinmod.joash_illusion_pop",
+    "sounds": [
+      {
+        "name": "minecraft:entity.illusioner.cast_spell",
+        "type": "event"
+      }
+    ]
+  },
+  "dj_booth_use": {
+    "subtitle": "sounds.cabinmod.dj_booth_use",
+    "sounds": [
+      {
+        "name": "minecraft:block.note_block.bass",
+        "type": "event"
+      }
+    ]
   }
 }

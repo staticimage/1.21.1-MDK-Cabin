@@ -184,3 +184,5 @@ Copy the block per item.
 - **Life of the Party:** applied like the elder guardian's curse — to players near him while the fight is on,
   re-applied when it's missing or has under 1 minute left.
 - **Laser:** aim locks at the start of the ranged clip (dodgeable), fires on the `fire` marker; 8 damage; rainbow beam.
+- **Jehoash placeholder face:** the SCARY GUY villager face (`textures/entity/villager/profession/cabinger.png`,
+  head front = pixels 80,80 to 160,180) goes on his head's front in the placeholder texture until the real one is painted.
