@@ -46,7 +46,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.CABIN_SLAB);
         blockItem(ModBlocks.CABIN_PRESSURE_PLATE);
         blockItem(ModBlocks.CABIN_FENCE_GATE);
-        blockItem(ModBlocks.CABIN_TRAPDOOR, "bottom");
+        blockItem(ModBlocks.CABIN_TRAPDOOR, "_bottom");
 
         customLight();
     }
