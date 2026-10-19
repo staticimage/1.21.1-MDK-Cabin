@@ -3,7 +3,9 @@ package net.austin.cabinmod.entity.anim;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mojang.logging.LogUtils;
 import net.austin.cabinmod.CabinMod;
+import org.slf4j.Logger;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 // Clips baked by tools/blender/mc_export.py (assets/cabinmod/animations/<mob>.json).
@@ -37,6 +40,7 @@ public final class BakedClips {
         }
     }
 
+    private static final Logger LOGGER = LogUtils.getLogger();
     private static final Map<String, Map<String, Clip>> CACHE = new ConcurrentHashMap<>();
 
     private BakedClips() {
@@ -50,6 +54,11 @@ public final class BakedClips {
         return c;
     }
 
+    // Empty until the clip has been exported from Blender; callers fall back to stand-in timings.
+    public static Optional<Clip> find(String mob, String clip) {
+        return Optional.ofNullable(all(mob).get(clip));
+    }
+
     public static Map<String, Clip> all(String mob) {
         return CACHE.computeIfAbsent(mob, BakedClips::load);
     }
@@ -58,7 +67,8 @@ public final class BakedClips {
         String path = "/assets/" + CabinMod.MOD_ID + "/animations/" + mob + ".json";
         try (InputStream in = BakedClips.class.getResourceAsStream(path)) {
             if (in == null) {
-                throw new IllegalStateException("Missing " + path + " - export it from Blender");
+                LOGGER.warn("No baked animations at {} yet - using stand-in timings until it is exported from Blender", path);
+                return Map.of();
             }
             JsonObject root = JsonParser.parseReader(new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject();
             Map<String, Clip> clips = new ConcurrentHashMap<>();

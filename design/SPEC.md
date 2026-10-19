@@ -173,3 +173,16 @@ Copy the block per item.
 - **Damage scaled, not literal:** Jehoash `ATTACK_DAMAGE 12`, Cabin `ATTACK_DAMAGE 24` (supersedes 50 / 100 above).
 - **bbc_lockdown rarity:** rarer than the Disco: spacing 180, separation 60 (supersedes 22 / 8 above).
 - **Prisoners:** 2 rigs (brute + agile), 2 variants each (texture / weapon / stats differ).
+
+## Decisions (2026-10-18, round 2)
+- **The Disco:** underground rave — small surface entrance leading down to a hidden arena.
+- **Arena:** 24×24 dance floor (Jehoash teleports within 11 blocks of its centre).
+- **Welcoming trigger:** using a block in the arena — a DJ booth (`dj_booth`, display name TBD by user).
+  Until then Jehoash is dormant and can't be hurt; using the booth plays `welcome`, shows the boss bar, starts the fight.
+- **Illusions:** 3 decoys appear when he blinks; they copy him (walk, attack animations) but deal no damage,
+  have 1 HP and pop when hit; gone after 15 s or at his next blink.
+- **Life of the Party:** applied like the elder guardian's curse — to players near him while the fight is on,
+  re-applied when it's missing or has under 1 minute left.
+- **Laser:** aim locks at the start of the ranged clip (dodgeable), fires on the `fire` marker; 8 damage; rainbow beam.
+- **Jehoash placeholder face:** the SCARY GUY villager face (`textures/entity/villager/profession/cabinger.png`,
+  head front = pixels 80,80 to 160,180) goes on his head's front in the placeholder texture until the real one is painted.

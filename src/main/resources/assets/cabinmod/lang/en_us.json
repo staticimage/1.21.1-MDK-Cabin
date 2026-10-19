@@ -106,6 +106,20 @@
   "entity.cabinmod.blue_guy": "Blue Guy",
   "item.cabinmod.blue_spawn_egg": "Blue Guy Spawn Egg",
 
+  "entity.cabinmod.joash": "Jehoash the Disco Destroyer",
+  "entity.cabinmod.joash_illusion": "Jehoash the Disco Destroyer",
+  "item.cabinmod.joash_spawn_egg": "Jehoash Spawn Egg",
+  "block.cabinmod.dj_booth": "DJ Booth",
+  "sounds.cabinmod.joash_ambient": "Jehoash hums",
+  "sounds.cabinmod.joash_hurt": "Jehoash hurts",
+  "sounds.cabinmod.joash_death": "Jehoash dies",
+  "sounds.cabinmod.joash_laser": "Disco laser fires",
+  "sounds.cabinmod.joash_teleport": "Jehoash blinks",
+  "sounds.cabinmod.joash_welcome": "Jehoash welcomes you",
+  "sounds.cabinmod.joash_illusions": "Illusions appear",
+  "sounds.cabinmod.joash_illusion_pop": "Illusion pops",
+  "sounds.cabinmod.dj_booth_use": "DJ booth drops the beat",
+
   "entity.minecraft.villager.cabinmod.cabinger": "SCARY GUY"
 
 }

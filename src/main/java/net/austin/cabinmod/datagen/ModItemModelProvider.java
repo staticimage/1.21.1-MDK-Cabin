@@ -55,9 +55,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Textures the user hasn't painted yet: declare them so the models still generate.
         // In game they show the missing-texture pattern until the PNG lands at that path.
         expectTexture("item/wardens_spare_key");
-        expectTexture("item/dead_excalibur");
         basicItem(ModItems.WARDENS_SPARE_KEY.get());
-        handheldItem(ModItems.DEAD_EXCALIBUR.get());
+        withExistingParent(ModItems.JOASH_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        // dead_excalibur uses a hand-written model (src/main/resources/.../models/item/dead_excalibur.json)
+        // with Excalibur's oversized display transforms - don't generate one here or the build sees a duplicate.
 
         basicItem(ModItems.CABIN_SMITHING_TEMPLATE.get());
         basicItem(ModItems.CABIN_STENCIL.get());

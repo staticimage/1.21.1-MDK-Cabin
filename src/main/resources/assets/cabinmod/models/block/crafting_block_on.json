@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "cabinmod:block/crafting_block_front_on",
+    "side": "cabinmod:block/crafting_block_side",
+    "top": "cabinmod:block/crafting_block_top"
+  }
+}

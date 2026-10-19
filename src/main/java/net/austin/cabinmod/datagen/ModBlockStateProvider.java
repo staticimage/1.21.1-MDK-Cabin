@@ -1,5 +1,6 @@
 package net.austin.cabinmod.datagen;
 
+import net.minecraft.server.packs.PackType;
 import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.block.ModBlocks;
 import net.austin.cabinmod.block.custom.LightBlock;
@@ -28,6 +29,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.CABIN_ORE);
         blockWithItem(ModBlocks.CABIN_ORE_DEEPSLATE);
         blockWithItem(ModBlocks.MIKE_BLOCK);
+        expectTexture("block/dj_booth");
+        blockWithItem(ModBlocks.DJ_BOOTH);
 
 
 
@@ -46,7 +49,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.CABIN_SLAB);
         blockItem(ModBlocks.CABIN_PRESSURE_PLATE);
         blockItem(ModBlocks.CABIN_FENCE_GATE);
-        blockItem(ModBlocks.CABIN_TRAPDOOR, "bottom");
+        blockItem(ModBlocks.CABIN_TRAPDOOR, "_bottom");
 
         customLight();
     }
@@ -76,5 +79,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("cabinmod:block/" + deferredBlock.getId().getPath() + appendix));
+    }
+
+    // Texture the user hasn't painted yet: declare it so the model still generates.
+    private void expectTexture(String path) {
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, path);
+        if (!models().existingFileHelper.exists(texture, PackType.CLIENT_RESOURCES, ".png", "textures")) {
+            models().existingFileHelper.trackGenerated(texture, PackType.CLIENT_RESOURCES, ".png", "textures");
+        }
     }
 }

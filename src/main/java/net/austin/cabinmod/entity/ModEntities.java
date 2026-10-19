@@ -1,5 +1,7 @@
 package net.austin.cabinmod.entity;
 
+import net.austin.cabinmod.entity.custom.JehoashIllusionEntity;
+import net.austin.cabinmod.entity.custom.JehoashEntity;
 import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.entity.custom.BlueEntity;
 import net.austin.cabinmod.entity.custom.ChairEntity;
@@ -24,6 +26,14 @@ public class ModEntities {
             ENTITY_TYPES.register("chair_entity", ()-> EntityType.Builder.of(ChairEntity::new, MobCategory.MISC)
                     .sized(0.5f,0.5f).build("chair_entity"));
 
+
+    public static final Supplier<EntityType<JehoashEntity>> JOASH =
+            ENTITY_TYPES.register("joash", () -> EntityType.Builder.of(JehoashEntity::new, MobCategory.MONSTER)
+                    .sized(1.5f, 3.5f).fireImmune().clientTrackingRange(10).build("joash"));
+
+    public static final Supplier<EntityType<JehoashIllusionEntity>> JOASH_ILLUSION =
+            ENTITY_TYPES.register("joash_illusion", () -> EntityType.Builder.of(JehoashIllusionEntity::new, MobCategory.MONSTER)
+                    .sized(1.5f, 3.5f).fireImmune().clientTrackingRange(10).build("joash_illusion"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

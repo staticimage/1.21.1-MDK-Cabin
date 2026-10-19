@@ -12,7 +12,7 @@
       "model": "cabinmod:block/crafting_block"
     },
     "facing=north,lit=true": {
-      "model": "cabinmod:block/furnace_on"
+      "model": "cabinmod:block/crafting_block_on"
     },
     "facing=south,lit=false": {
       "model": "cabinmod:block/crafting_block",
