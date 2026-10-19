@@ -30,6 +30,19 @@ modifiers that deform. Everything else in Blender is allowed, because the export
   - `loc_orb` — the floating disco ball (also a held item, drawn by a custom layer).
   - `loc_*` others for particles / laser origin as needed.
 
+## Runtime cloth (physics chains)
+Some cloth is simulated live in game instead of (or on top of) baked keys — robe strips, capes,
+sleeves, cables. Name those bones `phys_<chain>_<n>`, e.g. `phys_cape_1`, `phys_cape_2`, `phys_cape_3`:
+- each one parented to the previous; the first parented to the bone it hangs from (torso, arm…);
+- the chain hangs **down** at rest, segment length = distance from one pivot to the next;
+- one or more rigid cubes per segment, like any other bone.
+In game `entity/client/physics/ClothChain` simulates each chain (Verlet: gravity, damping, wind from
+the mob's movement, inertia from the animated anchor, body collision) and writes the result back as
+rotations. Anything you key on `phys_` bones in Blender becomes the pose the cloth is pulled towards
+(`stiffness`), so you can still direct big swishes by hand and let the physics add follow-through.
+More segments = smoother cloth; 3–6 per strip is a good range. Bake previews in Blender with a
+cloth/rigid-body sim if you like — in game the live sim takes over those bones.
+
 ## Cubes
 - Box meshes named `c_<part>[_n]`, **bone-parented** (Parent Type: Bone) to exactly one bone —
   no Armature modifier, no vertex groups. At rest pose they must be **axis-aligned to the world

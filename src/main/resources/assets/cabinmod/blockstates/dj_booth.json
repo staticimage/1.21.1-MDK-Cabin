@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,part=main": {
+      "model": "cabinmod:block/dj_booth_main"
+    },
+    "facing=north,part=side": {
+      "model": "cabinmod:block/dj_booth_side"
+    },
+    "facing=east,part=main": {
+      "model": "cabinmod:block/dj_booth_main",
+      "y": 90
+    },
+    "facing=east,part=side": {
+      "model": "cabinmod:block/dj_booth_side",
+      "y": 90
+    },
+    "facing=south,part=main": {
+      "model": "cabinmod:block/dj_booth_main",
+      "y": 180
+    },
+    "facing=south,part=side": {
+      "model": "cabinmod:block/dj_booth_side",
+      "y": 180
+    },
+    "facing=west,part=main": {
+      "model": "cabinmod:block/dj_booth_main",
+      "y": 270
+    },
+    "facing=west,part=side": {
+      "model": "cabinmod:block/dj_booth_side",
+      "y": 270
+    }
+  }
+}

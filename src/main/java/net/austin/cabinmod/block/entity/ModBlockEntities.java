@@ -18,6 +18,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("crafting_block_be", ()-> BlockEntityType.Builder.of(
                     CraftingBlockEntity::new, ModBlocks.CRAFTING_BLOCK.get()).build(null));
 
+    public static final Supplier<BlockEntityType<DjBoothBlockEntity>> DJ_BOOTH_BE =
+            BLOCK_ENTITIES.register("dj_booth_be", ()-> BlockEntityType.Builder.of(
+                    DjBoothBlockEntity::new, ModBlocks.DJ_BOOTH.get()).build(null));
+
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
     }

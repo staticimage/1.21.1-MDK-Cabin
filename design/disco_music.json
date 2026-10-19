@@ -1,0 +1,9 @@
+{
+  "source": "kulakovka-phonk-reel-614877.mp3",
+  "bpm": 114.0,
+  "first_beat_seconds": 0.0058,
+  "length_seconds": 147.41,
+  "beats": 280,
+  "kick_enters_seconds": 6.04,
+  "note": "kick-drum grid; full-mix autocorrelation also peaks at 2/3 of this (76 BPM)"
+}

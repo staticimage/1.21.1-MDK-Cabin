@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-18T21:26:51.239759	Loot Tables
+// 1.21.1	2026-10-18T22:17:52.8442878	Loot Tables
 12f9a72cc8bce8b77421152908978c08ac84a2f9 data/cabinmod/loot_table/blocks/cabin_block.json
 f2acac117fd49112fbc2db950720edcf40e1a55c data/cabinmod/loot_table/blocks/cabin_button.json
 d9ed49bf4c76b330c8ed141c92533316daf21853 data/cabinmod/loot_table/blocks/cabin_door.json
@@ -13,7 +13,7 @@ c19efee78ea5ee7123cb1e87e80da64c911a9ff0 data/cabinmod/loot_table/blocks/cabin_t
 4ff83d7735183668ff965f25f1f31bdcc07565f2 data/cabinmod/loot_table/blocks/cabin_wall.json
 86d1658cf5363c2e0b0191a1ff995401998ec264 data/cabinmod/loot_table/blocks/chair.json
 8072a85c196eca337b096d94e388de5e6b765399 data/cabinmod/loot_table/blocks/crafting_block.json
-8916e80bfd1382e6efd92f6c64deeed0962a8845 data/cabinmod/loot_table/blocks/dj_booth.json
+c0ce43582a4744ae36568ed69c734f55c6f64765 data/cabinmod/loot_table/blocks/dj_booth.json
 d3e53e03eceb132d54a13f8c4d6acb87da0c39a6 data/cabinmod/loot_table/blocks/light_block.json
 9eb3e6bcf0be9f7934908d79d65f38c95f1c161c data/cabinmod/loot_table/blocks/mike_block.json
 5c707970290931e9d1875584b1a512707808fda9 data/cabinmod/loot_table/blocks/raw_cabin_block.json
