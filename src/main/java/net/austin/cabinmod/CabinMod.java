@@ -1,12 +1,12 @@
 package net.austin.cabinmod;
 
-import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.austin.cabinmod.block.ModBlocks;
 import net.austin.cabinmod.block.entity.CraftingBlockEntity;
 import net.austin.cabinmod.block.entity.ModBlockEntities;
 import net.austin.cabinmod.effect.ModEffects;
 import net.austin.cabinmod.entity.ModEntities;
 import net.austin.cabinmod.entity.client.BlueRenderer;
+import net.austin.cabinmod.entity.client.JehoashRenderer;
 import net.austin.cabinmod.entity.client.ChairRenderer;
 import net.austin.cabinmod.item.ModCreativeModeTabs;
 import net.austin.cabinmod.item.ModItems;
@@ -119,9 +119,9 @@ public class CabinMod {
 
             EntityRenderers.register(ModEntities.BLUE_GUY.get(), BlueRenderer::new);
             EntityRenderers.register(ModEntities.CHAIR_ENTITY.get(), ChairRenderer::new);
-            // Invisible until Jehoash's model is exported from Blender.
-            EntityRenderers.register(ModEntities.JOASH.get(), NoopRenderer::new);
-            EntityRenderers.register(ModEntities.JOASH_ILLUSION.get(), NoopRenderer::new);
+            // Placeholder model until Jehoash's Blender rig is exported.
+            EntityRenderers.register(ModEntities.JOASH.get(), JehoashRenderer::new);
+            EntityRenderers.register(ModEntities.JOASH_ILLUSION.get(), JehoashRenderer::new);
         }
 
 //        @SubscribeEvent
