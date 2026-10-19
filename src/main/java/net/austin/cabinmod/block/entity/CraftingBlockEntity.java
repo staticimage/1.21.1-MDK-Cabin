@@ -62,8 +62,8 @@ public class CraftingBlockEntity extends BlockEntity implements MenuProvider {
             @Override
             public void set(int i, int value) {
                 switch (i){
-                    case 0: CraftingBlockEntity.this.progress = value;
-                    case 1: CraftingBlockEntity.this.maxProgress = value;
+                    case 0: CraftingBlockEntity.this.progress = value; break;
+                    case 1: CraftingBlockEntity.this.maxProgress = value; break;
                 }
             }
 
@@ -113,7 +113,14 @@ public class CraftingBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        if(hasRecipe()){
+        boolean working = hasRecipe();
+        // Show the lit front (crafting_block_front_on) while an item is being processed.
+        if(blockState.getValue(CraftingBlock.LIT) != working){
+            blockState = blockState.setValue(CraftingBlock.LIT, working);
+            level.setBlock(blockPos, blockState, 3);
+        }
+
+        if(working){
             increaseCraftingProgress();
             setChanged(level,blockPos,blockState);
 
