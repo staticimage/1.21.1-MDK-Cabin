@@ -11,6 +11,7 @@ import net.minecraft.client.animation.KeyframeAnimations;
 import org.joml.Vector3f;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 // Turns baked Blender clips into vanilla AnimationDefinitions. Keys are dense LINEAR samples,
@@ -23,6 +24,11 @@ public final class BakedAnimations {
 
     public static AnimationDefinition get(String mob, String clip) {
         return CACHE.computeIfAbsent(mob + "/" + clip, k -> build(BakedClips.get(mob, clip)));
+    }
+
+    // Empty until the clip has been exported from Blender.
+    public static Optional<AnimationDefinition> find(String mob, String clip) {
+        return BakedClips.find(mob, clip).map(c -> CACHE.computeIfAbsent(mob + "/" + clip, k -> build(c)));
     }
 
     private static AnimationDefinition build(BakedClips.Clip clip) {

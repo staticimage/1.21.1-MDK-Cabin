@@ -1,34 +1,40 @@
 {
   "variants": {
-    "facing=north,part=main": {
-      "model": "cabinmod:block/dj_booth_main"
+    "facing=north,part=left": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=north,part=side": {
-      "model": "cabinmod:block/dj_booth_side"
+    "facing=north,part=center": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=east,part=main": {
-      "model": "cabinmod:block/dj_booth_main",
-      "y": 90
+    "facing=north,part=right": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=east,part=side": {
-      "model": "cabinmod:block/dj_booth_side",
-      "y": 90
+    "facing=east,part=left": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=south,part=main": {
-      "model": "cabinmod:block/dj_booth_main",
-      "y": 180
+    "facing=east,part=center": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=south,part=side": {
-      "model": "cabinmod:block/dj_booth_side",
-      "y": 180
+    "facing=east,part=right": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=west,part=main": {
-      "model": "cabinmod:block/dj_booth_main",
-      "y": 270
+    "facing=south,part=left": {
+      "model": "cabinmod:block/dj_booth_part"
     },
-    "facing=west,part=side": {
-      "model": "cabinmod:block/dj_booth_side",
-      "y": 270
+    "facing=south,part=center": {
+      "model": "cabinmod:block/dj_booth_part"
+    },
+    "facing=south,part=right": {
+      "model": "cabinmod:block/dj_booth_part"
+    },
+    "facing=west,part=left": {
+      "model": "cabinmod:block/dj_booth_part"
+    },
+    "facing=west,part=center": {
+      "model": "cabinmod:block/dj_booth_part"
+    },
+    "facing=west,part=right": {
+      "model": "cabinmod:block/dj_booth_part"
     }
   }
 }

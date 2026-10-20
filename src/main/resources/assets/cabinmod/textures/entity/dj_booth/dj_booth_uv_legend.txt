@@ -1,0 +1,407 @@
+dj_booth UV legend - atlas 128x128. Rects are x,y,w,h in atlas pixels. 'right'/'left' are the mob's own sides.
+Face lines are rounded up to whole pixels; 'exact' lines are Minecraft's real float layout. The template PNG
+is drawn from the exact rects at 4x (512x512), the same size as the painted textures.
+
+c_booth_cabinet  (offset 0,0  size 46x25x14)
+    top    14,0,46,14
+    exact top    14,0,46,14
+    bottom 60,0,46,14
+    exact bottom 60,0,46,14
+    right  0,14,14,25
+    exact right  0,14,14,25
+    front  14,14,46,25
+    exact front  14,14,46,25
+    left   60,14,14,25
+    exact left   60,14,14,25
+    back   74,14,46,25
+    exact back   74,14,46,25
+c_booth_deck_l  (offset 48,55  size 15x2x12)
+    top    60,55,15,12
+    exact top    60,55,15,12
+    bottom 75,55,15,12
+    exact bottom 75,55,15,12
+    right  48,67,12,2
+    exact right  48,67,12,2
+    front  60,67,15,2
+    exact front  60,67,15,2
+    left   75,67,12,2
+    exact left   75,67,12,2
+    back   87,67,15,2
+    exact back   87,67,15,2
+c_booth_deck_r  (offset 48,69  size 15x2x12)
+    top    60,69,15,12
+    exact top    60,69,15,12
+    bottom 75,69,15,12
+    exact bottom 75,69,15,12
+    right  48,81,12,2
+    exact right  48,81,12,2
+    front  60,81,15,2
+    exact front  60,81,15,2
+    left   75,81,12,2
+    exact left   75,81,12,2
+    back   87,81,15,2
+    exact back   87,81,15,2
+c_booth_fader_1  (offset 120,55  size 2x2x2)
+    top    122,55,2,2
+    exact top    121.2,55,1.2,1.2
+    bottom 124,55,2,2
+    exact bottom 122.4,55,1.2,1.2
+    right  120,57,2,2
+    exact right  120,56.2,1.2,1.3
+    front  122,57,2,2
+    exact front  121.2,56.2,1.2,1.3
+    left   124,57,2,2
+    exact left   122.4,56.2,1.2,1.3
+    back   126,57,2,2
+    exact back   123.6,56.2,1.2,1.3
+c_booth_fader_2  (offset 102,67  size 2x2x2)
+    top    104,67,2,2
+    exact top    103.2,67,1.2,1.2
+    bottom 106,67,2,2
+    exact bottom 104.4,67,1.2,1.2
+    right  102,69,2,2
+    exact right  102,68.2,1.2,1.3
+    front  104,69,2,2
+    exact front  103.2,68.2,1.2,1.3
+    left   106,69,2,2
+    exact left   104.4,68.2,1.2,1.3
+    back   108,69,2,2
+    exact back   105.6,68.2,1.2,1.3
+c_booth_headshell_l  (offset 118,67  size 2x1x2)
+    top    120,67,2,2
+    exact top    119.6,67,1.2,1.6
+    bottom 122,67,2,2
+    exact bottom 120.8,67,1.2,1.6
+    right  118,69,2,1
+    exact right  118,68.6,1.6,0.8
+    front  120,69,2,1
+    exact front  119.6,68.6,1.2,0.8
+    left   122,69,2,1
+    exact left   120.8,68.6,1.6,0.8
+    back   124,69,2,1
+    exact back   122.4,68.6,1.2,0.8
+c_booth_headshell_r  (offset 40,70  size 2x1x2)
+    top    42,70,2,2
+    exact top    41.6,70,1.2,1.6
+    bottom 44,70,2,2
+    exact bottom 42.8,70,1.2,1.6
+    right  40,72,2,1
+    exact right  40,71.6,1.6,0.8
+    front  42,72,2,1
+    exact front  41.6,71.6,1.2,0.8
+    left   44,72,2,1
+    exact left   42.8,71.6,1.6,0.8
+    back   46,72,2,1
+    exact back   44.4,71.6,1.2,0.8
+c_booth_knob_1  (offset 124,0  size 1x2x1)
+    top    125,0,1,1
+    exact top    125,0,1,1
+    bottom 126,0,1,1
+    exact bottom 126,0,1,1
+    right  124,1,1,2
+    exact right  124,1,1,1.2
+    front  125,1,1,2
+    exact front  125,1,1,1.2
+    left   126,1,1,2
+    exact left   126,1,1,1.2
+    back   127,1,1,2
+    exact back   127,1,1,1.2
+c_booth_knob_2  (offset 124,3  size 1x2x1)
+    top    125,3,1,1
+    exact top    125,3,1,1
+    bottom 126,3,1,1
+    exact bottom 126,3,1,1
+    right  124,4,1,2
+    exact right  124,4,1,1.2
+    front  125,4,1,2
+    exact front  125,4,1,1.2
+    left   126,4,1,2
+    exact left   126,4,1,1.2
+    back   127,4,1,2
+    exact back   127,4,1,1.2
+c_booth_knob_3  (offset 124,6  size 1x2x1)
+    top    125,6,1,1
+    exact top    125,6,1,1
+    bottom 126,6,1,1
+    exact bottom 126,6,1,1
+    right  124,7,1,2
+    exact right  124,7,1,1.2
+    front  125,7,1,2
+    exact front  125,7,1,1.2
+    left   126,7,1,2
+    exact left   126,7,1,1.2
+    back   127,7,1,2
+    exact back   127,7,1,1.2
+c_booth_knob_4  (offset 124,9  size 1x2x1)
+    top    125,9,1,1
+    exact top    125,9,1,1
+    bottom 126,9,1,1
+    exact bottom 126,9,1,1
+    right  124,10,1,2
+    exact right  124,10,1,1.2
+    front  125,10,1,2
+    exact front  125,10,1,1.2
+    left   126,10,1,2
+    exact left   126,10,1,1.2
+    back   127,10,1,2
+    exact back   127,10,1,1.2
+c_booth_label_l  (offset 120,59  size 2x1x2)
+    top    122,59,2,2
+    exact top    122,59,2,2
+    bottom 124,59,2,2
+    exact bottom 124,59,2,2
+    right  120,61,2,1
+    exact right  120,61,2,0.2
+    front  122,61,2,1
+    exact front  122,61,2,0.2
+    left   124,61,2,1
+    exact left   124,61,2,0.2
+    back   126,61,2,1
+    exact back   126,61,2,0.2
+c_booth_label_r  (offset 32,70  size 2x1x2)
+    top    34,70,2,2
+    exact top    34,70,2,2
+    bottom 36,70,2,2
+    exact bottom 36,70,2,2
+    right  32,72,2,1
+    exact right  32,72,2,0.2
+    front  34,72,2,1
+    exact front  34,72,2,0.2
+    left   36,72,2,1
+    exact left   36,72,2,0.2
+    back   38,72,2,1
+    exact back   38,72,2,0.2
+c_booth_laptop_base  (offset 102,62  size 8x1x4)
+    top    106,62,8,4
+    exact top    106,62,8,4
+    bottom 114,62,8,4
+    exact bottom 114,62,8,4
+    right  102,66,4,1
+    exact right  102,66,4,0.6
+    front  106,66,8,1
+    exact front  106,66,8,0.6
+    left   114,66,4,1
+    exact left   114,66,4,0.6
+    back   118,66,8,1
+    exact back   118,66,8,0.6
+c_booth_laptop_screen  (offset 102,55  size 8x6x1)
+    top    103,55,8,1
+    exact top    102.5,55,8,0.5
+    bottom 111,55,8,1
+    exact bottom 110.5,55,8,0.5
+    right  102,56,1,6
+    exact right  102,55.5,0.5,5.6
+    front  103,56,8,6
+    exact front  102.5,55.5,8,5.6
+    left   111,56,1,6
+    exact left   110.5,55.5,0.5,5.6
+    back   112,56,8,6
+    exact back   111,55.5,8,5.6
+c_booth_mic  (offset 120,23  size 2x4x2)
+    top    122,23,2,2
+    exact top    122,23,2,2
+    bottom 124,23,2,2
+    exact bottom 124,23,2,2
+    right  120,25,2,4
+    exact right  120,25,2,3.5
+    front  122,25,2,4
+    exact front  122,25,2,3.5
+    left   124,25,2,4
+    exact left   124,25,2,3.5
+    back   126,25,2,4
+    exact back   126,25,2,3.5
+c_booth_mic_boom  (offset 0,99  size 18x1x1)
+    top    1,99,18,1
+    exact top    0.8,99,17.5,0.8
+    bottom 19,99,18,1
+    exact bottom 18.3,99,17.5,0.8
+    right  0,100,1,1
+    exact right  0,99.8,0.8,0.8
+    front  1,100,18,1
+    exact front  0.8,99.8,17.5,0.8
+    left   19,100,1,1
+    exact left   18.3,99.8,0.8,0.8
+    back   20,100,18,1
+    exact back   19.1,99.8,17.5,0.8
+c_booth_mic_pole  (offset 120,0  size 1x22x1)
+    top    121,0,1,1
+    exact top    121,0,1,1
+    bottom 122,0,1,1
+    exact bottom 122,0,1,1
+    right  120,1,1,22
+    exact right  120,1,1,22
+    front  121,1,1,22
+    exact front  121,1,1,22
+    left   122,1,1,22
+    exact left   122,1,1,22
+    back   123,1,1,22
+    exact back   123,1,1,22
+c_booth_mixer  (offset 0,55  size 12x3x12)
+    top    12,55,12,12
+    exact top    12,55,12,12
+    bottom 24,55,12,12
+    exact bottom 24,55,12,12
+    right  0,67,12,3
+    exact right  0,67,12,3
+    front  12,67,12,3
+    exact front  12,67,12,3
+    left   24,67,12,3
+    exact left   24,67,12,3
+    back   36,67,12,3
+    exact back   36,67,12,3
+c_booth_platter_l_1  (offset 32,93  size 11x1x5)
+    top    37,93,11,5
+    exact top    37,93,11,5
+    bottom 48,93,11,5
+    exact bottom 48,93,11,5
+    right  32,98,5,1
+    exact right  32,98,5,0.8
+    front  37,98,11,1
+    exact front  37,98,11,0.8
+    left   48,98,5,1
+    exact left   48,98,5,0.8
+    back   53,98,11,1
+    exact back   53,98,11,0.8
+c_booth_platter_l_2  (offset 32,83  size 9x1x9)
+    top    41,83,9,9
+    exact top    41,83,9,9
+    bottom 50,83,9,9
+    exact bottom 50,83,9,9
+    right  32,92,9,1
+    exact right  32,92,9,0.8
+    front  41,92,9,1
+    exact front  41,92,9,0.8
+    left   50,92,9,1
+    exact left   50,92,9,0.8
+    back   59,92,9,1
+    exact back   59,92,9,0.8
+c_booth_platter_l_3  (offset 0,70  size 5x1x11)
+    top    11,70,5,11
+    exact top    11,70,5,11
+    bottom 16,70,5,11
+    exact bottom 16,70,5,11
+    right  0,81,11,1
+    exact right  0,81,11,0.8
+    front  11,81,5,1
+    exact front  11,81,5,0.8
+    left   16,81,11,1
+    exact left   16,81,11,0.8
+    back   27,81,5,1
+    exact back   27,81,5,0.8
+c_booth_platter_r_1  (offset 64,93  size 11x1x5)
+    top    69,93,11,5
+    exact top    69,93,11,5
+    bottom 80,93,11,5
+    exact bottom 80,93,11,5
+    right  64,98,5,1
+    exact right  64,98,5,0.8
+    front  69,98,11,1
+    exact front  69,98,11,0.8
+    left   80,98,5,1
+    exact left   80,98,5,0.8
+    back   85,98,11,1
+    exact back   85,98,11,0.8
+c_booth_platter_r_2  (offset 68,83  size 9x1x9)
+    top    77,83,9,9
+    exact top    77,83,9,9
+    bottom 86,83,9,9
+    exact bottom 86,83,9,9
+    right  68,92,9,1
+    exact right  68,92,9,0.8
+    front  77,92,9,1
+    exact front  77,92,9,0.8
+    left   86,92,9,1
+    exact left   86,92,9,0.8
+    back   95,92,9,1
+    exact back   95,92,9,0.8
+c_booth_platter_r_3  (offset 0,82  size 5x1x11)
+    top    11,82,5,11
+    exact top    11,82,5,11
+    bottom 16,82,5,11
+    exact bottom 16,82,5,11
+    right  0,93,11,1
+    exact right  0,93,11,0.8
+    front  11,93,5,1
+    exact front  11,93,5,0.8
+    left   16,93,11,1
+    exact left   16,93,11,0.8
+    back   27,93,5,1
+    exact back   27,93,5,0.8
+c_booth_tonearm_base_l  (offset 120,29  size 2x3x2)
+    top    122,29,2,2
+    exact top    122,29,2,2
+    bottom 124,29,2,2
+    exact bottom 124,29,2,2
+    right  120,31,2,3
+    exact right  120,31,2,2.5
+    front  122,31,2,3
+    exact front  122,31,2,2.5
+    left   124,31,2,3
+    exact left   124,31,2,2.5
+    back   126,31,2,3
+    exact back   126,31,2,2.5
+c_booth_tonearm_base_r  (offset 120,34  size 2x3x2)
+    top    122,34,2,2
+    exact top    122,34,2,2
+    bottom 124,34,2,2
+    exact bottom 124,34,2,2
+    right  120,36,2,3
+    exact right  120,36,2,2.5
+    front  122,36,2,3
+    exact front  122,36,2,2.5
+    left   124,36,2,3
+    exact left   124,36,2,2.5
+    back   126,36,2,3
+    exact back   126,36,2,2.5
+c_booth_tonearm_l  (offset 102,71  size 5x1x1)
+    top    103,71,5,1
+    exact top    102.8,71,4.5,0.8
+    bottom 108,71,5,1
+    exact bottom 107.3,71,4.5,0.8
+    right  102,72,1,1
+    exact right  102,71.8,0.8,0.6
+    front  103,72,5,1
+    exact front  102.8,71.8,4.5,0.6
+    left   108,72,1,1
+    exact left   107.3,71.8,0.8,0.6
+    back   109,72,5,1
+    exact back   108.1,71.8,4.5,0.6
+c_booth_tonearm_r  (offset 114,71  size 5x1x1)
+    top    115,71,5,1
+    exact top    114.8,71,4.5,0.8
+    bottom 120,71,5,1
+    exact bottom 119.3,71,4.5,0.8
+    right  114,72,1,1
+    exact right  114,71.8,0.8,0.6
+    front  115,72,5,1
+    exact front  114.8,71.8,4.5,0.6
+    left   120,72,1,1
+    exact left   119.3,71.8,0.8,0.6
+    back   121,72,5,1
+    exact back   120.1,71.8,4.5,0.6
+c_booth_top  (offset 0,39  size 47x1x15)
+    top    15,39,47,15
+    exact top    15,39,47,15
+    bottom 62,39,47,15
+    exact bottom 62,39,47,15
+    right  0,54,15,1
+    exact right  0,54,15,1
+    front  15,54,47,1
+    exact front  15,54,47,1
+    left   62,54,15,1
+    exact left   62,54,15,1
+    back   77,54,47,1
+    exact back   77,54,47,1
+c_booth_xfader  (offset 110,67  size 2x2x2)
+    top    112,67,2,2
+    exact top    111.2,67,1.4,1.2
+    bottom 114,67,2,2
+    exact bottom 112.6,67,1.4,1.2
+    right  110,69,2,2
+    exact right  110,68.2,1.2,1.2
+    front  112,69,2,2
+    exact front  111.2,68.2,1.4,1.2
+    left   114,69,2,2
+    exact left   112.6,68.2,1.2,1.2
+    back   116,69,2,2
+    exact back   113.8,68.2,1.4,1.2
