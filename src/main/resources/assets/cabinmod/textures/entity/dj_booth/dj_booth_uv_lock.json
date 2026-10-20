@@ -1,0 +1,191 @@
+{
+ "atlas": 128,
+ "uv": {
+  "c_booth_cabinet": [
+   0,
+   0,
+   120,
+   39
+  ],
+  "c_booth_deck_l": [
+   48,
+   55,
+   54,
+   14
+  ],
+  "c_booth_deck_r": [
+   48,
+   69,
+   54,
+   14
+  ],
+  "c_booth_fader_1": [
+   120,
+   55,
+   8,
+   4
+  ],
+  "c_booth_fader_2": [
+   102,
+   67,
+   8,
+   4
+  ],
+  "c_booth_headshell_l": [
+   118,
+   67,
+   8,
+   3
+  ],
+  "c_booth_headshell_r": [
+   40,
+   70,
+   8,
+   3
+  ],
+  "c_booth_knob_1": [
+   124,
+   0,
+   4,
+   3
+  ],
+  "c_booth_knob_2": [
+   124,
+   3,
+   4,
+   3
+  ],
+  "c_booth_knob_3": [
+   124,
+   6,
+   4,
+   3
+  ],
+  "c_booth_knob_4": [
+   124,
+   9,
+   4,
+   3
+  ],
+  "c_booth_label_l": [
+   120,
+   59,
+   8,
+   3
+  ],
+  "c_booth_label_r": [
+   32,
+   70,
+   8,
+   3
+  ],
+  "c_booth_laptop_base": [
+   102,
+   62,
+   24,
+   5
+  ],
+  "c_booth_laptop_screen": [
+   102,
+   55,
+   18,
+   7
+  ],
+  "c_booth_mic": [
+   120,
+   23,
+   8,
+   6
+  ],
+  "c_booth_mic_boom": [
+   0,
+   99,
+   38,
+   2
+  ],
+  "c_booth_mic_pole": [
+   120,
+   0,
+   4,
+   23
+  ],
+  "c_booth_mixer": [
+   0,
+   55,
+   48,
+   15
+  ],
+  "c_booth_platter_l_1": [
+   32,
+   93,
+   32,
+   6
+  ],
+  "c_booth_platter_l_2": [
+   32,
+   83,
+   36,
+   10
+  ],
+  "c_booth_platter_l_3": [
+   0,
+   70,
+   32,
+   12
+  ],
+  "c_booth_platter_r_1": [
+   64,
+   93,
+   32,
+   6
+  ],
+  "c_booth_platter_r_2": [
+   68,
+   83,
+   36,
+   10
+  ],
+  "c_booth_platter_r_3": [
+   0,
+   82,
+   32,
+   12
+  ],
+  "c_booth_tonearm_base_l": [
+   120,
+   29,
+   8,
+   5
+  ],
+  "c_booth_tonearm_base_r": [
+   120,
+   34,
+   8,
+   5
+  ],
+  "c_booth_tonearm_l": [
+   102,
+   71,
+   12,
+   2
+  ],
+  "c_booth_tonearm_r": [
+   114,
+   71,
+   12,
+   2
+  ],
+  "c_booth_top": [
+   0,
+   39,
+   124,
+   16
+  ],
+  "c_booth_xfader": [
+   110,
+   67,
+   8,
+   4
+  ]
+ }
+}

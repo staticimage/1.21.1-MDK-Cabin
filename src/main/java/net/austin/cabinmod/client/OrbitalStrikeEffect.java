@@ -2,11 +2,15 @@ package net.austin.cabinmod.client;
 
 import com.mojang.logging.LogUtils;
 import net.austin.cabinmod.CabinMod;
+import net.austin.cabinmod.sounds.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.client.renderer.PostPass;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -18,7 +22,7 @@ import org.slf4j.Logger;
 import java.lang.reflect.Field;
 import java.util.List;
 
-// Full-screen orbital strike (shader ported from Orbital Railgun, MIT - see shaders/LICENSE_orbital_railgun.txt).
+// Full-screen orbital strike (shader ported from Orbital Railgun, MIT - see shaders/license_orbital_railgun.txt).
 // Storm clouds roll in, the sky tears open, planets fall, then the blast and a shockwave roll out
 // from `target`. Purely visual. Used for Jehoash's death ("the party ends").
 @EventBusSubscriber(modid = CabinMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
@@ -34,6 +38,7 @@ public final class OrbitalStrikeEffect {
     private static int width, height;
     private static Vec3 target;
     private static long startNanos;
+    private static long pausedAt = -1;
 
     private OrbitalStrikeEffect() {
     }
@@ -43,6 +48,10 @@ public final class OrbitalStrikeEffect {
         if (broken || mc.player == null || mc.player.position().distanceTo(at) > MAX_DISTANCE) return;
         target = at;
         startNanos = System.nanoTime();
+        pausedAt = -1;
+        // the strike's own soundtrack (joash/strike), timed to the shader: planets hit at 3.264 + 0.384k s, blast at 8 s
+        mc.getSoundManager().play(new SimpleSoundInstance(ModSounds.JOASH_STRIKE.get().getLocation(), SoundSource.HOSTILE,
+                1.0f, 1.0f, SoundInstance.createUnseededRandom(), false, 0, SoundInstance.Attenuation.NONE, 0, 0, 0, true));
     }
 
     public static boolean isActive() {
@@ -52,12 +61,21 @@ public final class OrbitalStrikeEffect {
     @SubscribeEvent
     public static void onRenderLevel(RenderLevelStageEvent event) {
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_LEVEL || target == null) return;
-        float t = (System.nanoTime() - startNanos) / 1e9f;
+        Minecraft mc = Minecraft.getInstance();
+        // the soundtrack pauses with the game: hold the shader clock too, so planets still land on their hits
+        long now = System.nanoTime();
+        if (mc.isPaused()) {
+            if (pausedAt < 0) pausedAt = now;
+            now = pausedAt;
+        } else if (pausedAt >= 0) {
+            startNanos += now - pausedAt;
+            pausedAt = -1;
+        }
+        float t = (now - startNanos) / 1e9f;
         if (t > BUILDUP_SECONDS + TAIL_SECONDS) {
             target = null;
             return;
         }
-        Minecraft mc = Minecraft.getInstance();
         PostChain post = chain(mc);
         if (post == null) {
             target = null;

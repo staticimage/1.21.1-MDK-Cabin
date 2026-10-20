@@ -32,20 +32,27 @@ public class ModSounds {
             ModSounds.CABIN_BLOCK_FALL);
 
 
-    // Stand-in: points at the vanilla elder guardian curse in sounds.json until a real sound exists.
+    // Life of the Party jumpscare stinger (tools/audio/build_sounds.py).
     public static final Supplier<SoundEvent> LIFE_OF_THE_PARTY_JUMPSCARE = registerSoundEvent("life_of_the_party_jumpscare");
 
-    // Jehoash + DJ booth: custom sounds mixed from CC0 Kenney packs (tools/audio/build_sounds.py).
+    // Jehoash + DJ booth - see design/JEHOASH_V2.md section 7 and sounds/credits.txt
+    // (tools/audio/build_illusion_sounds.py for joash_illusions / joash_illusion_pop, tools/audio/build_sounds.py
+    // for teleport/scratch, tools/audio/build_sounds_v2.py for the rest).
     public static final Supplier<SoundEvent> JOASH_AMBIENT = registerSoundEvent("joash_ambient");
     public static final Supplier<SoundEvent> JOASH_HURT = registerSoundEvent("joash_hurt");
     public static final Supplier<SoundEvent> JOASH_DEATH = registerSoundEvent("joash_death");
+    public static final Supplier<SoundEvent> JOASH_WELCOME_VOICE = registerSoundEvent("joash_welcome_voice");
+    public static final Supplier<SoundEvent> JOASH_ROAR = registerSoundEvent("joash_roar");
+    public static final Supplier<SoundEvent> JOASH_LASER_CHARGE = registerSoundEvent("joash_laser_charge");
     public static final Supplier<SoundEvent> JOASH_LASER = registerSoundEvent("joash_laser");
     public static final Supplier<SoundEvent> JOASH_TELEPORT = registerSoundEvent("joash_teleport");
-    public static final Supplier<SoundEvent> JOASH_WELCOME = registerSoundEvent("joash_welcome");
     public static final Supplier<SoundEvent> JOASH_ILLUSIONS = registerSoundEvent("joash_illusions");
     public static final Supplier<SoundEvent> JOASH_ILLUSION_POP = registerSoundEvent("joash_illusion_pop");
+    public static final Supplier<SoundEvent> JOASH_STRIKE = registerSoundEvent("joash_strike");
     public static final Supplier<SoundEvent> DJ_BOOTH_USE = registerSoundEvent("dj_booth_use");
-    // The Disco rave track: "Phonk Reel" by kulakovka (Pixabay), see sounds/CREDITS.txt.
+    public static final Supplier<SoundEvent> DJ_BOOTH_NEEDLE = registerSoundEvent("dj_booth_needle");
+    public static final Supplier<SoundEvent> DJ_BOOTH_SLAM = registerSoundEvent("dj_booth_slam");
+    // The Disco rave track: "Phonk Reel" by kulakovka (Pixabay), see sounds/credits.txt.
     public static final Supplier<SoundEvent> DISCO_MUSIC = registerSoundEvent("disco_music");
 
     public static final Supplier<SoundEvent> MO2_DISC = registerSoundEvent("mo2_disc");

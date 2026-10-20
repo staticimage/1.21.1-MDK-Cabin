@@ -74,30 +74,10 @@ def scratch(seconds=0.9):
 
 
 # --- Jehoash ---------------------------------------------------------------------------
+# Only the teleport is still built here (the one sound allowed to stay sci-fi). Everything else of his comes
+# from build_sounds_v2.py / build_illusion_sounds.py - don't add them back, re-running would overwrite those.
 for i in range(3):
-    write(f"joash/laser_{i + 1}", finish(mix(
-        (varispeed(load(f"laserLarge_00{i}"), 0.85), 0, 1.0),
-        (load(f"phaserUp{i + 1}"), 0.02, 0.55))))
     write(f"joash/teleport_{i + 1}", finish(load(f"phaseJump{i + 1}")))
-    write(f"joash/illusion_pop_{i + 1}", finish(mix(
-        (varispeed(load(f"impactGlass_light_00{i}"), 1.1), 0, 1.0),
-        (load(f"zap{1 + i % 2}"), 0, 0.3))))
-    write(f"joash/hurt_{i + 1}", finish(mix(
-        (load(f"impactPunch_medium_00{i}"), 0, 1.0),
-        (varispeed(load("highDown"), 0.8 + 0.1 * i), 0.02, 0.35))))
-    write(f"joash/ambient_{i + 1}", finish(varispeed(load(f"computerNoise_00{i}"), 0.7)[:int(RATE * 2.5)], peak=0.55, fade_ms=400))
-for i in range(2):
-    write(f"joash/illusions_{i + 1}", finish(mix(
-        (load(f"forceField_00{i}"), 0, 1.0),
-        (load("zapThreeToneUp"), 0.1, 0.5))))
-write("joash/welcome", finish(mix(
-    (load("lowFrequency_explosion_000"), 0, 1.0),
-    (load("zapThreeToneUp"), 0.15, 0.8),
-    (varispeed(load("powerUp1"), 0.8), 0.25, 0.5))))
-write("joash/death", finish(mix(
-    (load("lowFrequency_explosion_001"), 0, 1.0),
-    (varispeed(load("lowDown"), 0.6), 0.1, 0.9),
-    (load("explosionCrunch_002"), 0.35, 0.6)), drive=0.5))
 
 # --- DJ booth ---------------------------------------------------------------------------
 for i in range(2):

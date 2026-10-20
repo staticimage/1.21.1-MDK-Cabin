@@ -46,6 +46,7 @@
   "block.cabinmod.cabin_trapdoor": "Jehoash Veil",
 
   "block.cabinmod.chair": "Cuck Chair",
+  "entity.cabinmod.chair_entity": "Cuck Chair",
   "block.cabinmod.crafting_block": "§bTransient Diviner",
 
   "block.cabinmod.mike_block": "Magic Mike Block",
@@ -115,10 +116,20 @@
   "sounds.cabinmod.joash_death": "Jehoash dies",
   "sounds.cabinmod.joash_laser": "Disco laser fires",
   "sounds.cabinmod.joash_teleport": "Jehoash blinks",
-  "sounds.cabinmod.joash_welcome": "Jehoash welcomes you",
   "sounds.cabinmod.joash_illusions": "Illusions appear",
   "sounds.cabinmod.joash_illusion_pop": "Illusion pops",
   "sounds.cabinmod.dj_booth_use": "DJ booth drops the beat",
+  "sounds.cabinmod.joash_welcome_voice": "Jehoash bellows WELCOME",
+  "sounds.cabinmod.joash_roar": "Jehoash roars at the silence",
+  "sounds.cabinmod.joash_laser_charge": "Disco laser charges up",
+  "sounds.cabinmod.joash_strike": "The sky ends the party",
+  "sounds.cabinmod.dj_booth_needle": "Record scratches to a halt",
+  "sounds.cabinmod.dj_booth_slam": "Fists slam the DJ booth",
+  "sounds.cabinmod.cabin_block_break": "Cabin block breaks",
+  "sounds.cabinmod.cabin_block_fall": "Cabin block lands",
+  "sounds.cabinmod.cabin_block_hit": "Cabin screams",
+  "sounds.cabinmod.cabin_block_place": "Cabin block placed",
+  "sounds.cabinmod.cabin_block_step": "Cabin footsteps",
   "sounds.cabinmod.disco_music": "Phonk thumps",
 
   "entity.minecraft.villager.cabinmod.cabinger": "SCARY GUY"
