@@ -23,19 +23,11 @@ public class ModEntityLootTableProvider extends EntityLootSubProvider {
 
     @Override
     public void generate() {
-        // Jehoash: always the Warden's Spare Key; one cabinmod disc at 10% (+10% per Looting level).
-        LootPool.Builder disc = LootPool.lootPool()
-                .setRolls(ConstantValue.exactly(1))
-                .when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(this.registries, 0.10f, 0.10f));
-        for (Item item : List.of(ModItems.MO2_DISC.get(), ModItems.BRG_DISC.get(), ModItems.HYG_DISC.get(),
-                ModItems.BLA_DISC.get(), ModItems.DNA_DISC.get(), ModItems.SOS_DISC.get())) {
-            disc.add(LootItem.lootTableItem(item));
-        }
+        // The selected record stays in the locked booth until defeat.
         this.add(ModEntities.JOASH.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.WARDENS_SPARE_KEY.get())))
-                .withPool(disc));
+                        .add(LootItem.lootTableItem(ModItems.WARDENS_SPARE_KEY.get()))));
 
         this.add(ModEntities.JOASH_ILLUSION.get(), LootTable.lootTable());
     }

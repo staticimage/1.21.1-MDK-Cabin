@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cabinmod:block/stage_truss_x"
+    },
+    "axis=y": {
+      "model": "cabinmod:block/stage_truss_y"
+    },
+    "axis=z": {
+      "model": "cabinmod:block/stage_truss_x",
+      "y": 90
+    }
+  }
+}

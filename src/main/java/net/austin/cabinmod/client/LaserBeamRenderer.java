@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.entity.custom.JehoashEntity;
+import net.austin.cabinmod.entity.custom.ArenaLightEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -25,14 +26,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Jehoash's disco laser, drawn with additive "lightning" quads (glows, no texture).
-// Charging: a flickering rainbow aim line from the disco ball to the locked aim + a ring focusing on the
-// ball (the dodge window). Firing: white-hot core in a magenta glow, wrapped by rainbow ribbons spiralling
+// Fixed arena-fixture lasers, drawn with additive "lightning" quads (glows, no texture).
+// Charging: a tracking rainbow aim line from the fixture, then a short locked dodge window. A ring focuses on the
+// fixture. Firing: white-hot core in a magenta glow, wrapped by rainbow ribbons spiralling
 // down the beam, fading over LASER_BEAM_TICKS, with expanding rings and a spark burst where it hits.
 @EventBusSubscriber(modid = CabinMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public final class LaserBeamRenderer {
     private static final int RIBBONS = 5;
-    private static final float CHARGE_TICKS = 20f;
+    private static final float CHARGE_TICKS = 28f;
     private static final Map<Integer, Seen> SEEN = new HashMap<>();
     private static ClientLevel lastLevel;
 
@@ -58,8 +59,8 @@ public final class LaserBeamRenderer {
         }
         Vec3 cam = event.getCamera().getPosition();
         float pt = event.getPartialTick().getGameTimeDeltaPartialTick(false);
-        List<JehoashEntity> active = mc.level.getEntitiesOfClass(JehoashEntity.class,
-                new AABB(BlockPos.containing(cam)).inflate(96), j -> j.laserPhase() != JehoashEntity.LASER_IDLE);
+        List<ArenaLightEntity> active = mc.level.getEntitiesOfClass(ArenaLightEntity.class,
+                new AABB(BlockPos.containing(cam)).inflate(96), j -> true);
         SEEN.keySet().removeIf(id -> active.stream().noneMatch(j -> j.getId() == id));
         if (active.isEmpty()) return;
 
@@ -67,8 +68,9 @@ public final class LaserBeamRenderer {
         VertexConsumer vc = buffers.getBuffer(RenderType.lightning());
         PoseStack.Pose pose = new PoseStack().last();   // the level's model-view (camera rotation) is already applied
         long now = System.nanoTime();
-        for (JehoashEntity j : active) {
+        for (ArenaLightEntity j : active) {
             byte phase = j.laserPhase();
+            if(phase==3 && j.tickCount%6>1) continue;
             Seen seen = SEEN.get(j.getId());
             boolean fresh = seen == null || seen.phase() != phase || seen.laserTick() != j.laserTick();
             if (fresh) {
@@ -80,7 +82,11 @@ public final class LaserBeamRenderer {
             Vec3 from = j.laserOrigin(pt).subtract(cam);
             Vec3 to = j.laserPoint().subtract(cam);
             if (phase == JehoashEntity.LASER_CHARGING) drawCharge(vc, pose, from, to, age);
-            else drawBeam(vc, pose, from, to, age);
+            else if (phase == JehoashEntity.LASER_FIRING) drawBeam(vc, pose, from, to, age);
+            else {
+                float[] c = rainbow((j.tickCount+pt)*.008f + j.getId()*.17f);
+                ribbon(vc,pose,from,to,.035f,c[0],c[1],c[2],.18f);
+            }
         }
         buffers.endBatch(RenderType.lightning());
     }

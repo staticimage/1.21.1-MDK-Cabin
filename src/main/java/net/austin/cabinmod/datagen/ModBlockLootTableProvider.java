@@ -29,6 +29,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CABIN_BLOCK.get());
+        this.add(ModBlocks.RAVE_WALL.get(),noDrop());
+        this.add(ModBlocks.STAGE_TRUSS.get(),noDrop());
+        this.add(ModBlocks.STAGE_BARRIER.get(),noDrop());
+        this.add(ModBlocks.RAVE_FLOOR.get(),noDrop());
+        this.add(ModBlocks.BURNING_PORTAPOTTY.get(),createDoorTable(ModBlocks.BURNING_PORTAPOTTY.get()));
         dropSelf(ModBlocks.RAW_CABIN_BLOCK.get());
         dropSelf(ModBlocks.MIKE_BLOCK.get());
         // Drops itself once per pair in DjBoothBlock.playerWillDestroy; the halves themselves drop nothing.

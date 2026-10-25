@@ -33,7 +33,7 @@ public class DjBoothRenderer implements BlockEntityRenderer<DjBoothBlockEntity> 
         Direction facing = state.getValue(DjBoothBlock.FACING);
         Object key = DiscoMusic.key(booth.getBlockPos());
         if (DiscoMusic.isPlaying(key)) {
-            this.model.poseJam(DiscoMusic.beats(key, 0f), DiscoMusic.platterDegrees(key));
+            this.model.poseJam(DiscoMusic.beats(key, 0f), DiscoMusic.platterDegrees(key), booth.recordTrack());
         } else {
             this.model.poseIdle(DiscoMusic.platterDegrees(key));
         }
@@ -45,8 +45,8 @@ public class DjBoothRenderer implements BlockEntityRenderer<DjBoothBlockEntity> 
         poseStack.translate(0f, -1.501f, 0f);
         this.model.renderToBuffer(poseStack, buffers.getBuffer(this.model.renderType(DjBoothModel.TEXTURE)),
                 packedLight, packedOverlay, -1);
-        this.model.renderToBuffer(poseStack, buffers.getBuffer(RenderType.eyes(DjBoothModel.EMISSIVE)),
-                0xF000F0, OverlayTexture.NO_OVERLAY, -1);
+        this.model.renderDisplays(poseStack,buffers);
+        this.model.renderRecords(poseStack,buffers,packedLight,booth.recordTrack(),booth.hasRecord());
         poseStack.popPose();
     }
 

@@ -43,6 +43,7 @@ public final class ClothChain {
     private static final class State {
         final Vector3f[] pos, prev;
         float lastAge = Float.NaN;
+        float lastYaw = Float.NaN;
 
         State(int n) {
             pos = new Vector3f[n + 1];
@@ -93,14 +94,24 @@ public final class ClothChain {
             target[i + 1] = new Vector3f(target[i]).add(new Matrix3f(rot).transform(step));
         }
 
+        boolean firstFrame = Float.isNaN(st.lastAge) || ageInTicks < st.lastAge;
+        // Preserve world-space inertia when the body turns, without adding joints to the body rig.
+        float yaw = entity instanceof LivingEntity living ? living.yBodyRot : entity.getYRot();
+        if (!firstFrame && !Float.isNaN(st.lastYaw)) {
+            float turn = Mth.wrapDegrees(yaw-st.lastYaw) * Mth.DEG_TO_RAD;
+            if (Math.abs(turn) < 1.8f) {
+                for (int i=1;i<=n;i++) { st.pos[i].rotateY(-turn); st.prev[i].rotateY(-turn); }
+            } else firstFrame = true; // teleport/instant turn: reset instead of whipping through the torso
+        }
+        st.lastYaw = yaw;
         float dt = Float.isNaN(st.lastAge) ? 0f : Mth.clamp((ageInTicks - st.lastAge) / 20f, 0f, 0.1f);
         st.lastAge = ageInTicks;
-        if (dt == 0f) {                                        // first frame (or paused): snap to the pose
+        if (firstFrame) {                                     // initialize only; paused renders retain their cloth pose
             for (int i = 0; i <= n; i++) {
                 st.pos[i].set(target[i]);
                 st.prev[i].set(target[i]);
             }
-        } else {
+        } else if (dt > 0f) {
             Vector3f wind = windInModel(entity).mul(-drag);
             int steps = Mth.clamp(Mth.ceil(dt / (1f / 120f)), 1, 8);
             float h = dt / steps;

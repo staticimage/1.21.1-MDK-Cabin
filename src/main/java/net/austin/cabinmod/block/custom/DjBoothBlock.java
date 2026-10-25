@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 // Jehoash's DJ booth as a block: three blocks wide (LEFT / CENTER / RIGHT, from the DJ's point of view),
 // placed, broken and dropped as one. FACING is the way the front (the crowd side) faces; the DJ stands behind.
 // The CENTER block entity's renderer draws the whole booth model (the same model Jehoash carries while he
-// DJs, design/JEHOASH_V2.md section 4). Right-click toggles the phonk.
+// DJs). Right-click extracts the record after victory; an empty booth accepts the six CabinMod discs.
 public class DjBoothBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
@@ -148,13 +148,37 @@ public class DjBoothBlock extends Block implements EntityBlock {
         if (!level.isClientSide()) {
             BlockPos center = centerOf(state, pos);
             if (level.getBlockEntity(center) instanceof DjBoothBlockEntity booth) {
-                boolean on = !booth.isPlaying();
-                booth.setPlaying(on);
-                level.playSound(null, center, on ? ModSounds.DJ_BOOTH_USE.get() : ModSounds.DJ_BOOTH_NEEDLE.get(),
-                        SoundSource.RECORDS, 1.5f, 1f);
+                if (booth.isLocked()) {
+                    player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.cabinmod.booth_locked"), true);
+                } else {
+                    ItemStack record = booth.takeRecord();
+                    if (!record.isEmpty() && !player.getInventory().add(record)) player.drop(record, false);
+                }
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    protected net.minecraft.world.ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
+            BlockPos pos, Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hit) {
+        if (level.getBlockEntity(centerOf(state,pos)) instanceof DjBoothBlockEntity booth) {
+            if (booth.isLocked() || booth.hasRecord()) return net.minecraft.world.ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            if (net.austin.cabinmod.entity.RecordTracks.index(stack) >= 0) {
+                if (!level.isClientSide() && booth.insert(stack) && !player.isCreative()) stack.shrink(1);
+                return net.minecraft.world.ItemInteractionResult.sidedSuccess(level.isClientSide());
+            }
+        }
+        return net.minecraft.world.ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState next, boolean moving) {
+        if (!state.is(next.getBlock()) && !level.isClientSide()
+                && level.getBlockEntity(pos) instanceof DjBoothBlockEntity booth) {
+            Block.popResource(level, pos, booth.takeRecord());
+        }
+        super.onRemove(state, level, pos, next, moving);
     }
 
     @Override

@@ -1,26 +1,16 @@
 package net.austin.cabinmod.entity.client;
 
 import net.austin.cabinmod.CabinMod;
-import net.austin.cabinmod.client.DiscoMusic;
-import net.austin.cabinmod.entity.client.anim.BakedAnimations;
 import net.austin.cabinmod.entity.client.generated.DjBoothModelBase;
-import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import org.joml.Vector3f;
 
-// The DJ booth model (rig_dj_booth). Drawn by Jehoash while it is part of him and by DjBoothRenderer once it
-// is a block - same model, same pose, so the hand-over is seamless. Clips: jam_loop (faders, crossfader, knob
-// and platter nudges matching his hands, driven by the beat clock) and interrupted (the slam). The platters'
-// 33 1/3 rpm spin is added here.
+// The attached booth and detached block share this mesh. Hands and controls use DjPerformance.
 public class DjBoothModel extends DjBoothModelBase<Entity> {
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/entity/dj_booth/dj_booth.png");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/entity/dj_booth/dj_booth_direct.png");
     public static final ResourceLocation EMISSIVE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/entity/dj_booth/dj_booth_emissive.png");
-    private static final String MOB = "dj_booth";
-
-    private final Vector3f cache = new Vector3f();
 
     public DjBoothModel(ModelPart root) {
         super(root);
@@ -30,15 +20,16 @@ public class DjBoothModel extends DjBoothModelBase<Entity> {
     public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     }
 
-    public void poseJam(float beats, float platterDegrees) {
+    public void poseJam(float beats, float platterDegrees, int track) {
         reset();
-        play("jam_loop", DiscoMusic.jamMillis(beats));
+        var motion=DjPerformance.sample(track,beats,1);
         spin(platterDegrees);
+        parts().get("platter_r").yRot=-motion.scratchDegrees()*Mth.DEG_TO_RAD;
+        parts().get("xfader").x+=motion.crossfader();
     }
 
     public void poseClip(String clip, long millis, float platterDegrees) {
         reset();
-        play(clip, millis);
         spin(platterDegrees);
     }
 
@@ -47,12 +38,40 @@ public class DjBoothModel extends DjBoothModelBase<Entity> {
         spin(platterDegrees);
     }
 
-    private void reset() {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
+    public void renderDisplays(com.mojang.blaze3d.vertex.PoseStack pose,net.minecraft.client.renderer.MultiBufferSource buffers) {
+        pose.pushPose();rootPart.translateAndRotate(pose);cabinet.translateAndRotate(pose);
+        pose.pushPose();pose.scale(1f/16,1f/16,1f/16);
+        RaveScreenRenderer.quad(buffers.getBuffer(net.minecraft.client.renderer.RenderType.eyes(TEXTURE)),pose.last(),-22,-1,22,-24,-6.02f,
+                15f/128,15f/128,59f/128,38f/128,0xFFFFFFFF);
+        pose.popPose();
+        parts().get("laptop").translateAndRotate(pose);pose.scale(1f/16,1f/16,1f/16);
+        RaveScreenRenderer.quad(buffers.getBuffer(net.minecraft.client.renderer.RenderType.eyes(RaveScreenRenderer.ART)),pose.last(),-3.8f,-.3f,3.8f,-5.5f,1.72f,
+                .25f,0,.75f,1,0xFFFFFFFF);
+        pose.popPose();
     }
 
-    private void play(String clip, long millis) {
-        BakedAnimations.find(MOB, clip).ifPresent(def -> KeyframeAnimations.animate(this, def, millis, 1f, this.cache));
+    /** Draw the actual mod item texture on both decks; the right deck is a visual cue copy, not extra loot. */
+    public void renderRecords(com.mojang.blaze3d.vertex.PoseStack pose, net.minecraft.client.renderer.MultiBufferSource buffers,
+            int light, int track, boolean present) {
+        if (!present) return;
+        for (String side : new String[]{"l", "r"}) {
+            pose.pushPose();
+            rootPart.translateAndRotate(pose); cabinet.translateAndRotate(pose);
+            parts().get("deck_"+side).translateAndRotate(pose);
+            parts().get("platter_"+side).translateAndRotate(pose);
+            pose.translate(0,-.061,0);
+            pose.mulPose(com.mojang.math.Axis.XP.rotationDegrees(90));
+            pose.scale(.72f,.72f,.72f);
+            net.minecraft.client.Minecraft.getInstance().getItemRenderer().renderStatic(
+                    net.austin.cabinmod.entity.RecordTracks.stack(track), net.minecraft.world.item.ItemDisplayContext.FIXED,
+                    light,net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY,pose,buffers,
+                    net.minecraft.client.Minecraft.getInstance().level,0);
+            pose.popPose();
+        }
+    }
+
+    private void reset() {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
     }
 
     private void spin(float degrees) {

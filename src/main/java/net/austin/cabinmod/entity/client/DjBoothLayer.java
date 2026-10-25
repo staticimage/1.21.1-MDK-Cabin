@@ -28,7 +28,7 @@ public class DjBoothLayer<T extends ClipMob, M extends EntityModel<T>> extends R
         if (!(entity instanceof JehoashEntity jehoash) || !jehoash.isBoothAttached()) return;
         Object key = DiscoMusic.key(jehoash);
         if (jehoash.isDormant()) {
-            this.booth.poseJam(DiscoMusic.beats(key, ageInTicks), DiscoMusic.platterDegrees(key));
+            this.booth.poseJam(DiscoMusic.beats(key, ageInTicks), DiscoMusic.platterDegrees(key), jehoash.recordTrack());
         } else {
             this.booth.poseClip("interrupted", entity.actionState.getAccumulatedTime(), DiscoMusic.platterDegrees(key));
         }
@@ -36,8 +36,8 @@ public class DjBoothLayer<T extends ClipMob, M extends EntityModel<T>> extends R
         poseStack.translate(0f, 0f, -1f);              // model space: -Z is forward, one block = the booth centre
         this.booth.renderToBuffer(poseStack, buffers.getBuffer(this.booth.renderType(DjBoothModel.TEXTURE)),
                 packedLight, OverlayTexture.NO_OVERLAY, -1);
-        this.booth.renderToBuffer(poseStack, buffers.getBuffer(RenderType.eyes(DjBoothModel.EMISSIVE)),
-                0xF000F0, OverlayTexture.NO_OVERLAY, -1);
+        this.booth.renderDisplays(poseStack,buffers);
+        this.booth.renderRecords(poseStack,buffers,packedLight,jehoash.recordTrack(),true);
         poseStack.popPose();
     }
 }

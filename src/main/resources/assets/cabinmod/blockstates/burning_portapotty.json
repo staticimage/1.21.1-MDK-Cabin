@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,half=lower": {
+      "model": "cabinmod:block/burning_portapotty",
+      "y": 0
+    },
+    "facing=east,half=lower": {
+      "model": "cabinmod:block/burning_portapotty",
+      "y": 90
+    },
+    "facing=south,half=lower": {
+      "model": "cabinmod:block/burning_portapotty",
+      "y": 180
+    },
+    "facing=west,half=lower": {
+      "model": "cabinmod:block/burning_portapotty",
+      "y": 270
+    },
+    "facing=north,half=upper": {
+      "model": "cabinmod:block/portapotty_top",
+      "y": 0
+    },
+    "facing=east,half=upper": {
+      "model": "cabinmod:block/portapotty_top",
+      "y": 90
+    },
+    "facing=south,half=upper": {
+      "model": "cabinmod:block/portapotty_top",
+      "y": 180
+    },
+    "facing=west,half=upper": {
+      "model": "cabinmod:block/portapotty_top",
+      "y": 270
+    }
+  }
+}

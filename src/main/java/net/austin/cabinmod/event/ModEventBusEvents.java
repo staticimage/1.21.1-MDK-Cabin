@@ -10,7 +10,7 @@ import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.entity.ModEntities;
 import net.austin.cabinmod.entity.client.BlueModel;
 import net.austin.cabinmod.entity.client.generated.DjBoothModelBase;
-import net.austin.cabinmod.entity.client.generated.JehoashModelBase;
+import net.austin.cabinmod.entity.client.JehoashModel;
 import net.austin.cabinmod.entity.custom.BlueEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -28,7 +28,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(BlueModel.LAYER_LOCATION, BlueModel::createBodyLayer);
-        event.registerLayerDefinition(JehoashModelBase.LAYER_LOCATION, JehoashModelBase::createBodyLayer);
+        event.registerLayerDefinition(JehoashModel.LAYER_LOCATION, JehoashModel::createBodyLayer);
         event.registerLayerDefinition(DjBoothModelBase.LAYER_LOCATION, DjBoothModelBase::createBodyLayer);
     }
 

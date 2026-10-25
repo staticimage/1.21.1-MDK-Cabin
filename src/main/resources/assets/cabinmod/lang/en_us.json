@@ -132,6 +132,16 @@
   "sounds.cabinmod.cabin_block_step": "Cabin footsteps",
   "sounds.cabinmod.disco_music": "Phonk thumps",
 
-  "entity.minecraft.villager.cabinmod.cabinger": "SCARY GUY"
-
+  "entity.minecraft.villager.cabinmod.cabinger": "SCARY GUY",
+  "block.cabinmod.rave_wall": "Rave Wall",
+  "block.cabinmod.rave_floor": "Rave Dance Floor",
+  "entity.cabinmod.glass_shard": "Disco Glass Shard",
+  "entity.cabinmod.arena_light": "Rave Laser Fixture",
+  "message.cabinmod.booth_locked": "The record is bound to Jehoash. Defeat him to take it.",
+  "block.cabinmod.burning_portapotty": "Burning Porta-Potty",
+  "block.cabinmod.stage_truss": "Stage Box Truss",
+  "entity.cabinmod.truss_support": "Truss Support",
+  "entity.cabinmod.falling_stage_rig": "Fallen Lighting Truss",
+  "entity.cabinmod.rave_screen": "Cult Rave Screen",
+  "block.cabinmod.stage_barrier": "Stage Access Field"
 }

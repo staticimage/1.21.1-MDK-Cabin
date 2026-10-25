@@ -56,6 +56,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.BLUE_SPAWN_EGG);
                         output.accept(ModItems.JOASH_SPAWN_EGG);
+                        output.accept(ModBlocks.BURNING_PORTAPOTTY);
 
 
 

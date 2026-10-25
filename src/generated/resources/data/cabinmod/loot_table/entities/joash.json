@@ -10,48 +10,6 @@
         }
       ],
       "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance_with_enchanted_bonus",
-          "enchanted_chance": {
-            "type": "minecraft:linear",
-            "base": 0.2,
-            "per_level_above_first": 0.1
-          },
-          "enchantment": "minecraft:looting",
-          "unenchanted_chance": 0.1
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "cabinmod:mo2_disc"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "cabinmod:brg_disc"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "cabinmod:hyg_disc"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "cabinmod:bla_disc"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "cabinmod:dna_disc"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "cabinmod:sos_disc"
-        }
-      ],
-      "rolls": 1.0
     }
   ],
   "random_sequence": "cabinmod:entities/joash"
