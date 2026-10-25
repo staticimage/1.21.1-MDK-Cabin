@@ -111,7 +111,7 @@ Copy the block per item.
 
 ---
 
-## Translated values (Claude) — check these
+## Translated values — check these
 
 | Spec text | Value | Why |
 |---|---|---|

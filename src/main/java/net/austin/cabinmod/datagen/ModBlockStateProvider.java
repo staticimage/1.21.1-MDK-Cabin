@@ -29,7 +29,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.CABIN_ORE);
         blockWithItem(ModBlocks.CABIN_ORE_DEEPSLATE);
         blockWithItem(ModBlocks.MIKE_BLOCK);
-        // dj_booth: hand-made two-part model + blockstate (tools/booth/build_dj_booth.py), not generated here.
+        // dj_booth: hand-written blockstate (12 facing x part variants -> models/block/dj_booth_part.json, particles
+        // only); the booth itself is drawn by DjBoothRenderer from the Blender rig. Not generated here.
 
 
 

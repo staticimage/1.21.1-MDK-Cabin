@@ -1,0 +1,145 @@
+Cabin Mod sound credits
+
+Jehoash teleport (sounds/joash/teleport_1-3), the DJ booth record scratch (sounds/dj_booth/scratch_1-2) and
+sounds/life_of_the_party_jumpscare.ogg are built by tools/audio/build_sounds.py from Kenney sound packs, CC0 1.0
+(public domain, https://creativecommons.org/publicdomain/zero/1.0/), https://kenney.nl : Sci-fi Sounds, Impact Sounds,
+Digital Audio. The scratch is synthesized. All other Jehoash / DJ booth sounds: see the two blocks below.
+
+Disco music (sounds/music/disco.ogg): "Phonk Reel" by kulakovka (Pixabay, kulakovka-phonk-reel-614877),
+Pixabay Content License - https://pixabay.com/service/license-summary/
+Encoded to mono for positional playback by tools/audio/build_music.py.
+
+# >>> build_sounds_v2.py (generated - edit tools/audio/manifest_v2.json, not this block)
+Jehoash v2 sounds (sounds/joash: ambient_1-4, hurt_1-3, death, welcome_voice, roar_1-2, laser_charge,
+laser_fire_1-3, strike; sounds/dj_booth: needle, slam) are mixed by tools/audio/build_sounds_v2.py
+from these recordings (processing only - no synthesized tones):
+  "100 CC0 metal and wood SFX" by rubberduck, CC0 1.0 - https://opengameart.org/sites/default/files/100-CC0-wood-metal-SFX.zip
+      used: metal_slam_01.ogg
+      in: dj_booth/slam
+  "2 High Quality Explosions" by Michel Baradari (uploaded by qubodup), CC-BY 3.0 - https://opengameart.org/sites/default/files/explosions.7z
+      used: explode.wav
+      in: joash/strike
+  "27 Metal Audio Samples (SFX)" by blacklodgegames, CC0 1.0 - https://opengameart.org/sites/default/files/27-Metal-Audio-Samples-blacklodgegames.com_.zip
+      used: dull_metal_collision_02_44k_32bit_stereo.wav
+      in: dj_booth/slam
+  "37 hits/punches" by Independent.nu (uploaded by qubodup), CC0 1.0 - https://opengameart.org/sites/default/files/independent_nu_ljudbank-hits_and_punches.7z
+      used: hit10.mp3.flac
+      in: dj_booth/slam
+  "80 CC0 creature SFX" by rubberduck, CC0 1.0 - https://opengameart.org/content/80-cc0-creature-sfx
+      used: hurt_04.ogg, troll_03.ogg
+      in: joash/hurt_2, joash/hurt_3
+  "80 CC0 creture SFX #2" by rubberduck, CC0 1.0 - https://opengameart.org/content/80-cc0-creture-sfx-2
+      used: grunt_07.ogg, roar_04.ogg
+      in: joash/hurt_3, joash/roar_2
+  "Battle at sea" by Thimras, CC0 1.0 - https://opengameart.org/sites/default/files/cannon_hit_1.ogg , https://opengameart.org/sites/default/files/ship_destroyed_1.ogg
+      used: cannon_hit.ogg, ship_destroyed.ogg
+      in: joash/strike
+  "Big low frequency explosion boom" by Hansjoerg Malthaner (Varkalandar), CC-BY 4.0 - https://opengameart.org/sites/default/files/hjm-big_explosion_3.wav
+      used: hjm-big_explosion_3.wav
+      in: joash/strike
+  "Big scary troll sounds" by Darsycho, CC0 1.0 - https://opengameart.org/content/big-scary-troll-sounds
+      used: scrapped-troll-sounds.ogg, troll-idle-noises_0.ogg, troll-roars_0.ogg
+      in: joash/ambient_3, joash/roar_1, joash/roar_2
+  "BigSoundBank" by Joseph Sardin, CC0 1.0 - https://bigsoundbank.com
+      used: #0120 High-speed train passage 1, #0223 Door slamming 2, #0572 Whoosh 1, #0588 Vinyl disc end, #0826 Mascleta Valencia Spain, #0987 Big branching fire 1, #1022 Fall of stone, #1023 Explosion far away 1, #1025 3 blows at the theater, #1279 Sparkling candle 2, #1450 Strong wind and trees 1, #1501 Door slamming 4, #1795 Whoosh 3, #1796 Whoosh 4, #1800 Whoosh 7, #1801 Whoosh 8, #1807 Explosion 1, #1808 Explosion 2, #2460 Punch 5, #2547 Vinyl disc, #2718 Thunder 1, #2857 Fireplace 5, #2858 Vinyl scratch 1, #2859 Vinyl scratch 2, #2861 Vinyl scratch 4, #2870 Vinyl scratch 13, #3114 Thunder 3, #3115 Thunder 4, #3180 Thunder 7
+      in: dj_booth/needle, dj_booth/slam, joash/laser_charge, joash/laser_fire_1, joash/laser_fire_2, joash/laser_fire_3, joash/roar_1, joash/roar_2, joash/strike
+  "Cave In" by StarNinjas, CC0 1.0 - https://opengameart.org/sites/default/files/cave_in_-_starninjas_0.ogg
+      used: cave_in_-_starninjas.ogg
+      in: joash/strike
+  "CC0 Deep Monster Roar" by trazzz123, CC0 1.0 - https://opengameart.org/content/cc0-deep-monster-roar
+      used: monster_roar.wav
+      in: joash/death, joash/roar_1, joash/roar_2, joash/strike
+  "Chunky Explosion" by Joth, CC0 1.0 - https://opengameart.org/sites/default/files/Chunky%20Explosion.mp3
+      used: Chunky Explosion.mp3
+      in: joash/laser_charge, joash/strike
+  "Creepy Incoherent Chanting" by OwlishMedia, CC0 1.0 - https://opengameart.org/content/creepy-incoherent-chanting
+      used: chant1.wav, chant5.wav, chant7.wav, chant8.wav
+      in: dj_booth/needle, joash/ambient_1, joash/ambient_4, joash/death
+  "demon voice (Demon Lord voice-overs)" by Tim Rockk, CC0 1.0 - https://opengameart.org/content/demon-voice
+      used: DL DEMON DIES.wav, DL DEMON FIGHT GRUNT 1.wav, DL DEMON FIGHT GRUNT 3.wav, DL DEMON GROWL 4.wav, DL DEMON SNARL 3.wav, DL NOTHING TO FEAR.wav, DL WELCOME.wav
+      in: joash/ambient_4, joash/death, joash/hurt_1, joash/hurt_2, joash/hurt_3, joash/roar_1, joash/roar_2, joash/welcome_voice
+  "Door Open, Door Close Set" by qubodup, CC0 1.0 - https://opengameart.org/sites/default/files/qubodup-DoorSet.7z
+      used: qubodup-DoorClose04.flac
+      in: dj_booth/slam
+  "Earthquake and Open sesame" by mieki256, CC0 1.0 - https://opengameart.org/sites/default/files/shake.flac
+      used: shake.flac
+      in: joash/strike
+  "Evil creature" by A New Room (submitted by qubodup), CC0 1.0 - https://opengameart.org/content/evil-creature
+      used: take 3 of the Audacity project, take 5 of the Audacity project
+      in: joash/ambient_2, joash/death
+  "Ghost" by Ogrebane, CC0 1.0 - https://opengameart.org/content/ghost
+      used: ghost.wav
+      in: joash/death
+  "Ghost breath" by qubodup, CC0 1.0 - https://opengameart.org/content/ghost-breath
+      used: ghostbreath.flac
+      in: joash/ambient_2, joash/ambient_3
+  "Ghostmonster sounds" by iletzy, CC0 1.0 - https://opengameart.org/content/ghostmonster-sounds
+      used: Ghostmonster sounds_0.mp3
+      in: joash/ambient_2
+  "Horror scream1" by Vinrax, CC0 1.0 - https://opengameart.org/content/horror-scream1
+      used: scream_horror1_0.mp3
+      in: joash/roar_2
+  "Hungry ghoul" by Darsycho, CC0 1.0 - https://opengameart.org/content/hungry-ghoul
+      used: hungry-ghoul_0.ogg
+      in: joash/roar_2
+  "Hurt / Death sound effect for character" by Badre-Eddine, CC0 1.0 - https://opengameart.org/content/hurt-death-sound-effect-for-character
+      used: 3.mp3
+      in: joash/death
+  "Maniacal Laughter Pack 1" by Nocturnal_Vanguard (AuraVoice), CC0 1.0 - https://opengameart.org/content/maniacal-laughter-pack-1
+      used: maniacal_laughter_pack_1.ogg
+      in: joash/laser_charge
+  "Monster or beast sounds" by pauliuw, CC0 1.0 - https://opengameart.org/content/monster-or-beast-sounds
+      used: Demon Call One Voice.wav
+      in: joash/ambient_3
+  "Monster snarls" by Darsycho, CC0 1.0 - https://opengameart.org/content/monster-snarls
+      used: monster-snarl-attack.ogg, monsters-snarls-3_0.ogg
+      in: joash/roar_1, joash/roar_2
+  "Rage Mode" by Till Behrend (submitted by TinyWorlds), CC0 1.0 - https://opengameart.org/content/rage-mode
+      used: rage.wav
+      in: joash/laser_fire_3, joash/roar_1
+  "rock_breaking" by Blender Foundation (Yo Frankie!) (uploaded by Lamoot), CC-BY 3.0 - https://opengameart.org/sites/default/files/rock_breaking.flac
+      used: rock_breaking.flac
+      in: joash/laser_fire_1, joash/laser_fire_2, joash/laser_fire_3, joash/strike
+  "Rocket Engine" by theMinesAreShakin, CC0 1.0 - https://opengameart.org/sites/default/files/rocket_engine.001.wav
+      used: rocket_engine.001.wav
+      in: joash/strike
+  "Rumble/explosion" by Michel Baradari (uploaded by qubodup), CC-BY 3.0 - https://opengameart.org/sites/default/files/rumble.flac
+      used: rumble.flac
+      in: joash/laser_fire_1, joash/laser_fire_2, joash/laser_fire_3, joash/strike
+  "Single and Multi Explosion" by Marcelo Fernandez (marcelofg55), CC-BY 3.0 - https://opengameart.org/sites/default/files/Single%20and%20Multi%20Explosion.mp3
+      used: Single and Multi Explosion.mp3
+      in: joash/strike
+  "Thunder, Very Close, Rain, 01" by InspectorJ (Jonathan Shaw), CC-BY 3.0 - https://opengameart.org/sites/default/files/Thunder%2C%20Very%20Close%2C%20Rain%2C%2001.wav
+      used: Thunder, Very Close, Rain, 01.wav
+      in: joash/laser_charge, joash/laser_fire_1, joash/laser_fire_2, joash/laser_fire_3, joash/strike
+  "Undead Moans" by AntumDeluge, CC0 1.0 - https://opengameart.org/content/undead-moans
+      used: undead-1.ogg
+      in: joash/death
+  "underwater or space engine rumble" by gmason, CC0 1.0 - https://opengameart.org/sites/default/files/deep_rumble.ogg
+      used: deep_rumble.ogg
+      in: joash/strike
+  "Zombies Sound Pack" by artisticdude, CC0 1.0 - https://opengameart.org/content/zombies-sound-pack
+      used: zombie-4.wav
+      in: joash/hurt_1
+  Kenney Impact Sounds (CC0, credited above) - small gear-rattle bits in dj_booth/slam.
+joash/welcome_voice: processed from Cuphead (Studio MDHR) 'Welcome!' - copyrighted, used at the user's request
+CC0 1.0 = https://creativecommons.org/publicdomain/zero/1.0/ ; CC-BY 3.0 = https://creativecommons.org/licenses/by/3.0/ ; CC-BY 4.0 = https://creativecommons.org/licenses/by/4.0/
+# <<< build_sounds_v2.py
+
+Jehoash illusion sounds (sounds/joash/illusions_1-2.ogg, sounds/joash/illusion_pop_1-3.ogg) are mixed
+from these recordings by tools/audio/build_illusion_sounds.py (no synthesized tones):
+  "Ghost breath" by qubodup, CC0 1.0 - https://opengameart.org/content/ghost-breath
+      used: ghostbreath.flac
+  "Creepy Incoherent Chanting" by OwlishMedia, CC0 1.0 - https://opengameart.org/content/creepy-incoherent-chanting
+      used: chant5.wav, chant7.wav, chant8.wav, ethereal_chant_Subclip 07_07.wav, ethereal_chant_Subclip 08_08.wav
+  "Undead Moans" by AntumDeluge, CC0 1.0 - https://opengameart.org/content/undead-moans
+      used: undead-1.ogg
+  "Ghost Monster Voice Moaning & Growling" by qubodup, CC0 1.0 - https://opengameart.org/content/ghost-monster-voice-moaning-growling
+      used: qubodup-GhostMoan01.wav
+  "BigSoundBank" by Joseph Sardin, CC0 1.0 - https://bigsoundbank.com
+      used: #0572 Whoosh 1 (https://bigsoundbank.com/UPLOAD/bwf-en/0572.wav), #1795 Whoosh 3 (https://bigsoundbank.com/UPLOAD/bwf-en/1795.wav), #1796 Whoosh 4 (https://bigsoundbank.com/UPLOAD/bwf-en/1796.wav)
+  "Impact Sounds" by Kenney (kenney.nl), CC0 1.0 - https://kenney.nl/assets/impact-sounds
+      used: impactGlass_heavy_000.ogg, impactGlass_heavy_001.ogg, impactGlass_heavy_004.ogg, impactGlass_light_000.ogg, impactGlass_light_001.ogg, impactGlass_light_002.ogg, impactGlass_light_003.ogg, impactGlass_light_004.ogg, impactGlass_medium_000.ogg, impactGlass_medium_001.ogg, impactGlass_medium_002.ogg, impactGlass_medium_003.ogg, impactMetal_light_000.ogg, impactMetal_light_001.ogg, impactMetal_light_002.ogg, impactMetal_light_003.ogg
+  "RPG Audio" by Kenney (kenney.nl), CC0 1.0 - https://kenney.nl/assets/rpg-audio
+      used: handleCoins.ogg
+CC0 1.0 = public domain dedication, https://creativecommons.org/publicdomain/zero/1.0/

@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "path": "src/main/resources/assets/cabinmod/textures/block/living_flesh.png",
+      "source": "design/textures/living_flesh-animation-sheet.png",
+      "prompt": "Use case: precise-object-edit. Asset type: looping Minecraft block texture animation sprite sheet. Turn the provided single living-flesh material texture into EXACTLY SIXTEEN animation frames arranged in a perfectly regular 4 columns by 4 rows square contact sheet. No padding, no borders, no labels. Each cell is a square, the same flat seamless tileable texture, matching the provided maroon muscle folds and pale pink veins. Frames read left to right then top to bottom and form one slow heartbeat cycle: gradually swell the flesh, brighten and widen the pale veins, relax and darken them back to exactly the starting state by the last frame. Each next frame changes only subtly: preserve the same vein topology and overall material layout in ALL cells. Add subtle crawling undulation to the folds. This is a precise game sprite sheet, NOT sixteen unrelated textures. Pixel-art material, no humans or identifiable organs. Fill the ENTIRE image with the sixteen equal cells; NO outer margin or space between cells. All four boundaries of each tile must tile seamlessly."
+    },
+    {
+      "path": "src/main/resources/assets/cabinmod/textures/entity/joash/joash_cult.png",
+      "source": "design/textures/joash_cult-source.png",
+      "prompt": "Use case: precise-object-edit. This is a Minecraft entity UV texture atlas, NOT a picture of a character. Preserve the exact normalized layout of every colored UV island and all transparent/black unused spaces. Repaint the purple neon raver clothing islands as nearly black burgundy cultist robe fabric with subtle red seams and weathered hem; remove ALL neon pink/cyan/lime trim and yellow smiley symbol. Keep the small existing face in its same UV rectangle but make it a bone-white angular mask with two narrow black slanted eyes and a jagged black mouth. Keep the silver disco ball tile island silver. Keep output square; no labels, no borders, no rendered model. Preserve the atlas coordinate layout exactly."
+    },
+    {
+      "path": "design/textures/living_flesh-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: seamless square Minecraft horror-mod block texture, flat orthographic albedo only. Primary request: a tileable wall of demonic living flesh for a fictional nightclub transformed into a nightmarish otherworld. Dense folded sinew, maroon muscle cords, pale pink scars and small dark blood-red creases, subtle veins. Stylized chunky pixel-art 32x32 texel aesthetic enlarged with hard pixel edges. Entire square filled edge to edge, uniform material scale, seamless opposite edges. Restrained dark burgundy/pink palette. No humans, no body parts, no face, no text, no border, no lighting gradient, no perspective, no rendered cube, no background. Output a single texture tile."
+    }
+  ]
+}

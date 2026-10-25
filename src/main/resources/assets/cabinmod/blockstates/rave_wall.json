@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "corrupted=false": {
+      "model": "cabinmod:block/rave_wall"
+    },
+    "corrupted=true": {
+      "model": "cabinmod:block/living_flesh"
+    }
+  }
+}

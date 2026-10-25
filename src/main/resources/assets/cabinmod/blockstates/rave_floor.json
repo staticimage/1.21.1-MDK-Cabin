@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "corrupted=true": {
+      "model": "cabinmod:block/living_flesh"
+    },
+    "corrupted=false,tone=0": {
+      "model": "cabinmod:block/rave_floor"
+    },
+    "corrupted=false,tone=1": {
+      "model": "cabinmod:block/rave_floor_1"
+    },
+    "corrupted=false,tone=2": {
+      "model": "cabinmod:block/rave_floor_2"
+    },
+    "corrupted=false,tone=3": {
+      "model": "cabinmod:block/rave_floor_3"
+    }
+  }
+}

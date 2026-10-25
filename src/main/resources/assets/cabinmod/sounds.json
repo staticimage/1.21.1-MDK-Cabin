@@ -88,7 +88,8 @@
     "sounds": [
       "cabinmod:joash/ambient_1",
       "cabinmod:joash/ambient_2",
-      "cabinmod:joash/ambient_3"
+      "cabinmod:joash/ambient_3",
+      "cabinmod:joash/ambient_4"
     ]
   },
   "joash_hurt": {
@@ -105,12 +106,18 @@
       "cabinmod:joash/death"
     ]
   },
+  "joash_laser_charge": {
+    "subtitle": "sounds.cabinmod.joash_laser_charge",
+    "sounds": [
+      "cabinmod:joash/laser_charge"
+    ]
+  },
   "joash_laser": {
     "subtitle": "sounds.cabinmod.joash_laser",
     "sounds": [
-      "cabinmod:joash/laser_1",
-      "cabinmod:joash/laser_2",
-      "cabinmod:joash/laser_3"
+      "cabinmod:joash/laser_fire_1",
+      "cabinmod:joash/laser_fire_2",
+      "cabinmod:joash/laser_fire_3"
     ]
   },
   "joash_teleport": {
@@ -121,10 +128,26 @@
       "cabinmod:joash/teleport_3"
     ]
   },
-  "joash_welcome": {
-    "subtitle": "sounds.cabinmod.joash_welcome",
+  "joash_welcome_voice": {
+    "subtitle": "sounds.cabinmod.joash_welcome_voice",
     "sounds": [
-      "cabinmod:joash/welcome"
+      {
+        "name": "cabinmod:joash/welcome_voice",
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "joash_roar": {
+    "subtitle": "sounds.cabinmod.joash_roar",
+    "sounds": [
+      {
+        "name": "cabinmod:joash/roar_1",
+        "attenuation_distance": 48
+      },
+      {
+        "name": "cabinmod:joash/roar_2",
+        "attenuation_distance": 48
+      }
     ]
   },
   "joash_illusions": {
@@ -142,11 +165,32 @@
       "cabinmod:joash/illusion_pop_3"
     ]
   },
+  "joash_strike": {
+    "subtitle": "sounds.cabinmod.joash_strike",
+    "sounds": [
+      {
+        "name": "cabinmod:joash/strike",
+        "stream": false
+      }
+    ]
+  },
   "dj_booth_use": {
     "subtitle": "sounds.cabinmod.dj_booth_use",
     "sounds": [
       "cabinmod:dj_booth/scratch_1",
       "cabinmod:dj_booth/scratch_2"
+    ]
+  },
+  "dj_booth_needle": {
+    "subtitle": "sounds.cabinmod.dj_booth_needle",
+    "sounds": [
+      "cabinmod:dj_booth/needle"
+    ]
+  },
+  "dj_booth_slam": {
+    "subtitle": "sounds.cabinmod.dj_booth_slam",
+    "sounds": [
+      "cabinmod:dj_booth/slam"
     ]
   },
   "disco_music": {
@@ -155,7 +199,7 @@
       {
         "name": "cabinmod:music/disco",
         "stream": true,
-        "attenuation_distance": 48
+        "attenuation_distance": 112
       }
     ]
   }

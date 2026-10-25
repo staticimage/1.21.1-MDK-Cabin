@@ -12,6 +12,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -24,6 +25,24 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(CabinMod.MOD_ID);
+
+    public static final DeferredBlock<net.austin.cabinmod.block.custom.RaveBlock> RAVE_WALL = registerBlock("rave_wall",
+            () -> new net.austin.cabinmod.block.custom.RaveBlock(BlockBehaviour.Properties.of().strength(-1, 3600000).sound(SoundType.NETHER_WART)));
+    public static final DeferredBlock<net.austin.cabinmod.block.custom.RaveBlock> RAVE_FLOOR = registerBlock("rave_floor",
+            () -> new net.austin.cabinmod.block.custom.RaveBlock(BlockBehaviour.Properties.of().strength(-1, 3600000)
+                    .lightLevel(s -> s.getValue(net.austin.cabinmod.block.custom.RaveBlock.CORRUPTED) ? 5 : 11).sound(SoundType.SLIME_BLOCK)));
+
+    public static final DeferredBlock<net.austin.cabinmod.block.custom.BurningPortapottyBlock> BURNING_PORTAPOTTY = registerBlock("burning_portapotty",
+            () -> new net.austin.cabinmod.block.custom.BurningPortapottyBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).noOcclusion().lightLevel(s -> 12).sound(SoundType.METAL).pushReaction(PushReaction.BLOCK)));
+
+    public static final DeferredBlock<net.austin.cabinmod.block.custom.StageBarrierBlock> STAGE_BARRIER = registerBlock("stage_barrier",
+            () -> new net.austin.cabinmod.block.custom.StageBarrierBlock(BlockBehaviour.Properties.of().strength(-1,3600000)
+                    .noOcclusion().lightLevel(s -> 7).sound(SoundType.GLASS).pushReaction(PushReaction.BLOCK)));
+
+    public static final DeferredBlock<net.austin.cabinmod.block.custom.StageTrussBlock> STAGE_TRUSS = registerBlock("stage_truss",
+            () -> new net.austin.cabinmod.block.custom.StageTrussBlock(BlockBehaviour.Properties.of()
+                    .strength(-1,3600000).noOcclusion().sound(SoundType.METAL).pushReaction(PushReaction.BLOCK)));
 
     public static final DeferredBlock<Block> CABIN_BLOCK = registerBlock("cabin_block",
             ()-> new Block(BlockBehaviour.Properties.of()
@@ -137,6 +156,7 @@ public class ModBlocks {
                     .strength(5f, 1200f)
                     .noOcclusion()
                     .lightLevel(state -> 7)
+                    .pushReaction(PushReaction.BLOCK)
             ));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

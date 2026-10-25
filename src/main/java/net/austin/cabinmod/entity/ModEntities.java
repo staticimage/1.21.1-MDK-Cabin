@@ -35,6 +35,24 @@ public class ModEntities {
             ENTITY_TYPES.register("joash_illusion", () -> EntityType.Builder.of(JehoashIllusionEntity::new, MobCategory.MONSTER)
                     .sized(1.5f, 3.5f).fireImmune().clientTrackingRange(10).build("joash_illusion"));
 
+    public static final Supplier<EntityType<net.austin.cabinmod.entity.custom.GlassShardEntity>> GLASS_SHARD =
+            ENTITY_TYPES.register("glass_shard", () -> EntityType.Builder.<net.austin.cabinmod.entity.custom.GlassShardEntity>of(net.austin.cabinmod.entity.custom.GlassShardEntity::new, MobCategory.MISC)
+                    .sized(.2f,.2f).clientTrackingRange(8).updateInterval(1).build("glass_shard"));
+    public static final Supplier<EntityType<net.austin.cabinmod.entity.custom.ArenaLightEntity>> ARENA_LIGHT =
+            ENTITY_TYPES.register("arena_light", () -> EntityType.Builder.<net.austin.cabinmod.entity.custom.ArenaLightEntity>of(net.austin.cabinmod.entity.custom.ArenaLightEntity::new, MobCategory.MISC)
+                    .sized(.4f,.4f).fireImmune().clientTrackingRange(10).updateInterval(1).build("arena_light"));
+
+    public static final Supplier<EntityType<net.austin.cabinmod.entity.custom.TrussSupportEntity>> TRUSS_SUPPORT =
+            ENTITY_TYPES.register("truss_support", () -> EntityType.Builder.<net.austin.cabinmod.entity.custom.TrussSupportEntity>of(net.austin.cabinmod.entity.custom.TrussSupportEntity::new, MobCategory.MISC)
+                    .sized(1.3f,5f).fireImmune().clientTrackingRange(10).updateInterval(1).build("truss_support"));
+    public static final Supplier<EntityType<net.austin.cabinmod.entity.custom.FallingStageRigEntity>> FALLING_STAGE_RIG =
+            ENTITY_TYPES.register("falling_stage_rig", () -> EntityType.Builder.<net.austin.cabinmod.entity.custom.FallingStageRigEntity>of(net.austin.cabinmod.entity.custom.FallingStageRigEntity::new, MobCategory.MISC)
+                    .sized(13f,1f).fireImmune().clientTrackingRange(12).updateInterval(1).build("falling_stage_rig"));
+
+    public static final Supplier<EntityType<net.austin.cabinmod.entity.custom.RaveScreenEntity>> RAVE_SCREEN =
+            ENTITY_TYPES.register("rave_screen", () -> EntityType.Builder.<net.austin.cabinmod.entity.custom.RaveScreenEntity>of(net.austin.cabinmod.entity.custom.RaveScreenEntity::new, MobCategory.MISC)
+                    .sized(8.7f,4.3f).fireImmune().clientTrackingRange(12).build("rave_screen"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

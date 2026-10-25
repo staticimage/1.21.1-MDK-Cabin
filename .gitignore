@@ -24,3 +24,6 @@ runs
 run-data
 
 repo
+# tool caches / Blender backups
+__pycache__/
+*.blend1
