@@ -27,3 +27,6 @@ repo
 # tool caches / Blender backups
 __pycache__/
 *.blend1
+
+# Account caches remain local if DevLogin's default storage location is overridden.
+.devlogin/

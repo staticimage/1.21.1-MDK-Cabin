@@ -2,6 +2,67 @@
 
 Minecraft **1.21.1**, NeoForge **21.1.164**, Java **21**. Original ZIPs are untouched. This project includes the original mod content plus the revised Jehoash encounter.
 
+## Play together from IntelliJ, on different networks
+
+The **CabinMod - Play Together** launch downloads **e4mc 6.2.3 for NeoForge** and **DevLogin** automatically. You do not need Playit, a VPN app, port forwarding, or router changes. e4mc shares the host's integrated server over the internet after the host clicks **Open to LAN**. It uses external relay services, so an internet connection and an available e4mc service are required.
+
+### One-time setup: both of you
+
+1. Clone this repository, or pull its latest **main** branch. Both players should use the same commit (`git rev-parse --short HEAD` shows it). If testing an unpublished branch, both check out that same branch and commit instead.
+2. Open the folder containing `build.gradle` in IntelliJ IDEA as a Gradle project. Use **JDK 21** for the project and Gradle JVM (Settings → Build, Execution, Deployment → Build Tools → Gradle). IntelliJ's **Download JDK** option can install it. No separate Minecraft/NeoForge installer or global Gradle installation is required for these dev runs.
+3. Click **Reload All Gradle Projects** and let the first download/import finish. This can take a while: Minecraft assets, NeoForge, mappings, and the multiplayer tools are downloaded.
+4. In the run dropdown, select **CabinMod - Play Together** and click **Debug** (bug icon) if you want to edit code while playing, or **Run** otherwise. If the generated run is not listed yet, use Gradle's `runClient` task. Windows terminal equivalent: `./gradlew.bat runClient`.
+5. On the first launch, read the IntelliJ Run/Debug console. DevLogin asks you to visit **https://www.microsoft.com/link**, enter the displayed code, and sign in. Each person signs in to **their own Microsoft account that owns Minecraft Java Edition**. Finish the browser prompts; Minecraft then opens. Later launches normally reuse your local login.
+6. Confirm that the **Mods** menu lists **Cabin Mod** and **e4mc**. The login should use your Minecraft profile rather than the offline `Dev` name. You do not need to install another CabinMod JAR into `run/mods`: this launch already loads your source code.
+
+Account login is the one part the repository cannot do for you. DevLogin stores its login cache locally in your user home's `.devlogin` directory, outside the project. Do not share that cache. The checked-in configuration contains no passwords, account tokens, or fixed player names.
+
+### You: host the world
+
+1. Choose **Singleplayer → Create New World** (or open an existing test world). For boss testing, enable commands and start in Creative so you can build the arena.
+2. Once in the world, press **Esc → Open to LAN**. Choose the joining players' game mode, then click **Start LAN World**. Despite the button name, e4mc allows your friend on another network to join.
+3. Open chat with **T** and wait for e4mc's public address. Copy the **e4mc address**, not the ordinary numeric LAN port. Send the complete address to your friend. A new sharing session may produce a different address.
+4. Keep Minecraft and the world open. Returning to the title screen or stopping the IntelliJ process ends the session. With friends connected, the Escape menu does not pause the shared world.
+
+### Your friend: join the world
+
+1. Launch **CabinMod - Play Together** from their clone and complete their own login.
+2. Choose **Multiplayer → Direct Connection**.
+3. Paste your complete e4mc address into **Server Address**, then click **Join Server**. They do not click Open to LAN; only the host does that.
+4. Both of you now play in the host's world while each client runs its local CabinMod code. The world is saved on the host's computer.
+
+Your friend can alternatively use a normal Minecraft launcher with NeoForge **21.1.164** and the matching CabinMod JAR from `build/libs`. They do not need e4mc just to join a relay address. Using the same repository commit on both computers is the simplest way to keep development builds matched.
+
+### Test the boss together
+
+With commands enabled, stand in a clear area and run:
+
+```mcfunction
+/cabinmod rave_arena ~ ~ ~
+```
+
+Both enter the arena before starting; group scaling is chosen on the first support hit. Give yourselves equipment, switch to Survival, then hit an **orange truss support collar**. The first hit activates the light attacks. Damage both supports, survive the falling beam sequence, and fight Jehoash on foot. The key and the record in the surviving booth are one shared set of rewards. For a non-combat prop preview, use `/give @s cabinmod:burning_portapotty`.
+
+### Coding during the session
+
+Existing method-body changes can often be applied with IntelliJ's **Compile and Reload Modified Files** while using Debug. Server logic runs in the host's process; client rendering runs separately on each player's computer. Reloading your own classes does not update your friend's process. New fields/methods, registration changes, and many other structural changes require a restart. For those, commit/push, have your friend pull the same revision, restart both clients, and share the new e4mc address. Stopping at a suspending breakpoint in the host can stall the server and time out your friend; use logging or non-suspending breakpoints for shared play.
+
+For solo testing without an account prompt, choose **CabinMod - Offline Solo** (`./gradlew.bat runClientOffline`). Its separate world directory is `run/offline`; it does not load e4mc. The normal Play Together directory remains `run`. The `server` and `gameTestServer` tasks remain dedicated/local testing tools and do not automatically publish a server through e4mc.
+
+### If joining fails
+
+- **No login prompt / invalid session / offline Dev player:** use Play Together, complete Microsoft login, and restart that run if the session expired. Each player needs a different account.
+- **e4mc missing from Mods:** pull the latest commit, reload Gradle, and launch Play Together rather than Offline Solo or an old manually created configuration.
+- **No e4mc address or a relay error:** check the host's chat and `run/logs/latest.log`. Close/reopen the world and share it again. The relay service must be reachable; no repository setting can guarantee that a school/work network permits it.
+- **Wrong address:** use the full e4mc address shown in the host's chat. `localhost`, a home `192.168.*` address, and the LAN port alone will not reach the host from another network.
+- **Mod mismatch / missing registry entries:** compare commit IDs and NeoForge versions, remove old duplicate CabinMod JARs from `run/mods`, and restart both clients.
+- **Windows Firewall prompt:** allow the Minecraft Java process to communicate on your current network if prompted. This is separate from router port forwarding.
+- **Already connected as this player:** use separate Microsoft accounts, not two copies of the same account session.
+
+Implementation/tuning: `build.gradle` gives Play Together an empty `multiplayer` source set that reuses the main compiled mod and adds e4mc to its runtime dependencies. It also enables ModDevGradle's `devLogin` flag. Neither tool is bundled into the published CabinMod JAR or added as a required dependency for ordinary players. Update the pinned `multiplayerDevRuntime` dependency there when intentionally changing e4mc versions.
+
+References: [e4mc hosting instructions](https://e4mc.link/), [ModDevGradle account login](https://github.com/neoforged/ModDevGradle#using-authenticated-minecraft-accounts), [DevLogin first login](https://github.com/covers1624/DevLogin#usage-and-installation), [IntelliJ HotSwap limitations](https://www.jetbrains.com/help/idea/altering-the-program-s-execution-flow.html#reload_classes).
+
 ## Play
 
 Replace the previous CabinMod JAR in your instance's `mods` folder. Keep only one CabinMod JAR installed.
