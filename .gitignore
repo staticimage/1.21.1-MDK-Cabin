@@ -28,5 +28,6 @@ repo
 __pycache__/
 *.blend1
 
-# Account caches remain local if DevLogin's default storage location is overridden.
-.devlogin/
+# local-only asset sources (Blender/GIMP files, build scripts)
+/tools/
+/design/

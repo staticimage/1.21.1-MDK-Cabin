@@ -19,25 +19,7 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
-    // Only resolve Modrinth artifacts here; ordinary dependencies keep their existing repositories.
-    maven {
-        name = 'Modrinth'
-        url = 'https://api.modrinth.com/maven'
-        content { includeGroup 'maven.modrinth' }
-    }
 }
-
-// Added only to the authenticated client run, not the server, GameTests, or release JAR.
-// A fresh clone downloads e4mc automatically; nobody needs to copy a mod into run/mods.
-configurations { multiplayerDevRuntime }
-// ModDevGradle 2.0.78 discovers dependency mods on the source set's actual Java
-// runtime classpath. Its per-run extra/legacy classpath alone does not discover them.
-// This empty source set reuses main's compiled output and dependencies, adding e4mc
-// only for Play Together. CabinMod still comes from the main source set below.
-sourceSets {
-    multiplayer { runtimeClasspath += sourceSets.main.output }
-}
-configurations.multiplayerRuntimeClasspath.extendsFrom(configurations.runtimeClasspath, configurations.multiplayerDevRuntime)
 
 base {
     archivesName = mod_id
@@ -63,24 +45,9 @@ neoForge {
     runs {
         client {
             client()
-            ideName = 'CabinMod - Play Together'
-            devLogin = true
-            sourceSet = sourceSets.multiplayer
-
-            // DevLogin handles Microsoft login before Minecraft starts. Keep the normal
-            // run directory so existing dev worlds remain available. Each computer has
-            // its own account cache; never put credentials or fixed usernames in Git.
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-
-        clientOffline {
-            client()
-            ideName = 'CabinMod - Offline Solo'
-            gameDirectory = project.file('run/offline')
-            devLogin = false
-            // Intentionally no e4mc: use Play Together for an internet multiplayer session.
         }
 
         server {
@@ -119,9 +86,7 @@ neoForge {
             // Recommended logging level for the console
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
-            // Keep the shared-play console readable: DEBUG logs every relay packet.
-            // Other test runs retain the detailed development logging.
-            logLevel = name == 'client' ? org.slf4j.event.Level.INFO : org.slf4j.event.Level.DEBUG
+            logLevel = org.slf4j.event.Level.DEBUG
         }
     }
 
@@ -154,9 +119,6 @@ configurations {
 }
 
 dependencies {
-    // Pinned NeoForge release supporting Minecraft 1.21.1. Includes its own bundled
-    // libraries; Modrinth lists no required external mod dependencies for this build.
-    multiplayerDevRuntime 'maven.modrinth:e4mc:6.2.3-neoforge'
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
