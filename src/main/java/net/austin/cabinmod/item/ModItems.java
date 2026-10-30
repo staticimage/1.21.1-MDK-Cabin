@@ -3,6 +3,7 @@ package net.austin.cabinmod.item;
 import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.entity.ModEntities;
 import net.austin.cabinmod.item.custom.HammerItem;
+import net.austin.cabinmod.item.custom.JehoashRobeItem;
 import net.austin.cabinmod.item.custom.WandItem;
 import net.austin.cabinmod.sounds.ModSounds;
 import net.minecraft.core.component.DataComponents;
@@ -144,6 +145,9 @@ public class ModItems {
 
     public static final DeferredItem<Item> WARDENS_SPARE_KEY = ITEMS.register("wardens_spare_key",
             ()-> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final DeferredItem<JehoashRobeItem> JEHOASH_ROBE = ITEMS.register("jehoash_robe",
+            () -> new JehoashRobeItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<SwordItem> DEAD_EXCALIBUR = ITEMS.register("dead_excalibur",
             ()-> new SwordItem(Tiers.WOOD, new Item.Properties()

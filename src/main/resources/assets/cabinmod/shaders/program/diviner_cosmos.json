@@ -1,0 +1,254 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "one",
+    "dstrgb": "zero"
+  },
+  "vertex": "cabinmod:diviner_post",
+  "fragment": "cabinmod:diviner_cosmos",
+  "attributes": [
+    "Position"
+  ],
+  "samplers": [
+    {
+      "name": "DiffuseSampler"
+    },
+    {
+      "name": "PlanetSampler"
+    },
+    {
+      "name": "ApparitionSampler"
+    }
+  ],
+  "uniforms": [
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "InSize",
+      "type": "float",
+      "count": 2,
+      "values": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "OutSize",
+      "type": "float",
+      "count": 2,
+      "values": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "InvViewProj",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "ConstFrame",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "iTime",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "Takeover",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "Haze",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "Warp",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "Reveal",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "SunDir",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CometScreen",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CometTail",
+      "type": "float",
+      "count": 2,
+      "values": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CometHeat",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "Fade",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "ArtRect",
+      "type": "float",
+      "count": 4,
+      "values": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "Apparition",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "LaunchBeam",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "CometCore",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.4,
+        0.9,
+        1.0
+      ]
+    },
+    {
+      "name": "CometTrail",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.62,
+        0.3,
+        1.0
+      ]
+    },
+    {
+      "name": "BeamColor",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.6,
+        0.9,
+        1.0
+      ]
+    }
+  ]
+}

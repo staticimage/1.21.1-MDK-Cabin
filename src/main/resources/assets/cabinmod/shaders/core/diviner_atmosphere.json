@@ -1,0 +1,104 @@
+{
+  "vertex": "cabinmod:diviner_mesh",
+  "fragment": "cabinmod:diviner_atmosphere",
+  "samplers": [],
+  "uniforms": [
+    {
+      "name": "ModelViewMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "ModelMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "SunDir",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CameraPos",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Intensity",
+      "type": "float",
+      "count": 1,
+      "values": [
+        1.0
+      ]
+    }
+  ]
+}

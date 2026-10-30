@@ -1,0 +1,114 @@
+{
+  "vertex": "cabinmod:diviner_mesh",
+  "fragment": "cabinmod:diviner_planet",
+  "samplers": [
+    {
+      "name": "Sampler0"
+    },
+    {
+      "name": "Sampler1"
+    },
+    {
+      "name": "Sampler2"
+    }
+  ],
+  "uniforms": [
+    {
+      "name": "ModelViewMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "ModelMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "SunDir",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CameraPos",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CloudSpin",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    }
+  ]
+}

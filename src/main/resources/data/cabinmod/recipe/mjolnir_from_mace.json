@@ -1,4 +1,3 @@
-
 {
   "type": "cabinmod:crafting_block",
   "ingredient": {
@@ -6,5 +5,9 @@
   },
   "result": {
     "id": "cabinmod:mjolnir"
+  },
+  "star": {
+    "core": "#8FD8FF",
+    "trail": "#3C8CFF"
   }
 }

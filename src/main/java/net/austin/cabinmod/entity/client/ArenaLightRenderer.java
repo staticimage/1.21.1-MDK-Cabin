@@ -20,7 +20,7 @@ public class ArenaLightRenderer extends EntityRenderer<ArenaLightEntity> {
         SolidGeometry.box(out,pose.last(),-.08,.62,-.09,.08,.96,.09,metal,light);
         SolidGeometry.box(out,pose.last(),-.16,.88,-.17,.16,.98,.17,metal,light);
         SolidGeometry.box(out,pose.last(),-.34,.42,-.22,.34,.63,.22,housing,light);
-        Vec3 direction=entity.aimDirection();
+        Vec3 direction=entity.renderDirection(partial);
         float pan=(float)Math.atan2(direction.x,direction.z), tilt=-(float)Math.asin(direction.y);
         pose.pushPose();pose.mulPose(Axis.YP.rotation(pan));
         SolidGeometry.box(out,pose.last(),-.32,-.04,-.09,-.24,.47,.09,metal,light);
@@ -34,9 +34,10 @@ public class ArenaLightRenderer extends EntityRenderer<ArenaLightEntity> {
             double z=-.25+i*.065;
             SolidGeometry.box(out,pose.last(),-.235,.19,z,.235,.225,z+.025,0xFF444C58,light);
         }
-        int lens=entity.laserPhase()==2 ? 0xFFF5F6FF : entity.laserPhase()==1 ? 0xFFEF54B7 : 0xFF58AAC9;
-        for(int i=0;i<16;i++) {
-            double a=i*Math.PI/8,b=(i+1)*Math.PI/8;
+        int lens=entity.laserPhase()==2 ? 0xFFF5F6FF : entity.laserPhase()==1 ? 0xFFEF54B7
+                : 0xFF000000 | net.austin.cabinmod.client.RaveLighting.color(entity, partial);
+        for(int i=0;i<48;i++) {
+            double a=i*Math.PI/24,b=(i+1)*Math.PI/24;
             Vec3 backA=new Vec3(Math.cos(a)*.215,Math.sin(a)*.215,.12),backB=new Vec3(Math.cos(b)*.215,Math.sin(b)*.215,.12);
             Vec3 frontA=new Vec3(Math.cos(a)*.205,Math.sin(a)*.205,.34),frontB=new Vec3(Math.cos(b)*.205,Math.sin(b)*.205,.34);
             SolidGeometry.face(out,pose.last(),backA,frontA,frontB,backB,0xFF555D69,light);

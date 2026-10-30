@@ -8,10 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 
 // Jehoash and his decoys share the simplified cult robe, physical cloth and mirrored sphere.
 public class JehoashRenderer<T extends ClipMob> extends MobRenderer<T, JehoashModel<T>> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/entity/joash/joash_direct.png");
+    private static final ResourceLocation TEXTURE = JehoashModel.BODY_TEXTURE;
 
     public JehoashRenderer(EntityRendererProvider.Context context) {
         super(context, new JehoashModel<>(context.bakeLayer(JehoashModel.LAYER_LOCATION)), 1.0f);
+        this.addLayer(new JehoashFaceLayer<>(this));
+        this.addLayer(new JehoashClothLayer<>(this));
         this.addLayer(new DiscoBallLayer<>(this));
         this.addLayer(new CultDaggerLayer<>(this));
         this.addLayer(new DjBoothLayer<>(this, context));

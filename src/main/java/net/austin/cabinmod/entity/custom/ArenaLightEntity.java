@@ -37,15 +37,26 @@ public class ArenaLightEntity extends Entity {
     private static final EntityDataAccessor<Vector3f> POINT = SynchedEntityData.defineId(ArenaLightEntity.class, EntityDataSerializers.VECTOR3);
     private static final EntityDataAccessor<Integer> SERIAL = SynchedEntityData.defineId(ArenaLightEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Byte> FACING = SynchedEntityData.defineId(ArenaLightEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<BlockPos> CENTER = SynchedEntityData.defineId(ArenaLightEntity.class, EntityDataSerializers.BLOCK_POS);
+    private static final EntityDataAccessor<Integer> SLOT = SynchedEntityData.defineId(ArenaLightEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<java.util.Optional<UUID>> OWNER = SynchedEntityData.defineId(ArenaLightEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private UUID ownerId, aimTarget;
     private BlockPos center = BlockPos.ZERO;
     private int slot, clock;
     private boolean wasActive;
+    private Vec3 previousAim, currentAim, returnAim;
+    private byte previousPhase;
+    private int returnTick = -100;
     public ArenaLightEntity(EntityType<? extends ArenaLightEntity> type, Level level) { super(type, level); }
     public void configure(JehoashEntity boss, BlockPos center, int slot) {
-        ownerId = boss.getUUID(); this.center = center.immutable(); this.slot = slot; entityData.set(FACING,(byte)boss.djFacing().get2DDataValue()); updateSweep();
+        ownerId = boss.getUUID(); this.center = center.immutable(); this.slot = slot; entityData.set(FACING,(byte)boss.djFacing().get2DDataValue()); syncArena(); updateSweep();
     }
-    public UUID ownerId() { return ownerId; }
+    private void syncArena() {
+        entityData.set(CENTER, center); entityData.set(SLOT, slot); entityData.set(OWNER, java.util.Optional.ofNullable(ownerId));
+    }
+    public UUID ownerId() { return entityData.get(OWNER).orElse(null); }
+    public BlockPos arenaCenter() { return entityData.get(CENTER); }
+    public int fixtureSlot() { return entityData.get(SLOT); }
     public byte laserPhase() { return entityData.get(PHASE); }
     public int laserTick() { return entityData.get(SERIAL); }
     public Vec3 laserPoint() { return position().add(new Vec3(entityData.get(POINT))); }
@@ -53,21 +64,55 @@ public class ArenaLightEntity extends Entity {
     public Vec3 aimDirection() { Vec3 delta=laserPoint().subtract(position()); return delta.lengthSqr()<.001 ? forward() : delta.normalize(); }
     private Vec3 forward() { var d=net.minecraft.core.Direction.from2DDataValue(entityData.get(FACING)); return new Vec3(d.getStepX(),0,d.getStepZ()); }
     public Vec3 laserOrigin(float partialTick) { return position().add(aimDirection().scale(.345)); }
+    /** Continuous decorative clock, shared by all clients; no per-frame aim packets. */
+    public Vec3 sweepPoint(float partialTick) {
+        double t = level().getGameTime() + (double)partialTick;
+        int index = fixtureSlot();
+        Vec3 forward = forward(), side = new Vec3(forward.z, 0, -forward.x);
+        return Vec3.atBottomCenterOf(arenaCenter()).add(0, -.02, 0)
+                .add(forward.scale(4 + 3 * Math.sin(t * .011 + index)))
+                .add(side.scale(Math.sin(t * .018 + index * .8) * 8));
+    }
+    /** Only visual tracking is interpolated. A firing ray always uses the exact server endpoint. */
+    public Vec3 renderPoint(float partialTick) {
+        if (laserPhase() == 0) {
+            Vec3 sweep = sweepPoint(partialTick);
+            float blend = net.minecraft.util.Mth.clamp((tickCount - returnTick + partialTick) / 8f, 0, 1);
+            blend = blend * blend * (3 - 2 * blend);
+            return returnAim == null ? sweep : returnAim.lerp(sweep, blend);
+        }
+        if (laserPhase() == 2 || previousAim == null || currentAim == null) return laserPoint();
+        return previousAim.lerp(currentAim, partialTick);
+    }
+    public Vec3 renderDirection(float partialTick) {
+        Vec3 delta = renderPoint(partialTick).subtract(getPosition(partialTick));
+        return delta.lengthSqr() < .001 ? forward() : delta.normalize();
+    }
+    public Vec3 renderOrigin(float partialTick) {
+        return getPosition(partialTick).add(renderDirection(partialTick).scale(.345));
+    }
     private void updateSweep() {
-        Vec3 forward=forward(), side=new Vec3(forward.z,0,-forward.x);
-        Vec3 target=Vec3.atCenterOf(center).add(0,-.25,0).add(forward.scale(4+3*Math.sin(clock*.011+slot)))
-                .add(side.scale(Math.sin(clock*.018+slot*.8)*9));
-        point(target);
+        point(sweepPoint(0));
     }
     @Override protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(FACING,(byte)net.minecraft.core.Direction.SOUTH.get2DDataValue()); builder.define(PHASE, (byte)0); builder.define(POINT, new Vector3f()); builder.define(SERIAL, 0);
+        builder.define(CENTER, BlockPos.ZERO); builder.define(SLOT, 0); builder.define(OWNER, java.util.Optional.empty());
     }
     private void phase(byte phase) {
         entityData.set(PHASE, phase); entityData.set(SERIAL, entityData.get(SERIAL) + 1);
     }
     @Override public void tick() {
         super.tick();
-        if (!(level() instanceof ServerLevel server)) return;
+        if (!(level() instanceof ServerLevel server)) {
+            if (laserPhase() == 0 && previousPhase != 0) {
+                returnAim = currentAim == null ? laserPoint() : currentAim;
+                returnTick = tickCount;
+            }
+            previousAim = currentAim == null ? laserPoint() : currentAim;
+            currentAim = laserPhase() == 0 ? renderPoint(1) : laserPoint();
+            previousPhase = laserPhase();
+            return;
+        }
         Entity owner = ownerId == null ? null : server.getEntity(ownerId);
         if(owner instanceof JehoashEntity boss && boss.isAlive() && boss.isCollapsing()) {
             int t=boss.stageTime();
@@ -86,10 +131,8 @@ public class ArenaLightEntity extends Entity {
         int cycle = Math.floorMod(++clock + slot * 23, 140);
         if (!active) {
             if (laserPhase() != 0) phase((byte)0);
-            if (clock % 4 == 0) updateSweep();
             return;
         }
-        if (laserPhase()==0 && clock%4==0) updateSweep();
         if (cycle == 0) {
             var candidates=new java.util.ArrayList<>(server.getPlayers(this::validTarget));
             candidates.sort(java.util.Comparator.comparing(Player::getUUID));
@@ -132,7 +175,7 @@ public class ArenaLightEntity extends Entity {
     @Override protected void readAdditionalSaveData(CompoundTag tag) {
         if (tag.hasUUID("Boss")) ownerId = tag.getUUID("Boss");
         center = BlockPos.of(tag.getLong("Center")); slot = tag.getInt("Slot");
-        if(tag.contains("Facing")) entityData.set(FACING,tag.getByte("Facing")); updateSweep();
+        if(tag.contains("Facing")) entityData.set(FACING,tag.getByte("Facing")); syncArena(); updateSweep();
     }
     @Override public boolean isPickable() { return false; }
     @Override public boolean isPushable() { return false; }

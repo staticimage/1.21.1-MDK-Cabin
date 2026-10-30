@@ -5,5 +5,9 @@
   },
   "result": {
     "id": "cabinmod:excalibur"
+  },
+  "star": {
+    "core": "#FFE08A",
+    "trail": "#FFD24A"
   }
 }

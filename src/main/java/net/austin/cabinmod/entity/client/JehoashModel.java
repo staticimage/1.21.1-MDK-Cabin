@@ -2,7 +2,9 @@ package net.austin.cabinmod.entity.client;
 
 import net.austin.cabinmod.CabinMod;
 import net.austin.cabinmod.client.DiscoMusic;
-import net.austin.cabinmod.entity.client.physics.ClothChain;
+import net.austin.cabinmod.entity.StageCollapse;
+import net.austin.cabinmod.entity.client.physics.ClothSheet;
+import net.austin.cabinmod.entity.client.generated.JehoashOutfitGeometry;
 import net.austin.cabinmod.entity.client.physics.ModelSpace;
 import net.austin.cabinmod.entity.custom.ClipMob;
 import net.austin.cabinmod.entity.custom.JehoashEntity;
@@ -14,13 +16,12 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-// Original simple silhouette, dressed in a cult robe. Limbs have no fingers or extra joints.
-// Tall, lanky shrouded raver with a floating disco ball; all motion here is procedural.
+// A BRG-print cloak over a broad cuboid body painted from the supplied wing artwork.
 /*
  * MODEL / ANIMATION EDITING MAP
- * createBodyLayer() defines native Minecraft cuboids and UV coordinates (128x128 UV
- * space, regardless of PNG resolution). Elbows, wrists and knees are new articulated
- * parts; simple mitten hands are rendered by CultDaggerLayer. There is no finger rig.
+ * createBodyLayer() defines the skeleton; JehoashOutfitGeometry supplies fitted cubes (128x128 UV
+ * space, regardless of PNG resolution). Elbows, wrists and knees are articulated
+ * parts; fitted gloves follow the wrist bones. There is no finger rig.
  * jam() reads measured playback beats and DjPerformance targets. reach() uses a
  * 2-link, 13+13 pixel inverse-kinematics arm, with an outward/downward elbow pole;
  * changing arm lengths requires changing both the geometry and the 169 (=13*13) math.
@@ -28,22 +29,20 @@ import net.minecraft.util.Mth;
  * conduct() is the phase-one gesture loop. collapsePose() reads saved stage time and
  * animates noticing the beam, recoiling, guarding, vanishing and landing. It never
  * moves server collision boxes or the camera. JehoashRenderer hides four blink frames.
- * applyCloth() runs Verlet chains after body posing. Mesh fabric() creates sleeve,
- * hood, cape and strand segments. ClothChain handles inertia; tuning lives in addCloth.
- * For DIRECT image prints/UV mapping, use tools/textures/pack_direct_cult_art.py.
+ * applyCloth() pins the complete robe, cape, hood and sleeves to animated bones,
+ * then advances their common fabric simulation in model space.
+ * The active painted atlas and editable XCF source are listed in README.md.
  */
 public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION =
-            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "joash_placeholder"), "main");
+            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "joash"), "main");
 
-    private final ModelPart root, torso, robe, head, armR, armL, legR, legL, ball, handR, handL, foreR, foreL, shinR, shinL;
-    private record Cloth(ClothChain chain, ModelPart[] path, boolean back, float phase) {}
-    private final java.util.List<Cloth> cloth = new java.util.ArrayList<>();
+    private final ModelPart root, torso, head, armR, armL, legR, legL, ball, handR, handL, foreR, foreL, shinR, shinL;
+    private final ClothSheet fullFabric = new ClothSheet(true);
 
     public JehoashModel(ModelPart meshRoot) {
         this.root = meshRoot.getChild("root");
         this.torso = root.getChild("torso");
-        this.robe = torso.getChild("robe");
         this.head = torso.getChild("head");
         this.armR = torso.getChild("arm_r");
         this.armL = torso.getChild("arm_l");
@@ -55,78 +54,46 @@ public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
         this.shinR = legR.getChild("shin");this.shinL = legL.getChild("shin");
         this.handR = foreR.getChild("hand");
         this.handL = foreL.getChild("hand");
-        addCloth(torso,"cape",5,7f,true,0f,root,torso);
-        for (int i=0;i<5;i++) addCloth(torso,"strand_"+i,6,6f,true,i*1.4f,root,torso);
-        addCloth(foreR,"sleeve_r",3,4f,false,.7f,root,torso,armR,foreR);
-        addCloth(foreL,"sleeve_l",3,4f,false,2.7f,root,torso,armL,foreL);
-        addCloth(head,"hood_tail",3,4f,true,1.1f,root,torso,head);
-        addCloth(head,"hood_l",2,4f,false,2.1f,root,torso,head);
-        addCloth(head,"hood_r",2,4f,false,3.1f,root,torso,head);
     }
 
-    // UV offsets come from the placeholder texture generator (textures/entity/joash/joash_placeholder.png).
+    // Outfit cubes/UVs are generated together; the skeleton remains the cloth/IK contract.
+    public static final ResourceLocation BODY_TEXTURE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID,
+            "textures/entity/joash/jehoash_phase_two.png");
+
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
-        PartDefinition root = mesh.getRoot().addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0f, 24f, 0f));
-
-        root.addOrReplaceChild("leg_r", CubeListBuilder.create().texOffs(24, 0).addBox(-1.5f, 0f, -1.5f, 3f, 12f, 3f), PartPose.offset(-2.5f, -24f, 0f));
-        root.addOrReplaceChild("leg_l", CubeListBuilder.create().texOffs(36, 0).addBox(-1.5f, 0f, -1.5f, 3f, 12f, 3f), PartPose.offset(2.5f, -24f, 0f));
-
-        PartDefinition torso = root.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(88, 0).addBox(-5f, -18f, -3f, 10f, 18f, 6f), PartPose.offset(0f, -24f, 0f));
-        torso.addOrReplaceChild("robe", CubeListBuilder.create().texOffs(48, 0).addBox(-6f, 0f, -4f, 12f, 18f, 8f), PartPose.offset(0f, -1f, 0f));
-
-        PartDefinition head = torso.addOrReplaceChild("head", CubeListBuilder.create().texOffs(40, 29).addBox(-4f, -9f, -4f, 8f, 9f, 8f), PartPose.offset(0f, -18f, 0f));
-        head.addOrReplaceChild("hood", CubeListBuilder.create().texOffs(0, 29).addBox(-5f, -10f, -5f, 10f, 11f, 10f), PartPose.ZERO);
-
-        torso.addOrReplaceChild("arm_r", CubeListBuilder.create().texOffs(0, 0).addBox(-1.5f, -1f, -1.5f, 3f, 12f, 3f, new CubeDeformation(1.1f)), PartPose.offset(-6.5f, -17f, 0f));
-        torso.addOrReplaceChild("arm_l", CubeListBuilder.create().texOffs(12, 0).addBox(-1.5f, -1f, -1.5f, 3f, 12f, 3f, new CubeDeformation(1.1f)), PartPose.offset(6.5f, -17f, 0f));
-
-        armHand(torso.getChild("arm_r"),0);armHand(torso.getChild("arm_l"),12);
-        for(String side:new String[]{"r","l"}) root.getChild("leg_"+side).addOrReplaceChild("shin",
-                CubeListBuilder.create().texOffs(side.equals("r")?24:36,12).addBox(-1.5f,0,-1.5f,3,12,3),PartPose.offset(0,12,0));
-        // Elbows, wrists and knees articulate beneath the uninterrupted robe silhouette.
-        fabric(torso,"cape",0,-17,4.3f,10,7,5,0,56);
-        for (int i=0;i<5;i++) fabric(torso,"strand_"+i,-5.4f+i*2.7f,-15,5.2f,1.8f,6,6,20,56);
-        fabric(torso.getChild("arm_r").getChild("forearm"),"sleeve_r",0,6,2.4f,5,4,3,0,0);
-        fabric(torso.getChild("arm_l").getChild("forearm"),"sleeve_l",0,6,2.4f,5,4,3,12,0);
-        fabric(head,"hood_tail",0,-8,5.2f,5,4,3,0,56);
-        fabric(head,"hood_l",4.7f,-3,1,2,4,2,20,56);
-        fabric(head,"hood_r",-4.7f,-3,1,2,4,2,40,56);
-
-        root.addOrReplaceChild("ball", CubeListBuilder.create(), PartPose.offset(-11f, -47f, -2f));
-
-        return LayerDefinition.create(mesh, 128, 128);
+        PartDefinition root = mesh.getRoot().addOrReplaceChild("root",CubeListBuilder.create(),PartPose.offset(0,24,0));
+        for(String side:new String[]{"r","l"}) {
+            var leg=root.addOrReplaceChild("leg_"+side,CubeListBuilder.create(),PartPose.offset(side.equals("r")?-2.5f:2.5f,-24,0));
+            leg.addOrReplaceChild("shin",CubeListBuilder.create(),PartPose.offset(0,12,0));
+        }
+        var torso=root.addOrReplaceChild("torso",CubeListBuilder.create(),PartPose.offset(0,-24,0));
+        torso.addOrReplaceChild("revealed_core",CubeListBuilder.create(),PartPose.ZERO);
+        torso.addOrReplaceChild("head",CubeListBuilder.create(),PartPose.offset(0,-18,0));
+        for(String side:new String[]{"r","l"}) {
+            var arm=torso.addOrReplaceChild("arm_"+side,CubeListBuilder.create(),PartPose.offset(side.equals("r")?-7:7,-16.5f,0));
+            var fore=arm.addOrReplaceChild("forearm",CubeListBuilder.create(),PartPose.offset(0,13,0));
+            fore.addOrReplaceChild("hand",CubeListBuilder.create(),PartPose.offset(0,13,0));
+        }
+        root.addOrReplaceChild("ball",CubeListBuilder.create(),PartPose.offset(-11,-47,-2));
+        JehoashOutfitGeometry.add(root);
+        return LayerDefinition.create(mesh,128,128);
     }
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         float t = ageInTicks;
-        // Articulation stays under broad sleeves and the ankle-length robe; hands remain simple mittens.
+        // The same articulated skeleton carries the covered and revealed appearances.
 
-        robe.yScale = 1.25f;
-        robe.xScale = 1.15f;
+        boolean shed = usesRevealedBody(entity, ageInTicks);
+        torso.getChild("revealed_core").visible = shed;
+        // The fuller shoulders stay covered until sleeve pins release. Gloves are
+        // drawn at the wrist by the layer while the arm hierarchy is hidden.
+        armR.visible = armL.visible = hasShedCloth(entity,ageInTicks);
+        legR.visible = legL.visible = true;
 
-        // idle: breathing, a little sway, ball bobbing and spinning
-        torso.y += Mth.sin(t * 0.08f) * 0.6f;
-        torso.zRot = Mth.sin(t * 0.03f) * 0.03f;
-        head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
-        head.xRot = headPitch * Mth.DEG_TO_RAD + Mth.sin(t * 0.05f) * 0.05f;
-        head.zRot = Mth.sin(t * 0.04f) * 0.08f;
-        armR.zRot = 0.08f + Mth.sin(t * 0.06f) * 0.04f;
-        armL.zRot = -0.08f - Mth.sin(t * 0.06f) * 0.04f;
-        ball.y += Mth.sin(t * 0.1f) * 1.5f;
-        ball.yRot = t * 0.08f;
-        ball.xRot = 0.3f;
-
-        // walk: long slow strides, arms counter-swing, robe swishes
-        float swing = Mth.cos(limbSwing * 0.5f) * 1.1f * limbSwingAmount;
-        legR.xRot = swing;
-        legL.xRot = -swing;
-        armR.xRot = -swing * 0.6f;
-        armL.xRot = swing * 0.6f;
-        robe.xRot = -limbSwingAmount * 0.25f + Mth.sin(limbSwing * 0.5f) * 0.06f * limbSwingAmount;
-        torso.y += Math.abs(Mth.sin(limbSwing * 0.5f)) * -0.8f * limbSwingAmount;
+        idleAndWalk(limbSwing, limbSwingAmount, t, netHeadYaw, headPitch);
 
         if (entity instanceof JehoashEntity jehoash && jehoash.isDormant()) {
             jam(jehoash, ageInTicks);
@@ -206,6 +173,11 @@ public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
             }
         }
 
+        if (entity instanceof JehoashEntity j && j.stagePhase()==JehoashEntity.ON_FOOT
+                && j.stageTime()>=StageCollapse.END && j.stageTime()<StageCollapse.REVEAL_RECOVERY_END) {
+            blendRevealRecovery(j, ageInTicks, limbSwing, limbSwingAmount, netHeadYaw, headPitch);
+        }
+
         if (entity.isDeadOrDying()) {
             float death = Mth.clamp((entity.deathTime + ageInTicks - entity.tickCount) / 60f,0,1);
             root.y += death * 13f;
@@ -221,11 +193,52 @@ public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
         applyCloth(entity, ageInTicks);
     }
 
-    private static void armHand(PartDefinition arm,int u) {
-        var fore=arm.addOrReplaceChild("forearm",CubeListBuilder.create().texOffs(u,13)
-                .addBox(-1.5f,0,-1.5f,3,11.7f,3,new CubeDeformation(1.25f)),PartPose.offset(0,13,0));
-        fore.addOrReplaceChild("hand",CubeListBuilder.create(),PartPose.offset(0,13,0));
+    private void idleAndWalk(float limbSwing, float limbSwingAmount, float t, float netHeadYaw, float headPitch) {
+        // idle: breathing, a little sway, ball bobbing and spinning
+        torso.y += Mth.sin(t * 0.08f) * 0.6f;
+        torso.zRot = Mth.sin(t * 0.03f) * 0.03f;
+        head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
+        head.xRot = headPitch * Mth.DEG_TO_RAD + Mth.sin(t * 0.05f) * 0.05f;
+        head.zRot = Mth.sin(t * 0.04f) * 0.08f;
+        armR.zRot = 0.08f + Mth.sin(t * 0.06f) * 0.04f;
+        armL.zRot = -0.08f - Mth.sin(t * 0.06f) * 0.04f;
+        ball.y += Mth.sin(t * 0.1f) * 1.5f;
+        ball.yRot = t * 0.08f;
+        ball.xRot = 0.3f;
+
+        // walk: long slow strides, arms counter-swing, robe swishes
+        float swing = Mth.cos(limbSwing * 0.5f) * 1.1f * limbSwingAmount;
+        legR.xRot = swing;
+        legL.xRot = -swing;
+        armR.xRot = -swing * 0.6f;
+        armL.xRot = swing * 0.6f;
+        torso.y += Math.abs(Mth.sin(limbSwing * 0.5f)) * -0.8f * limbSwingAmount;
+
     }
+
+    private void blendRevealRecovery(JehoashEntity j, float age, float swing, float amount, float yaw, float pitch) {
+        float blend = StageCollapse.revealRecovery(j.stageTime()+age-j.tickCount);
+        // Capture the normal locomotion/action pose, then blend every joint from the
+        // same cinematic pose used before END. Death/hit reactions are applied later.
+        var parts = root.getAllParts().toList();
+        var normal = parts.stream().map(ModelPart::storePose).toList();
+        float sx=root.xScale, sy=root.yScale, sz=root.zScale;
+        parts.forEach(ModelPart::resetPose);
+        idleAndWalk(swing,amount,age,yaw,pitch);
+        collapsePose(j,age);
+        for (int i=0;i<parts.size();i++) {
+            ModelPart part=parts.get(i);
+            PartPose target=normal.get(i);
+            part.x=Mth.lerp(blend,part.x,target.x); part.y=Mth.lerp(blend,part.y,target.y); part.z=Mth.lerp(blend,part.z,target.z);
+            part.xRot=blendRadians(blend,part.xRot,target.xRot);
+            part.yRot=blendRadians(blend,part.yRot,target.yRot);
+            part.zRot=blendRadians(blend,part.zRot,target.zRot);
+        }
+        root.xScale=Mth.lerp(blend,root.xScale,sx);
+        root.yScale=Mth.lerp(blend,root.yScale,sy);
+        root.zScale=Mth.lerp(blend,root.zScale,sz);
+    }
+
     private void conduct(JehoashEntity j,float age) {
         jam(j,age);
         float t=j.stageTime()+(age-j.tickCount), cue=(t%140)/140;
@@ -254,6 +267,12 @@ public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
             armR.xRot=-.65f*crouch;foreR.xRot=-.7f*crouch;armR.zRot=.18f;
             armL.xRot=-1.15f*crouch;foreL.xRot=-.45f*crouch;armL.zRot=-.4f*crouch;
             head.xRot=-.3f*crouch;
+            // Both arms tear outward as the last pins release. Follow-through carries
+            // through the first on-foot frames rather than snapping to the idle pose.
+            float throwAway=StageCollapse.garmentThrow(t);
+            armR.zRot-=1.35f*throwAway;armL.zRot+=1.35f*throwAway;
+            armR.xRot-=.45f*throwAway;armL.xRot-=.45f*throwAway;
+            torso.xRot-=.18f*throwAway;head.xRot-=.22f*throwAway;
             float materialize=ease(Mth.clamp((t-61)/7,0,1));root.xScale=root.zScale=.15f+.85f*materialize;
         }
         ball.yRot=t*.2f;
@@ -292,24 +311,48 @@ public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
         root.translateAndRotate(pose);torso.translateAndRotate(pose);
         (left?armL:armR).translateAndRotate(pose);(left?foreL:foreR).translateAndRotate(pose);(left?handL:handR).translateAndRotate(pose);
     }
-    public void daggerTransform(com.mojang.blaze3d.vertex.PoseStack pose) { handTransform(pose,false); }
-
-    private static void fabric(PartDefinition parent,String name,float x,float y,float z,float width,float length,int count,int u,int v) {
-        for (int i=0;i<count;i++) {
-            parent = parent.addOrReplaceChild(name+"_"+i, CubeListBuilder.create().texOffs(u,v)
-                    .addBox(-width/2,0,-.25f,width,length+.35f,.5f),
-                    PartPose.offset(i==0?x:0,i==0?y:length,i==0?z:0));
+    public void renderCoveredHands(T entity,float age,com.mojang.blaze3d.vertex.PoseStack pose,
+                                   net.minecraft.client.renderer.MultiBufferSource buffers,int light,int overlay) {
+        if (hasShedCloth(entity,age)) return; // Exposed gloves render in the native hierarchy.
+        for(boolean left:new boolean[]{false,true}) {
+            pose.pushPose();
+            handTransform(pose,left);
+            (left?handL:handR).getChild("outfit").render(pose,
+                    buffers.getBuffer(net.minecraft.client.renderer.RenderType.entityCutoutNoCull(BODY_TEXTURE)),light,overlay);
+            pose.popPose();
         }
     }
-    private void addCloth(ModelPart parent,String name,int count,float length,boolean back,float phase,ModelPart... path) {
-        ModelPart[] segments = new ModelPart[count];
-        for (int i=0;i<count;i++) { parent = parent.getChild(name+"_"+i); segments[i] = parent; }
-        ClothChain chain = new ClothChain(length,segments).gravity(160).damping(.91f)
-                .stiffness(name.startsWith("hood") ? .14f : .035f).drag(2.6f);
-        if (name.startsWith("cape") || name.startsWith("strand")) chain.bodyRadius(5.6f);
-        cloth.add(new Cloth(chain,path,back,phase));
+
+    public void daggerTransform(com.mojang.blaze3d.vertex.PoseStack pose) { handTransform(pose,false); }
+
+    public void headTransform(com.mojang.blaze3d.vertex.PoseStack pose) {
+        root.translateAndRotate(pose); torso.translateAndRotate(pose); head.translateAndRotate(pose);
     }
+
+    public void torsoTransform(com.mojang.blaze3d.vertex.PoseStack pose) {
+        root.translateAndRotate(pose); torso.translateAndRotate(pose);
+    }
+
+    public void renderCloth(T entity, com.mojang.blaze3d.vertex.PoseStack pose,
+                            net.minecraft.client.renderer.MultiBufferSource buffers,
+                            net.minecraft.resources.ResourceLocation texture, int light, int overlay) {
+        if (entity instanceof net.austin.cabinmod.entity.custom.JehoashIllusionEntity
+                || entity instanceof JehoashEntity j && j.stagePhase()==JehoashEntity.ON_FOOT
+                && j.stageTime()<StageCollapse.END) return;
+        pose.pushPose();
+        if (root.xScale != 1f || root.yScale != 1f || root.zScale != 1f) {
+            pose.translate(0, 24f / 16f, 0);
+            pose.scale(root.xScale, root.yScale, root.zScale);
+            pose.translate(0, -24f / 16f, 0);
+        }
+        fullFabric.render(entity, pose, buffers, texture, light, overlay);
+        pose.popPose();
+    }
+
     private void applyCloth(T entity,float age) {
+        if (entity instanceof net.austin.cabinmod.entity.custom.JehoashIllusionEntity
+                || entity instanceof JehoashEntity j && j.stagePhase()==JehoashEntity.ON_FOOT
+                && j.stageTime()<StageCollapse.END) return;
         boolean dj = entity instanceof JehoashEntity j && j.isDormant();
         float beat = DiscoMusic.beats(DiscoMusic.key(entity),age);
         float kick = dj ? (float)Math.exp(-(beat-Mth.floor(beat))*6) * DiscoMusic.energy(DiscoMusic.key(entity)) : 0;
@@ -319,16 +362,29 @@ public class JehoashModel<T extends ClipMob> extends HierarchicalModel<T> {
             flare = seconds > 2.8f && seconds < 3.6f ? 210 : 0;
         }
         if(entity instanceof JehoashEntity j && j.isCollapsing()) flare=j.stageTime()<64?180:60;
-        final float burst = flare;
-        for (Cloth c : cloth) {
-            c.chain.apply(entity,age,ModelSpace.of(c.path),(index,pos,out) -> {
-                float tip = index/(float)c.chain.size();
-                float wave = Mth.sin(age*.13f + c.phase + index*.8f);
-                out.add(wave*(dj?48:16)*tip, -(dj ? 110+kick*100 : 0)*tip,
-                        c.back ? (dj?70:20)*tip+burst : 0);
-                if (!c.back) out.add(Math.signum(pos.x)*(kick*90+burst)*tip,0,wave*18);
-            });
-        }
+        float wind = Mth.sin(age * .12f) * (dj ? 135f : 55f) + flare;
+        var posed = new ClothSheet.Pose(ModelSpace.of(root,torso), ModelSpace.of(root,torso,head),
+                ModelSpace.of(root,torso,armR), ModelSpace.of(root,torso,armL),
+                ModelSpace.of(root,torso,armR,foreR), ModelSpace.of(root,torso,armL,foreL));
+        boolean detach = hasShedCloth(entity, age)
+                || entity.isDeadOrDying() && entity.deathTime + age - entity.tickCount >= 22f;
+        fullFabric.update(entity, age, posed, wind + kick * 100f, detach);
+    }
+
+    private static boolean usesRevealedBody(ClipMob entity, float age) {
+        return hasShedCloth(entity,age) || entity instanceof JehoashEntity j && j.isCollapsing()
+                && j.stageTime()+age-j.tickCount >= StageCollapse.REVEAL_START;
+    }
+
+    private static boolean hasShedCloth(ClipMob entity, float age) {
+        if (entity instanceof net.austin.cabinmod.entity.custom.JehoashIllusionEntity) return true;
+        if (!(entity instanceof JehoashEntity j)) return false;
+        return j.isCollapsing() && j.stageTime() + age - entity.tickCount >= StageCollapse.CLOTH_RELEASE
+                || j.stagePhase() == JehoashEntity.ON_FOOT && !j.isBoothAttached();
+    }
+
+    private static float blendRadians(float blend, float from, float to) {
+        return from + blend * Mth.wrapDegrees((to-from)*Mth.RAD_TO_DEG)*Mth.DEG_TO_RAD;
     }
 
     private static float ease(float x) {

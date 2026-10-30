@@ -10,6 +10,17 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        { "condition": "minecraft:killed_by_player" },
+        { "condition": "minecraft:random_chance", "chance": 0.005 }
+      ],
+      "entries": [
+        { "type": "minecraft:item", "name": "cabinmod:jehoash_robe" }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "cabinmod:entities/joash"

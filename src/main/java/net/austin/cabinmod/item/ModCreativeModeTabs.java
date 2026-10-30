@@ -30,6 +30,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.COMPRESSED_CABIN);
                         output.accept(ModItems.CABIN_CORE);
                         output.accept(ModItems.WARDENS_SPARE_KEY);
+                        output.accept(ModItems.JEHOASH_ROBE);
 
 
                         output.accept(ModItems.EXCALIBUR);

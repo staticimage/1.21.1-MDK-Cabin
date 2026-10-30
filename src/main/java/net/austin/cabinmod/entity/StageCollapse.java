@@ -15,6 +15,19 @@ import net.minecraft.world.phys.Vec3;
  */
 public final class StageCollapse {
     public static final int DODGE=59, IMPACT=74, END=110;
+    public static final int REVEAL_START=82, CLOTH_RELEASE=88, REVEAL_RECOVERY_END=128;
+    public static final int CLOTH_LIFETIME=38, CLOTH_FADE_TICKS=8;
+
+    /** The same envelope runs on both sides of the collapse/on-foot boundary. */
+    public static float garmentThrow(float t) {
+        float peak = 97.5f;
+        return t < peak ? smooth(Mth.clamp((t-REVEAL_START)/(peak-REVEAL_START),0,1))
+                : 1-smooth(Mth.clamp((t-peak)/(REVEAL_RECOVERY_END-peak),0,1));
+    }
+
+    public static float revealRecovery(float t) {
+        return smooth(Mth.clamp((t-END)/(REVEAL_RECOVERY_END-END),0,1));
+    }
     public static double drop(float t) {
         if(t<20) return 0;
         if(t<48) return .65*smooth((t-20)/28);

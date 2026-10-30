@@ -10,7 +10,6 @@ import net.minecraft.world.entity.Entity;
 // The attached booth and detached block share this mesh. Hands and controls use DjPerformance.
 public class DjBoothModel extends DjBoothModelBase<Entity> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/entity/dj_booth/dj_booth_direct.png");
-    public static final ResourceLocation EMISSIVE = ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID, "textures/entity/dj_booth/dj_booth_emissive.png");
 
     public DjBoothModel(ModelPart root) {
         super(root);

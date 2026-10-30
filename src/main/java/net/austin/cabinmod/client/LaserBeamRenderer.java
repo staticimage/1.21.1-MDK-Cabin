@@ -38,7 +38,7 @@ public final class LaserBeamRenderer {
     private static ClientLevel lastLevel;
 
     // Server and client tick counters differ, so each shot is timed from when this client first sees it.
-    private record Seen(byte phase, int laserTick, long nanos) {
+    private record Seen(byte phase, int laserTick, float startedAt) {
     }
 
     private LaserBeamRenderer() {
@@ -67,8 +67,8 @@ public final class LaserBeamRenderer {
         MultiBufferSource.BufferSource buffers = mc.renderBuffers().bufferSource();
         VertexConsumer vc = buffers.getBuffer(RenderType.lightning());
         PoseStack.Pose pose = new PoseStack().last();   // the level's model-view (camera rotation) is already applied
-        long now = System.nanoTime();
         for (ArenaLightEntity j : active) {
+            float now = j.tickCount + pt;
             byte phase = j.laserPhase();
             if(phase==3 && j.tickCount%6>1) continue;
             Seen seen = SEEN.get(j.getId());
@@ -78,12 +78,12 @@ public final class LaserBeamRenderer {
                 SEEN.put(j.getId(), seen);
                 if (phase == JehoashEntity.LASER_FIRING) impactBurst(mc.level, j.laserPoint());
             }
-            float age = (now - seen.nanos()) / 1e9f * 20f;
-            Vec3 from = j.laserOrigin(pt).subtract(cam);
-            Vec3 to = j.laserPoint().subtract(cam);
+            float age = now - seen.startedAt();
+            Vec3 from = j.renderOrigin(pt).subtract(cam);
+            Vec3 to = j.renderPoint(pt).subtract(cam);
             if (phase == JehoashEntity.LASER_CHARGING) drawCharge(vc, pose, from, to, age);
             else if (phase == JehoashEntity.LASER_FIRING) drawBeam(vc, pose, from, to, age);
-            else {
+            else if (phase == 3) {
                 float[] c = rainbow((j.tickCount+pt)*.008f + j.getId()*.17f);
                 ribbon(vc,pose,from,to,.035f,c[0],c[1],c[2],.18f);
             }

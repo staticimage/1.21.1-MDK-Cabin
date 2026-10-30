@@ -1,0 +1,67 @@
+{
+  "targets": [
+    "planet",
+    "cosmos",
+    "bloomA",
+    "bloomB",
+    "final"
+  ],
+  "passes": [
+    {
+      "name": "cabinmod:diviner_cosmos",
+      "intarget": "minecraft:main",
+      "outtarget": "cosmos",
+      "auxtargets": [
+        {
+          "name": "PlanetSampler",
+          "id": "planet"
+        }
+      ]
+    },
+    {
+      "name": "cabinmod:diviner_bright",
+      "intarget": "cosmos",
+      "outtarget": "bloomA"
+    },
+    {
+      "name": "cabinmod:diviner_blur",
+      "intarget": "bloomA",
+      "outtarget": "bloomB",
+      "uniforms": [{ "name": "BlurDir", "values": [1.0, 0.0] }]
+    },
+    {
+      "name": "cabinmod:diviner_blur",
+      "intarget": "bloomB",
+      "outtarget": "bloomA",
+      "uniforms": [{ "name": "BlurDir", "values": [0.0, 1.0] }]
+    },
+    {
+      "name": "cabinmod:diviner_blur",
+      "intarget": "bloomA",
+      "outtarget": "bloomB",
+      "uniforms": [{ "name": "BlurDir", "values": [4.0, 0.0] }]
+    },
+    {
+      "name": "cabinmod:diviner_blur",
+      "intarget": "bloomB",
+      "outtarget": "bloomA",
+      "uniforms": [{ "name": "BlurDir", "values": [0.0, 4.0] }]
+    },
+    {
+      "name": "cabinmod:diviner_final",
+      "intarget": "cosmos",
+      "outtarget": "final",
+      "auxtargets": [
+        {
+          "name": "BloomSampler",
+          "id": "bloomA"
+        }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "final",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

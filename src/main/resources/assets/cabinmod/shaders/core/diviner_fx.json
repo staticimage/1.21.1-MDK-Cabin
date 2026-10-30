@@ -1,0 +1,57 @@
+{
+  "vertex": "cabinmod:diviner_fx",
+  "fragment": "cabinmod:diviner_fx",
+  "samplers": [
+    {
+      "name": "Sampler0"
+    }
+  ],
+  "uniforms": [
+    {
+      "name": "ModelViewMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    },
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        1.0
+      ]
+    }
+  ]
+}

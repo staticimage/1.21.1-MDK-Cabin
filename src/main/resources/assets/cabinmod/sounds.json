@@ -202,5 +202,168 @@
         "attenuation_distance": 112
       }
     ]
+  },
+  "diviner_ascend": {
+    "subtitle": "sounds.cabinmod.diviner_ascend",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/ascend",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_space_loop": {
+    "subtitle": "sounds.cabinmod.diviner_space_loop",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/space_loop",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_launch": {
+    "subtitle": "sounds.cabinmod.diviner_launch",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/launch",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_descend": {
+    "subtitle": "sounds.cabinmod.diviner_descend",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/descend",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_impact": {
+    "subtitle": "sounds.cabinmod.diviner_impact",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/impact",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_impact_stinger": {
+    "subtitle": "sounds.cabinmod.diviner_impact_stinger",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/impact_stinger",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_fall_world": {
+    "subtitle": "sounds.cabinmod.diviner_fall_world",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/fall_world",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_craft": {
+    "subtitle": "sounds.cabinmod.diviner_craft",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/craft",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_slot_place": {
+    "subtitle": "sounds.cabinmod.diviner_slot_place",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/slot_place",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_slot_take": {
+    "subtitle": "sounds.cabinmod.diviner_slot_take",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/slot_take",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_star_tick": {
+    "subtitle": "sounds.cabinmod.diviner_star_tick",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/star_tick",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_space_swell": {
+    "subtitle": "sounds.cabinmod.diviner_space_swell",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/space_swell",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_cabin_hum": {
+    "subtitle": "sounds.cabinmod.diviner_cabin_hum",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/cabin_hum_1",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_2",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_3",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_4",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_5",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_6",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_7",
+        "stream": false
+      },
+      {
+        "name": "cabinmod:diviner/cabin_hum_8",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_launch_world": {
+    "subtitle": "sounds.cabinmod.diviner_launch_world",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/launch_world",
+        "stream": false
+      }
+    ]
+  },
+  "diviner_heavens_open": {
+    "subtitle": "sounds.cabinmod.diviner_heavens_open",
+    "sounds": [
+      {
+        "name": "cabinmod:diviner/heavens_open",
+        "stream": false
+      }
+    ]
   }
 }

@@ -19,7 +19,7 @@ public class CraftingBlockMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CraftingBlockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
 
     public CraftingBlockMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data){
@@ -32,9 +32,36 @@ public class CraftingBlockMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 0, 54, 34));
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 104, 34));
+        this.addSlot(new StarboundResultSlot(blockEntity.itemHandler, blockEntity, 1, 104, 34));
 
         addDataSlots(data);
+        if (!level.isClientSide()) blockEntity.addViewer(inv.player);
+    }
+
+    /** True while this player's launched result waits to fall back down (decides the starfall return on close). */
+    public boolean hasPendingStar(){
+        return data.get(2) != 0;
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        if (!player.level().isClientSide()) blockEntity.removeViewer(player);   // brings this player's stars down
+    }
+
+    @Override
+    public void clicked(int slotId, int button, ClickType clickType, Player player) {
+        // a hotbar-number swap would copy the result straight into the inventory: launch it instead
+        if (clickType == ClickType.SWAP && slotId >= 0 && slotId < slots.size() && slots.get(slotId) instanceof StarboundResultSlot starbound) {
+            starbound.launch(player, starbound.getItem().getCount());
+            return;
+        }
+        super.clicked(slotId, button, clickType, player);
+    }
+
+    @Override
+    public boolean canTakeItemForPickAll(ItemStack stack, Slot slot) {
+        return !(slot instanceof StarboundResultSlot) && super.canTakeItemForPickAll(stack, slot);
     }
 
     public boolean isCrafting(){
@@ -73,6 +100,10 @@ public class CraftingBlockMenu extends AbstractContainerMenu {
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
             }
+        } else if (sourceSlot instanceof StarboundResultSlot starbound) {
+            // Shift-clicking the result launches the whole stack instead of moving it to the inventory.
+            starbound.launch(playerIn, sourceStack.getCount());
+            return ItemStack.EMPTY;
         } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
             // This is a TE slot so merge the stack into the players inventory
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
