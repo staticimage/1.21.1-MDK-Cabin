@@ -43,7 +43,7 @@ def part_name(bone_name):
 
 
 def is_exported(bone_name):
-    # b_ parts, loc_ locators, phys_ runtime-cloth segments (simulated in game by ClothChain)
+    # b_ parts, loc_ locators, phys_ legacy runtime-cloth segments (the current garment uses ClothSheet)
     return bone_name.startswith(("b_", "loc_", "phys_"))
 
 

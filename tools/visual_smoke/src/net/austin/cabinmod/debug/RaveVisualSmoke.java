@@ -21,6 +21,23 @@ public final class RaveVisualSmoke {
         var level=event.getServer().overworld();
         var center=new BlockPos(0,80,0);
         for (int x=-1;x<=1;x++) for(int z=-1;z<=1;z++) level.getChunk(x,z);
+        if(Boolean.getBoolean("cabinmod.visualSmoke.robeReview")) {
+            var area=new net.minecraft.world.phys.AABB(center).inflate(40);
+            for(var old:level.getEntitiesOfClass(net.minecraft.world.entity.Entity.class,area))
+                if(!(old instanceof ServerPlayer)) old.discard();
+            for(int x=-12;x<=12;x++) for(int z=-12;z<=12;z++) {
+                level.setBlock(center.offset(x,-1,z),net.minecraft.world.level.block.Blocks.SMOOTH_QUARTZ.defaultBlockState(),3);
+                for(int y=0;y<=10;y++) level.setBlock(center.offset(x,y,z),net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),3);
+            }
+            level.setDayTime(6000);
+            level.getGameRules().getRule(net.minecraft.world.level.GameRules.RULE_DOMOBSPAWNING).set(false,event.getServer());
+            return;
+        }
+        if(Boolean.getBoolean("cabinmod.visualSmoke.revealReview")) {
+            var area=new net.minecraft.world.phys.AABB(center).inflate(40);
+            for(var old:level.getEntitiesOfClass(net.minecraft.world.entity.Entity.class,area))
+                if(!(old instanceof ServerPlayer)) old.discard();
+        }
         boss=RaveArena.build(level,center);
         level.setBlock(center.offset(9,0,-4),ModBlocks.BURNING_PORTAPOTTY.get().defaultBlockState()
                 .setValue(net.austin.cabinmod.block.custom.BurningPortapottyBlock.FACING,net.minecraft.core.Direction.SOUTH),3);
@@ -33,7 +50,7 @@ public final class RaveVisualSmoke {
     @SubscribeEvent public static void login(PlayerEvent.PlayerLoggedInEvent event) {
         if (!Boolean.getBoolean("cabinmod.visualSmoke") || !(event.getEntity() instanceof ServerPlayer p)) return;
         p.setGameMode(GameType.CREATIVE);p.setHealth(p.getMaxHealth());p.removeAllEffects();
-        p.teleportTo(p.serverLevel(),0.5,80,1,180,-15);
+        p.teleportTo(p.serverLevel(),0.5,83,10,180,16);
     }
     @EventBusSubscriber(modid=CabinMod.MOD_ID,value=net.neoforged.api.distmarker.Dist.CLIENT)
     public static class Client {
@@ -41,6 +58,9 @@ public final class RaveVisualSmoke {
         static Object originalPlayback;
         @SubscribeEvent public static void tick(net.neoforged.neoforge.client.event.ClientTickEvent.Post event) {
             if (!Boolean.getBoolean("cabinmod.visualSmoke")) return;
+            if (Boolean.getBoolean("cabinmod.visualSmoke.lightReview")
+                    || Boolean.getBoolean("cabinmod.visualSmoke.revealReview")
+                    || Boolean.getBoolean("cabinmod.visualSmoke.robeReview")) return;
             var mc=net.minecraft.client.Minecraft.getInstance();
             mc.options.pauseOnLostFocus = false;
             if(mc.level==null || mc.player==null) {
@@ -107,6 +127,11 @@ public final class RaveVisualSmoke {
             if(ticks==220)server.execute(() -> camera(server,.5,81,5,180,-6));
             if(ticks==350)server.execute(() -> { camera(server,5.3,82,-6.2,223,20);var p=server.getPlayerList().getPlayers().getFirst();p.getAbilities().flying=false;p.onUpdateAbilities(); });
             if(ticks==378)server.execute(() -> camera(server,.5,81,5,180,-6));
+            if(ticks==500 || ticks==520 || ticks==540)server.execute(() ->
+                    camera(server,boss.getX(),boss.getY()+1.8,boss.getZ()+5,180,7));
+            if(ticks==488 || ticks==520 || ticks==540 || ticks==565 || ticks==585)
+                server.execute(() -> System.out.println("PHASE_SMOKE tick="+ticks+" phase="+boss.stagePhase()
+                        +" stageTime="+boss.stageTime()+" attached="+boss.isBoothAttached()));
             if(ticks==180 || ticks==190 || ticks==200 || ticks==360 || ticks==370 || ticks==380) {
                 int side=ticks<350?0:1;
                 server.execute(() -> {
@@ -120,10 +145,16 @@ public final class RaveVisualSmoke {
             String shot=switch(ticks) {
                 case 80 -> "01-stage";case 110 -> "02-dj-hands";case 130 -> "03-cloth";case 240 -> "04-conductor-phase";
                 case 198 -> "14-knockback";case 280 -> "13-stage-field";case 400 -> "05-buckling";case 432 -> "06-falling";case 444 -> "07-dodge";case 458 -> "08-impact";
-                case 488 -> "09-landing";case 540 -> "10-on-foot";case 660 -> "11-restored";case 730 -> "12-portapotty";default -> null;
+                case 488 -> "09-landing";case 540 -> "10-on-foot";
+                case 565 -> "15-face-on-foot";case 585 -> "16-face-close";
+                case 610 -> "17-death";case 630 -> "18-death-late";
+                case 660 -> "11-restored";case 730 -> "12-portapotty";default -> null;
             };
             if(shot!=null)net.minecraft.client.Screenshot.grab(mc.gameDirectory,"review-"+shot+".png",mc.getMainRenderTarget(),c -> System.out.println("VISUAL_SMOKE "+c.getString()));
+            if(ticks==550)server.execute(() -> boss.setNoAi(true));
             if(ticks==570)server.execute(() -> boss.kill());
+            if(ticks==130 || ticks==540 || ticks==660)
+                System.out.println("FABRIC_SMOKE " + net.austin.cabinmod.entity.client.physics.ClothSheet.drainPerformanceSample());
             if(ticks==690)server.execute(() -> { var p=server.getPlayerList().getPlayers().getFirst();p.setGameMode(GameType.CREATIVE);camera(server,9.5,80,-.5,180,10); });
             if(ticks==780) {
                 mc.options.hideGui=false;

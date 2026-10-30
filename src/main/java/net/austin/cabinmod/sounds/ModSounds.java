@@ -75,6 +75,24 @@ public class ModSounds {
 
 
 
+    // Transient Diviner cinematic (tools/audio/build_diviner_sounds.py, synthesized).
+    public static final Supplier<SoundEvent> DIVINER_ASCEND = registerSoundEvent("diviner_ascend");
+    public static final Supplier<SoundEvent> DIVINER_SPACE_LOOP = registerSoundEvent("diviner_space_loop");
+    public static final Supplier<SoundEvent> DIVINER_LAUNCH = registerSoundEvent("diviner_launch");
+    public static final Supplier<SoundEvent> DIVINER_DESCEND = registerSoundEvent("diviner_descend");
+    public static final Supplier<SoundEvent> DIVINER_IMPACT = registerSoundEvent("diviner_impact");
+    public static final Supplier<SoundEvent> DIVINER_IMPACT_STINGER = registerSoundEvent("diviner_impact_stinger");
+    public static final Supplier<SoundEvent> DIVINER_FALL_WORLD = registerSoundEvent("diviner_fall_world");
+    public static final Supplier<SoundEvent> DIVINER_CRAFT = registerSoundEvent("diviner_craft");
+    // the heavens: panel interaction, the Cabin's voice, what other players hear
+    public static final Supplier<SoundEvent> DIVINER_SLOT_PLACE = registerSoundEvent("diviner_slot_place");
+    public static final Supplier<SoundEvent> DIVINER_SLOT_TAKE = registerSoundEvent("diviner_slot_take");
+    public static final Supplier<SoundEvent> DIVINER_STAR_TICK = registerSoundEvent("diviner_star_tick");
+    public static final Supplier<SoundEvent> DIVINER_SPACE_SWELL = registerSoundEvent("diviner_space_swell");
+    public static final Supplier<SoundEvent> DIVINER_CABIN_HUM = registerSoundEvent("diviner_cabin_hum");
+    public static final Supplier<SoundEvent> DIVINER_LAUNCH_WORLD = registerSoundEvent("diviner_launch_world");
+    public static final Supplier<SoundEvent> DIVINER_HEAVENS_OPEN = registerSoundEvent("diviner_heavens_open");
+
     private static ResourceKey<JukeboxSong> createSong(String name){
         return ResourceKey.create(Registries.JUKEBOX_SONG, ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID,name));
     }

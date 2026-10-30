@@ -10,11 +10,11 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
-/** A separately shaded, bevelled ritual dagger, anchored through the right mitten's grip. */
+/** A separately shaded, bevelled ritual dagger, anchored through the right glove's grip. */
 /*
  * WEAPON EDITING MAP
  * This is a hard-surface mesh drawn in pixel units at JehoashModel.daggerTransform(),
- * which follows the right wrist/mitten. Handle, pommel, guard and blade are explicitly
+ * which follows the right wrist/glove. Handle, pommel, guard and blade are explicitly
  * separate geometry below. Change the edge[] polygon for blade shape; its ridge creates
  * beveled lighting. Material is neutral white_concrete tinted per face, so the blade
  * cannot accidentally sample disco-ball UVs. It appears only after booth separation.
@@ -24,11 +24,8 @@ public class CultDaggerLayer<T extends ClipMob> extends RenderLayer<T,JehoashMod
     private static final ResourceLocation MATERIAL=ResourceLocation.withDefaultNamespace("textures/block/white_concrete.png");
     public CultDaggerLayer(RenderLayerParent<T,JehoashModel<T>> parent) { super(parent); }
     @Override public void render(PoseStack pose,MultiBufferSource buffers,int light,T entity,float swing,float amount,float partial,float age,float yaw,float pitch) {
-        for(boolean left:new boolean[]{false,true}) {
-            pose.pushPose();getParentModel().handTransform(pose,left);pose.scale(1f/16,1f/16,1f/16);
-            SolidGeometry.box(buffers.getBuffer(RenderType.entityCutoutNoCull(MATERIAL)),pose.last(),-1.7,-1.1,-2,1.7,1.1,2,0xFF51444C,light);
-            pose.popPose();
-        }
+        getParentModel().renderCoveredHands(entity,age,pose,buffers,light,
+                net.minecraft.client.renderer.entity.LivingEntityRenderer.getOverlayCoords(entity,0));
         if(entity.isDeadOrDying() || (entity instanceof JehoashEntity j && (j.isDormant() || j.isBoothAttached()))) return;
         pose.pushPose();getParentModel().daggerTransform(pose);pose.scale(1f/16,1f/16,1f/16);
         var out=buffers.getBuffer(RenderType.entityCutoutNoCull(MATERIAL));

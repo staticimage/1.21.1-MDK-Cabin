@@ -5,5 +5,9 @@
   },
   "result": {
     "id": "cabinmod:matthew"
+  },
+  "star": {
+    "core": "#FFD866",
+    "trail": "#E0A020"
   }
 }

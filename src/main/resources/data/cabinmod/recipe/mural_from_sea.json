@@ -5,5 +5,9 @@
   },
   "result": {
     "id": "cabinmod:light_block"
+  },
+  "star": {
+    "core": "#9FFFF0",
+    "trail": "#3FE0D0"
   }
 }

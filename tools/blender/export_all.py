@@ -11,7 +11,7 @@ textures/entity/<mob>/<mob>_uv_template.png / _uv_legend.txt / _uv_lock.json.
 
 --fresh (default auto): "1" ignores the UV lock and repacks the atlas (the rig is still being built). auto = "1"
 only while every <mob>*.png in the texture folder is an untouched generated placeholder (tEXt cabinmod-placeholder=1
-and cabinmod-placeholder-idat = sha1 of its pixel data, see paint_placeholders.py); as soon as one is painted or
+and cabinmod-placeholder-idat = sha1 of its pixel data); as soon as one is painted or
 edited it switches to "0", so the lock keeps that paint where it is.
 
 Afterwards the written clip files are checked against the clip table of design/JEHOASH_V2.md (section 5):
@@ -50,7 +50,7 @@ def parse_args():
 
 
 def is_placeholder(path):
-    """Same rule as paint_placeholders.png_owner: tagged AND the pixel data still hashes to the recorded value."""
+    """A placeholder is tagged and still has its original pixel-data hash."""
     try:
         data = open(path, "rb").read()
     except OSError:

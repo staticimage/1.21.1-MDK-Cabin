@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 public class RaveScreenRenderer extends EntityRenderer<RaveScreenEntity> {
     // These are byte-for-byte copies of the user's two selected images. Static means
     // static: no animation clock, fake audio meter, pulse tint, UV warp or crossfade.
-    // To replace one, change the filename here or the source in pack_direct_cult_art.py.
+    // To replace one, change the resource here and its supplied image PNG.
     public static final ResourceLocation ART=ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID,"textures/entity/rave/supplied_wings.png");
     public static final ResourceLocation ANGEL=ResourceLocation.fromNamespaceAndPath(CabinMod.MOD_ID,"textures/entity/rave/supplied_angel.png");
     private static final ResourceLocation METAL=ResourceLocation.withDefaultNamespace("textures/block/white_concrete.png");

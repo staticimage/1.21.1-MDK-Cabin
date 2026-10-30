@@ -1,6 +1,6 @@
 """Render textured Minecraft boxes headless: the DJ booth item icon (and texture previews of any mob).
 
-Called by tools/blender/paint_placeholders.py, which writes the model file and tags the result:
+Run with a model JSON containing the active booth atlas and UV face rectangles:
     "E:/Blender Foundation/blender/blender.exe" --background --factory-startup \
         --python tools/blender/render_booth_icon.py -- --model <model.json> --out <png> [--size 512] [--view icon]
 

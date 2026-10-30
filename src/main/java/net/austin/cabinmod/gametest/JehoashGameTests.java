@@ -30,6 +30,36 @@ import java.util.UUID;
 public class JehoashGameTests {
     private static final String EMPTY = "empty_11x6x11";   // the holder namespace (cabinmod) is added by NeoForge
 
+    @GameTest(template = EMPTY, timeoutTicks = 40)
+    public static void decorativeLightsSyncAndSweepBetweenTicks(GameTestHelper helper) {
+        var level = helper.getLevel();
+        var boss = helper.spawn(ModEntities.JOASH.get(), new BlockPos(5, 1, 3));
+        BlockPos center = helper.absolutePos(new BlockPos(5, 1, 5));
+        var light = ModEntities.ARENA_LIGHT.get().create(level);
+        light.setPos(Vec3.atCenterOf(center).add(0, 6, -8));
+        light.configure(boss, center, 3);
+        // Simulate a joining client's initial entity-data snapshot, without relying on NBT fields.
+        var replica = ModEntities.ARENA_LIGHT.get().create(level);
+        replica.setPos(light.position());
+        replica.getEntityData().assignValues(light.getEntityData().getNonDefaultValues());
+        check(helper, boss.getUUID().equals(replica.ownerId()) && replica.arenaCenter().equals(center)
+                && replica.fixtureSlot() == 3, "joining clients receive floor origin, owner and fixture slot");
+        Vec3 first = replica.renderPoint(.1f), second = replica.renderPoint(.8f);
+        check(helper, first.distanceTo(second) > .00001 && first.distanceTo(second) < .2,
+                "decorative aim advances smoothly within one game tick");
+        check(helper, light.renderPoint(.8f).distanceTo(second) < 1e-8, "clients share the same sweep clock");
+        CompoundTag saved = light.saveWithoutId(new CompoundTag());
+        var restored = ModEntities.ARENA_LIGHT.get().create(level);
+        restored.load(saved);
+        check(helper, restored.arenaCenter().equals(center) && restored.fixtureSlot() == 3
+                && boss.getUUID().equals(restored.ownerId()), "saved lights restore client render metadata");
+        check(helper, restored.renderPoint(.8f).distanceTo(second) < 1e-8, "reload preserves decorative sweep phase");
+        replica.getEntityData().packDirty();
+        for (int i = 0; i < 100; i++) replica.renderPoint(i / 100f);
+        check(helper, replica.getEntityData().packDirty() == null, "frame animation never dirties network data");
+        helper.succeed();
+    }
+
     @GameTest(template = EMPTY, timeoutTicks = 600)
     public static void interruptionSplitsTheBooth(GameTestHelper helper) {
         JehoashEntity jehoash = helper.spawn(ModEntities.JOASH.get(), new BlockPos(5, 1, 3));

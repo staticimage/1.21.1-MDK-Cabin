@@ -71,7 +71,7 @@ import java.util.UUID;
  * SUPPORT_HITS_BEFORE_EJECT and FIELD_* tune knockback/access timing. supportPressure
  * is a short-lived hit streak (resets on reload); phase, HP and field timers persist.
  * Rendering/art locations: JehoashModel (bones/IK/cloth), CultDaggerLayer (blade mesh),
- * DjPerformance (song choreography), and tools/textures/pack_direct_cult_art.py (UVs).
+ * DjPerformance (song choreography), and the layered XCF atlases in design/textures/.
  */
 public class JehoashEntity extends ClipMob {
     public static final String MOB = "joash";
@@ -178,6 +178,10 @@ public class JehoashEntity extends ClipMob {
                 entityData.set(STAGE_PHASE,ON_FOOT);bossEvent.setName(getDisplayName());bossEvent.setColor(BossEvent.BossBarColor.RED);
                 if(!roared) roar();
             }
+        } else if(stagePhase()==ON_FOOT && stageTime()>=net.austin.cabinmod.entity.StageCollapse.END
+                && stageTime()<net.austin.cabinmod.entity.StageCollapse.REVEAL_RECOVERY_END) {
+            // Keep a short replicated follow-through clock for the garment throw.
+            entityData.set(STAGE_TIME,stageTime()+1);
         }
     }
 

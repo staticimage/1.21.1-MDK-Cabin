@@ -5,5 +5,9 @@
   },
   "result": {
     "id": "cabinmod:compressed_cabin"
+  },
+  "star": {
+    "core": "#FFB860",
+    "trail": "#FF8A3D"
   }
 }

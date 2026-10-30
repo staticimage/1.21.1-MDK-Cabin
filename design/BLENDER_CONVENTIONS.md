@@ -30,7 +30,10 @@ modifiers that deform. Everything else in Blender is allowed, because the export
   - `loc_orb` — the floating disco ball (also a held item, drawn by a custom layer).
   - `loc_*` others for particles / laser origin as needed.
 
-## Runtime cloth (physics chains)
+## Runtime cloth (physics chains and mesh references)
+Jehoash's current garment uses connected surface grids in `entity/client/physics/ClothSheet.java`; its hood, veil, robe, cape, mantle and sleeves are simulated and rendered directly in Java. The `MC_joash_runtime_reference` collection in `design/blender/joash_v2.blend` shows their rest shape, along with the fuller native cuboid phase-two body. Garment UVs match `design/textures/jehoash_brg_cloak_uv.json`; body cubes and exact native face UVs come from `design/textures/jehoash_phase_two_model.json`, generated alongside the Java geometry by `tools/textures/build_jehoash_phase_two.py`. Its painted wing outfit uses Screenshot 2025-04-28 191821.png; the BRG artwork remains on the cloak. Run `tools/blender/sync_jehoash_reference.py` after rebuilding the body or cloak UVs. `ref_*` objects are inspection guides and are not exported.
+
+The older `phys_*` chain convention below still applies to other legacy rigs:
 Some cloth is simulated live in game instead of (or on top of) baked keys — robe strips, capes,
 sleeves, cables. Name those bones `phys_<chain>_<n>`, e.g. `phys_cape_1`, `phys_cape_2`, `phys_cape_3`:
 - each one parented to the previous; the first parented to the bone it hangs from (torso, arm…);

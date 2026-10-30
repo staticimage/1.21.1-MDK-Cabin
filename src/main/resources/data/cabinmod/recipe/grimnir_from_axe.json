@@ -5,5 +5,9 @@
   },
   "result": {
     "id": "cabinmod:cabin_axe"
+  },
+  "star": {
+    "core": "#FF5A4A",
+    "trail": "#B0122A"
   }
 }

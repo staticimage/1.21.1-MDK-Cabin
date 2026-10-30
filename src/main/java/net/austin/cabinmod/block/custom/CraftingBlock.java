@@ -98,7 +98,7 @@ public class CraftingBlock extends BaseEntityBlock {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
 
         if (level.isClientSide()){
-            return null;
+            return createTickerHelper(blockEntityType, ModBlockEntities.CRAFTING_BLOCK_BE.get(), CraftingBlockEntity::clientTick);
         }
 
         return createTickerHelper(blockEntityType, ModBlockEntities.CRAFTING_BLOCK_BE.get(),

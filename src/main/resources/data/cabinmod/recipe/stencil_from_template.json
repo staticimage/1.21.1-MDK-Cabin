@@ -6,5 +6,9 @@
   "result": {
     "id": "cabinmod:cabin_stencil",
     "count": 2
+  },
+  "star": {
+    "core": "#7FFFD8",
+    "trail": "#1FA890"
   }
 }
