@@ -24,10 +24,3 @@ runs
 run-data
 
 repo
-# tool caches / Blender backups
-__pycache__/
-*.blend1
-
-# local-only asset sources (Blender/GIMP files, build scripts)
-/tools/
-/design/

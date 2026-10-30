@@ -196,11 +196,6 @@ public final class DivinerCinematic {
         return phase == Phase.SPACE || phase == Phase.NONE || (phase == Phase.INTRO && time() >= INTERACTIVE_TICK);
     }
 
-    /** A post-chain target by name, for the visual smoke harness (tools/visual_smoke). */
-    public static com.mojang.blaze3d.pipeline.RenderTarget debugTarget(String name) {
-        return chain == null ? null : chain.getTempTarget(name);
-    }
-
     /** Colour texture of this frame's finished cosmos, for the glass panel to refract; -1 if unavailable. */
     public static int cosmosTexture() {
         if (chain == null || phase == Phase.NONE) return -1;

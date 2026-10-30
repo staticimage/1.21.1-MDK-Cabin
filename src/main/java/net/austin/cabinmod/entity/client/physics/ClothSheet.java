@@ -80,14 +80,6 @@ public final class ClothSheet {
     private final Link[] links;
     private final Boolean slimPlayer; // null preserves the original boss pattern and simulation.
     private final Map<Entity, State> states = new WeakHashMap<>();
-    private static long sampleNanoseconds, sampleCount;
-
-    public static String drainPerformanceSample() {
-        double milliseconds = sampleCount == 0 ? 0 : sampleNanoseconds / (double) sampleCount / 1_000_000d;
-        String result = String.format(java.util.Locale.ROOT, "%.3f ms/update across %d samples", milliseconds, sampleCount);
-        sampleNanoseconds = sampleCount = 0;
-        return result;
-    }
 
     private static final class State {
         final Vector3f[] position, previous, beforeStep, renderPosition, pinMotion;
@@ -379,8 +371,6 @@ public final class ClothSheet {
     }
 
     public void update(Entity entity, float age, Pose pose, float wind, boolean detachAll) {
-        long sampleStart = Boolean.getBoolean("cabinmod.visualSmoke") ? System.nanoTime() : 0;
-        try {
         State state = states.computeIfAbsent(entity, ignored -> new State(vertices.length, links.length));
         if (Float.isNaN(state.lastAge) && detachAll) {
             // A client that first sees an already-unrobed boss must not replay the throw.
@@ -519,12 +509,6 @@ public final class ClothSheet {
             for (int i = 0; i < vertices.length; i++)
                 if (!pinned(vertices[i], state)) collideBlocks(state.position[i], entity, blocks, c, s);
             selfCollide(state);
-        }
-        } finally {
-            if (sampleStart != 0) {
-                sampleNanoseconds += System.nanoTime() - sampleStart;
-                sampleCount++;
-            }
         }
     }
 
