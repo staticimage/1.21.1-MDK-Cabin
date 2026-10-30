@@ -1,0 +1,17 @@
+// Transient Diviner cinematic capture:
+//     ./gradlew -I tools/visual_smoke/diviner_smoke.gradle runClient --no-configuration-cache
+// Opens the diviner, launches a result, closes the menu and screenshots the ascent, the space panel, the
+// starfall and the impact into build/rave-preview/screenshots/diviner-*.png, then quits.
+// Add -PdivinerNight to capture at midnight (city lights on the planet's night side).
+allprojects {
+    afterEvaluate {
+        sourceSets.main.java.srcDir('tools/visual_smoke/src')
+        neoForge.runs.client {
+            devLogin = false
+            gameDirectory = project.file('build/rave-preview')
+            programArguments.addAll('--quickPlaySingleplayer', 'RavePreview', '--width', '1280', '--height', '720')
+            systemProperty 'cabinmod.divinerSmoke', 'true'
+            if (project.hasProperty('divinerNight')) systemProperty 'cabinmod.divinerSmoke.night', 'true'
+        }
+    }
+}
