@@ -2,8 +2,6 @@ allprojects {
     afterEvaluate {
         sourceSets.main.java.srcDir('tools/visual_smoke/src')
         neoForge.runs.client {
-            // Automated local capture must never prompt for a Microsoft account.
-            devLogin = false
             gameDirectory = project.file('build/rave-preview')
             programArguments.addAll('--quickPlaySingleplayer', 'RavePreview', '--width', '1440', '--height', '1000')
             systemProperty 'cabinmod.visualSmoke', 'true'
